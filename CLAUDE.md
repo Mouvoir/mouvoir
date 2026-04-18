@@ -31,7 +31,7 @@ Set in `.env.local`:
 
 ### Routing layout (App Router)
 - `src/app/layout.tsx` is the only root layout; `Nav` is rendered per-page (not in the layout) so each page can pick its `variant` ("pink" hero variant on `/`, "white" elsewhere). Rule: pages wrapping content in `.page-shell--pink` must pass `variant="pink"` to `<Nav>`; otherwise the default `"white"` matches the plain `.page-shell`.
-- Page routes: `/` (pink hero), `/template`, `/template/[slug]`, `/template/[slug]/{schema,tutorial}`, `/template/add`, `/galerie`, `/galerie/[slug]`, `/banque-images`, `/charte`, `/liens-utiles`, `/about`.
+- Page routes: `/` (pink hero), `/template`, `/template/[slug]`, `/template/[slug]/{schema,tutorial}`, `/template/add`, `/gallery`, `/gallery/[slug]`, `/image-bank`, `/charter`, `/useful-links`, `/about`.
 - `[slug]` pages receive `params` as a **Promise** — must `await` it (Next 15+ behavior). See `src/app/template/[slug]/page.tsx` for the pattern, including `generateStaticParams`.
 
 ### Sanity Studio (embedded)
@@ -41,7 +41,7 @@ Set in `.env.local`:
 - Sanity client (`src/sanity/client.ts`) reads `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`; both fall back to placeholders, so set them in `.env.local` before any real fetch.
 
 ### Content data flow
-- `src/lib/templates.ts` and `src/lib/galerie.ts` are **hardcoded fixture maps** keyed by slug, currently used by the public pages while the Sanity content model is being wired up. The Sanity schemas in `src/sanity/schemas/` mirror the same domain (template / gallery entry) but are not yet consumed by the pages. When migrating a page from fixtures to Sanity, replace the `TEMPLATES[slug]` / `GALERIE_ENTRIES` lookups with a GROQ query through `sanityClient`.
+- `src/lib/templates.ts` and `src/lib/gallery.ts` are **hardcoded fixture maps** keyed by slug, currently used by the public pages while the Sanity content model is being wired up. The Sanity schemas in `src/sanity/schemas/` mirror the same domain (template / gallery entry) but are not yet consumed by the pages. When migrating a page from fixtures to Sanity, replace the `TEMPLATES[slug]` / `GALLERY_ENTRIES` lookups with a GROQ query through `sanityClient`.
 
 ### Styling conventions
 - Shared layout primitives are CSS classes in `globals.css`, not Tailwind components: `.page-shell` (with `--pink` modifier), `.page-content`, `.h-page`, `.subline`, `.btn-outline`, `.btn-cta`, `.tag`. Reuse these instead of re-deriving the same Tailwind clusters.

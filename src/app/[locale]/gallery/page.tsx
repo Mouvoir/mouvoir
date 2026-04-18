@@ -44,7 +44,7 @@ export default async function GalleryPage({
           {entries.map((entry) => (
             <article key={entry.slug} className="flex flex-col">
               <Link
-                href={`/galerie/${entry.slug}`}
+                href={`/gallery/${entry.slug}`}
                 className="block w-full aspect-video rounded-[4px] overflow-hidden bg-[#111] relative"
               >
                 <div

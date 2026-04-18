@@ -6,9 +6,9 @@ import { routing } from "@/i18n/routing";
 
 const NAV_LINKS = [
   { href: "/template", key: "template" },
-  { href: "/galerie", key: "gallery" },
-  { href: "/banque-images", key: "imageBank" },
-  { href: "/liens-utiles", key: "usefulLinks" },
+  { href: "/gallery", key: "gallery" },
+  { href: "/image-bank", key: "imageBank" },
+  { href: "/useful-links", key: "usefulLinks" },
   { href: "/about", key: "about" },
 ] as const;
 
