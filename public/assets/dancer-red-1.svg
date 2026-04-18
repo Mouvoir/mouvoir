@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 180" aria-hidden="true">
+  <!-- Point-cloud dancer, both arms raised in V, legs slightly parted -->
+  <g fill="#e1212a">
+    <!-- Whole-body bob -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0; 0 1.5; 0 0" dur="1.1s" repeatCount="indefinite"/>
+
+      <!-- Head -->
+      <g>
+        <circle cx="55" cy="8" r="1.8"/><circle cx="60" cy="6" r="2.2"/><circle cx="65" cy="8" r="2"/>
+        <circle cx="50" cy="12" r="2"/><circle cx="55" cy="11" r="2.1"/><circle cx="60" cy="10" r="2.3"/>
+        <circle cx="65" cy="11" r="2.1"/><circle cx="70" cy="12" r="2"/>
+        <circle cx="52" cy="16" r="2.1"/><circle cx="57" cy="15" r="2"/><circle cx="62" cy="15" r="2.3"/>
+        <circle cx="67" cy="16" r="2"/><circle cx="72" cy="17" r="2.1"/>
+        <circle cx="54" cy="20" r="2.2"/><circle cx="59" cy="19" r="2"/><circle cx="64" cy="19" r="2.1"/>
+        <circle cx="69" cy="20" r="2.2"/>
+        <circle cx="56" cy="24" r="2"/><circle cx="61" cy="24" r="2.1"/><circle cx="66" cy="24" r="2"/>
+        <circle cx="58" cy="28" r="1.9"/><circle cx="62" cy="28" r="1.9"/>
+      </g>
+
+      <!-- Torso -->
+      <g>
+        <circle cx="48" cy="34" r="2"/><circle cx="52" cy="33" r="2.2"/><circle cx="56" cy="32" r="2.1"/>
+        <circle cx="60" cy="31" r="2.3"/><circle cx="64" cy="32" r="2"/><circle cx="68" cy="33" r="2.1"/>
+        <circle cx="72" cy="34" r="2"/>
+        <circle cx="47" cy="40" r="2.1"/><circle cx="52" cy="39" r="2"/><circle cx="57" cy="38" r="2.3"/>
+        <circle cx="62" cy="38" r="2"/><circle cx="67" cy="39" r="2.2"/><circle cx="72" cy="40" r="2"/>
+        <circle cx="48" cy="46" r="2"/><circle cx="53" cy="45" r="2.3"/><circle cx="58" cy="44" r="2"/>
+        <circle cx="63" cy="44" r="2.1"/><circle cx="68" cy="45" r="2"/><circle cx="73" cy="46" r="2.2"/>
+        <circle cx="49" cy="52" r="2.1"/><circle cx="54" cy="51" r="2"/><circle cx="59" cy="50" r="2.3"/>
+        <circle cx="64" cy="50" r="2.1"/><circle cx="69" cy="51" r="2"/><circle cx="74" cy="52" r="2"/>
+        <circle cx="50" cy="58" r="2"/><circle cx="55" cy="57" r="2.1"/><circle cx="60" cy="56" r="2.2"/>
+        <circle cx="65" cy="57" r="2"/><circle cx="70" cy="58" r="2.1"/>
+        <circle cx="51" cy="64" r="2.1"/><circle cx="56" cy="63" r="2"/><circle cx="61" cy="62" r="2.2"/>
+        <circle cx="66" cy="63" r="2.1"/><circle cx="71" cy="64" r="2"/>
+        <circle cx="52" cy="70" r="2"/><circle cx="57" cy="69" r="2.2"/><circle cx="62" cy="69" r="2"/>
+        <circle cx="67" cy="70" r="2.1"/><circle cx="72" cy="71" r="2"/>
+        <circle cx="53" cy="76" r="2.1"/><circle cx="58" cy="76" r="2"/><circle cx="63" cy="76" r="2.2"/>
+        <circle cx="68" cy="77" r="2"/>
+        <circle cx="52" cy="82" r="2.2"/><circle cx="58" cy="82" r="2"/><circle cx="64" cy="82" r="2.1"/>
+        <circle cx="70" cy="82" r="2"/>
+        <circle cx="52" cy="88" r="2"/><circle cx="58" cy="88" r="2.3"/><circle cx="64" cy="88" r="2"/>
+        <circle cx="70" cy="88" r="2.2"/>
+      </g>
+
+      <!-- Left arm (up-left) -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-6 48 34; 10 48 34; -6 48 34" dur="1.1s" repeatCount="indefinite"/>
+        <circle cx="46" cy="31" r="2"/><circle cx="44" cy="28" r="2.2"/><circle cx="42" cy="25" r="2"/>
+        <circle cx="40" cy="22" r="2.3"/><circle cx="38" cy="19" r="2"/><circle cx="36" cy="16" r="2.1"/>
+        <circle cx="33" cy="13" r="2"/><circle cx="30" cy="10" r="2.2"/>
+        <circle cx="27" cy="8" r="2"/><circle cx="24" cy="6" r="2.1"/><circle cx="21" cy="4" r="2"/>
+        <circle cx="18" cy="3" r="2"/>
+        <circle cx="44" cy="32" r="1.8"/><circle cx="41" cy="27" r="1.9"/><circle cx="38" cy="23" r="1.8"/>
+        <circle cx="35" cy="19" r="1.8"/><circle cx="32" cy="15" r="1.9"/><circle cx="28" cy="12" r="1.8"/>
+        <circle cx="25" cy="9" r="1.8"/><circle cx="22" cy="7" r="1.7"/>
+      </g>
+
+      <!-- Right arm (up-right) -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="6 72 34; -10 72 34; 6 72 34" dur="1.1s" repeatCount="indefinite"/>
+        <circle cx="74" cy="31" r="2"/><circle cx="76" cy="28" r="2.1"/><circle cx="78" cy="25" r="2.2"/>
+        <circle cx="80" cy="22" r="2"/><circle cx="82" cy="19" r="2.1"/><circle cx="84" cy="16" r="2"/>
+        <circle cx="87" cy="13" r="2.2"/><circle cx="90" cy="10" r="2"/>
+        <circle cx="93" cy="8" r="2.1"/><circle cx="96" cy="6" r="2"/><circle cx="99" cy="4" r="2"/>
+        <circle cx="102" cy="3" r="2.1"/>
+        <circle cx="76" cy="32" r="1.8"/><circle cx="79" cy="27" r="1.9"/><circle cx="82" cy="23" r="1.8"/>
+        <circle cx="85" cy="19" r="1.8"/><circle cx="88" cy="15" r="1.9"/><circle cx="92" cy="12" r="1.8"/>
+        <circle cx="95" cy="9" r="1.8"/><circle cx="98" cy="7" r="1.7"/>
+      </g>
+
+      <!-- Left leg -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-2 54 90; 4 54 90; -2 54 90" dur="1.1s" repeatCount="indefinite"/>
+        <circle cx="52" cy="94" r="2.2"/><circle cx="50" cy="100" r="2"/><circle cx="49" cy="106" r="2.1"/>
+        <circle cx="48" cy="112" r="2"/><circle cx="46" cy="118" r="2.2"/><circle cx="45" cy="124" r="2"/>
+        <circle cx="44" cy="130" r="2.1"/><circle cx="43" cy="136" r="2"/><circle cx="42" cy="142" r="2.2"/>
+        <circle cx="41" cy="148" r="2"/><circle cx="40" cy="154" r="2.1"/><circle cx="38" cy="160" r="2"/>
+        <circle cx="36" cy="166" r="2.2"/><circle cx="34" cy="172" r="2"/>
+        <circle cx="56" cy="96" r="2"/><circle cx="54" cy="102" r="2.1"/><circle cx="52" cy="108" r="2"/>
+        <circle cx="51" cy="114" r="2.2"/><circle cx="50" cy="120" r="2"/><circle cx="49" cy="126" r="2"/>
+        <circle cx="48" cy="132" r="2.1"/><circle cx="47" cy="138" r="2"/>
+      </g>
+
+      <!-- Right leg -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="2 66 90; -4 66 90; 2 66 90" dur="1.1s" repeatCount="indefinite"/>
+        <circle cx="68" cy="94" r="2.2"/><circle cx="70" cy="100" r="2"/><circle cx="71" cy="106" r="2.1"/>
+        <circle cx="72" cy="112" r="2"/><circle cx="74" cy="118" r="2.2"/><circle cx="75" cy="124" r="2"/>
+        <circle cx="76" cy="130" r="2.1"/><circle cx="77" cy="136" r="2"/><circle cx="78" cy="142" r="2.2"/>
+        <circle cx="79" cy="148" r="2"/><circle cx="80" cy="154" r="2.1"/><circle cx="82" cy="160" r="2"/>
+        <circle cx="84" cy="166" r="2.2"/><circle cx="86" cy="172" r="2"/>
+        <circle cx="64" cy="96" r="2"/><circle cx="66" cy="102" r="2.1"/><circle cx="68" cy="108" r="2"/>
+        <circle cx="69" cy="114" r="2.2"/><circle cx="70" cy="120" r="2"/><circle cx="71" cy="126" r="2"/>
+        <circle cx="72" cy="132" r="2.1"/><circle cx="73" cy="138" r="2"/>
+      </g>
+    </g>
+
+    <!-- Scatter particles with pulsing opacity -->
+    <g opacity="0.55">
+      <circle cx="10" cy="40" r="1.5"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="2.3s" repeatCount="indefinite"/></circle>
+      <circle cx="14" cy="60" r="1.2"><animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite"/></circle>
+      <circle cx="8" cy="80" r="1.3"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.6s" repeatCount="indefinite"/></circle>
+      <circle cx="110" cy="50" r="1.4"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.1s" repeatCount="indefinite"/></circle>
+      <circle cx="114" cy="70" r="1.2"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="1.7s" repeatCount="indefinite"/></circle>
+      <circle cx="108" cy="90" r="1.5"><animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.4s" repeatCount="indefinite"/></circle>
+      <circle cx="20" cy="110" r="1.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="100" cy="110" r="1.3"><animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.2s" repeatCount="indefinite"/></circle>
+      <circle cx="15" cy="140" r="1.4"><animate attributeName="opacity" values="0.2;0.7;0.2" dur="2.5s" repeatCount="indefinite"/></circle>
+      <circle cx="105" cy="140" r="1.4"><animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.9s" repeatCount="indefinite"/></circle>
+    </g>
+  </g>
+</svg>

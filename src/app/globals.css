@@ -1,26 +1,135 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-pink-bg: #ff8ad1;
+  --color-pink-card: #e94aa7;
+  --color-pink-light: #ffd4e8;
+  --color-pink-pale: #fce3ee;
+  --color-ink: #1a1a1a;
+  --color-muted: #6e6e6e;
+  --color-red: #e1212a;
+  --color-purple: #c975e8;
+
+  --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "Inter",
+    system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas,
+    monospace;
+
+  --radius-pill: 999px;
+  --radius-card: 24px;
+  --radius-lg: 30px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --pink-bg: #ff8ad1;
+  --pink-card: #e94aa7;
+  --pink-light: #ffd4e8;
+  --pink-pale: #fce3ee;
+  --ink: #1a1a1a;
+  --muted: #6e6e6e;
+  --red: #e1212a;
+  --purple: #c975e8;
+  --gradient-pink: linear-gradient(90deg, #ff5ab4 0%, #c82882 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Inter",
+    system-ui, sans-serif;
+  color: #1a1a1a;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono {
+  font-family: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas,
+    monospace;
+}
+
+/* Page wrapper used on every non-charte page */
+.page-shell {
+  min-height: 100vh;
+  width: 100%;
+  padding: 32px 80px 80px;
+}
+.page-shell--pink {
+  background: var(--pink-bg);
+  color: #ffffff;
+}
+.page-content {
+  max-width: 1760px;
+  margin: 0 auto;
+}
+
+/* Section heading shared across pages */
+.h-page {
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+.subline {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 4px;
+  max-width: 960px;
+}
+
+/* Outline pill button */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-family: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+.btn-outline:hover {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+/* Pink CTA gradient button */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px;
+  background: var(--gradient-pink);
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  width: 100%;
+}
+.btn-cta:hover {
+  opacity: 0.92;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: 13px;
 }

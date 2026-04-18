@@ -1,0 +1,115 @@
+{
+  "Nav": {
+    "template": "Template",
+    "gallery": "Galerie",
+    "imageBank": "Banque d'images",
+    "usefulLinks": "Liens utiles",
+    "about": "À propos",
+    "switchLocale": "EN"
+  },
+  "Home": {
+    "welcome": "Bienvenue sur Partycule !",
+    "tagline": "Rendez votre VJing interactif avec votre public"
+  },
+  "About": {
+    "title": "À propos",
+    "body": "«Partycule» est un dispositif de VJing interactif qui place le public au cœur des visuels en temps réel. Le label collaboratif «Partycule» destiné aux VJs Finta et allié·e·s, proposent des outils d'intéractivité permettant d'intégrer le public au sein des visuels, de manière encadrée, éphémère, inclusive et anonyme."
+  },
+  "TemplateList": {
+    "title": "Template",
+    "introOne": "Chaque templates dépendent de ton matériel, du lieu, et du contexte ! Tu trouveras des vidéos, des schémas pour chacun d'eux !",
+    "introTwo": "Choisis celui qui te conviens le mieux, et si tu peux améliore le si tu utilise un autre logiciel ! N'hésite pas à envoyer ce que tu as réalisé pour le mettre dans la Galerie !"
+  },
+  "TemplateCard": {
+    "materialLabel": "Matériel :",
+    "tutorialButton": "Vidéo tuto ▶",
+    "schemaButton": "Schéma ⌐",
+    "downloadButton": "Télécharger ↓",
+    "previewAria": "Aperçu de {title}"
+  },
+  "TemplateDetail": {
+    "downloadButton": "Télécharger ↓",
+    "descriptionLabel": "Description :"
+  },
+  "TemplateSchema": {
+    "downloadButton": "Télécharger ↓",
+    "materialLabel": "Matériel :",
+    "touchDesignerSchema": "Schéma de TouchDesigner :",
+    "schemaButton": "Schéma ⌐"
+  },
+  "TemplateTutorial": {
+    "downloadButton": "Télécharger ↓",
+    "videoTutorialLabel": "Vidéo tutoriel :",
+    "tutorialOutro": "Dites-moi si vous voulez voir plus de tutoriels particlesGpu !"
+  },
+  "TemplateAdd": {
+    "title": "Template",
+    "addTemplateCta": "Ajouter un template",
+    "cardTitle": "Ajouter un template",
+    "cardBody": "Propose un template à mettre sur le site et partage à la communauté !"
+  },
+  "Gallery": {
+    "title": "Galerie",
+    "subline": "Exemples des tests des templates par des VJs !",
+    "videoButton": "Vidéo ▶",
+    "addEntryTitle": "Ajouter un avis de tests",
+    "addEntryCta": "Ajouter"
+  },
+  "GalleryDetail": {
+    "templateUsedLabel": "Template utilisé :",
+    "downloadButton": "Télécharger ↓"
+  },
+  "ImageBank": {
+    "title": "Banque d'images",
+    "subline": "Images que vous pouvez télécharger pour vos VJing !",
+    "groovyDanceTitle": "Groovy dance",
+    "groovyDanceCredit": "Prise par Louise Lepeltier.",
+    "danceClubTitle": "Dance Club",
+    "danceClubCredit": "Image du site Pixy.",
+    "addVideoTitle": "Ajouter une vidéo",
+    "addVideoCredit": "Propose une vidéo pour alimenter la banque d'image !",
+    "downloadButton": "Télécharger ↓"
+  },
+  "ImageBankUpload": {
+    "title": "Ajouter un asset",
+    "intro": "Dépose une vidéo, une image ou un profil artiste dans la banque.",
+    "fieldTitle": "Titre",
+    "fieldType": "Type",
+    "fieldDescription": "Description",
+    "fieldFile": "Fichier",
+    "fieldLicense": "Licence",
+    "licensePlaceholder": "CC BY-NC, etc.",
+    "typeArtistProfile": "Profil artiste",
+    "typeVideo": "Vidéo",
+    "typeImage": "Image",
+    "chooseFile": "Choisir le fichier",
+    "noFileSelected": "aucun fichier sélectionné",
+    "submit": "Ajouter à la banque"
+  },
+  "Charter": {
+    "brand": "Partycule",
+    "title": "CHARTE",
+    "preamble": "Charte à respecter avant de pouvoir accéder au site, et aux templates.",
+    "body": "«Partycule» est un dispositif de VJing interactif qui place le public au cœur des visuels en temps réel. Le label collaboratif «Partycule» destiné aux VJs Finta et allié·e·s, proposent des outils d'intéractivité permettant d'intégrer le public au sein des visuels, de manière encadrée, éphémère, inclusive et anonyme.",
+    "sectionPresentation": ". Présentation",
+    "presentationWelcome": "Bienvenu dans les templates et outils «Partycule».",
+    "presentationBody": "Ces templates, et ces outils sont conçus pour permettre aux VJs d'amener de l'interaction au sein de leur soirée et réintégrer le public, au cœur des visuels, transformant le mouvement en matière première artistique. Notre approche se veut éphémère, immersive, bienveillante, inclusive et féministe.",
+    "presentationInstructionsLineOne": "Avant de réaliser la soirée, il faut consulter le site web dédié, avec les différents templates, banques d'images, … Chaque outil, possède un schéma explicatif, une vidéo tutoriel, et des exemples, avec parfois des sets réalisés par d'autres VJs.",
+    "presentationInstructionsLineTwo": "Une fois le type de templates choisis, et la soirée prévu, vous devez prévenir le public par un message dédié (détaillé ci-dessous dans les règles). Enfin vous pouvez utiliser les templates en utilisant le nom du label."
+  },
+  "UsefulLinks": {
+    "title": "Liens utiles",
+    "youtubeTutorialsHeading": "Tutoriel YouTube",
+    "pluginsHeading": "Plugin",
+    "aestheticPlaylistLabel": "Playlist esthétique :",
+    "interactionPlaylistLabel": "Playlist intéraction :",
+    "touchDesignerLabel": "Touchdesigner :",
+    "resolumeLabel": "Resolum :",
+    "watchOnYoutubeAria": "Regarder sur YouTube : {title}",
+    "openOnGithubAria": "Ouvrir {name} sur GitHub"
+  },
+  "Metadata": {
+    "title": "Partycule — Rendez votre VJing interactif",
+    "description": "Partycule est un dispositif de VJing interactif qui place le public au cœur des visuels en temps réel."
+  }
+}
