@@ -97,8 +97,7 @@
     "presentationInstructionsLineTwo": "Once you've picked a template type and planned the event, you must notify the public via a dedicated message (detailed below in the rules). Finally, you can use the templates under the label's name."
   },
   "CharterConsent": {
-    "accept": "I accept and continue",
-    "readFull": "Read the full charter"
+    "accept": "I accept and continue"
   },
   "UsefulLinks": {
     "title": "Useful links",

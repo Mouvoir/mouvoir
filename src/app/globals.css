@@ -52,7 +52,7 @@ body {
     monospace;
 }
 
-/* Page wrapper used on every non-charter page */
+/* Page wrapper used on every page */
 .page-shell {
   min-height: 100vh;
   width: 100%;

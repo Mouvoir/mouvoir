@@ -97,8 +97,7 @@
     "presentationInstructionsLineTwo": "Une fois le type de templates choisis, et la soirée prévu, vous devez prévenir le public par un message dédié (détaillé ci-dessous dans les règles). Enfin vous pouvez utiliser les templates en utilisant le nom du label."
   },
   "CharterConsent": {
-    "accept": "J'accepte et je continue",
-    "readFull": "Lire la charte complète"
+    "accept": "J'accepte et je continue"
   },
   "UsefulLinks": {
     "title": "Liens utiles",

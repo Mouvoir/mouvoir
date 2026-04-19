@@ -2,7 +2,6 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
 
 const STORAGE_KEY = "partycule-charter-accepted";
 const CHANGE_EVENT = "partycule:charter-consent-changed";
@@ -31,7 +30,6 @@ function getServerSnapshot() {
 }
 
 export function CharterConsent() {
-  const pathname = usePathname();
   const stored = useSyncExternalStore(
     subscribe,
     getClientSnapshot,
@@ -40,7 +38,7 @@ export function CharterConsent() {
   const t = useTranslations("CharterConsent");
   const tCharter = useTranslations("Charter");
 
-  const visible = stored !== "true" && pathname !== "/charter";
+  const visible = stored !== "true";
 
   useEffect(() => {
     if (!visible) return;
@@ -74,26 +72,45 @@ export function CharterConsent() {
         style={{
           background: "var(--pink-card)",
           borderRadius: "30px",
-          maxWidth: "720px",
+          maxWidth: "1100px",
           maxHeight: "90vh",
           overflowY: "auto",
-          padding: "56px 64px",
+          padding: "72px 88px 80px",
         }}
       >
+        <h1 className="text-[64px] font-normal text-center tracking-[-0.01em] leading-[1.05] m-0 mb-5">
+          {tCharter("brand")}
+        </h1>
         <h2
           id="charter-consent-title"
-          className="text-[44px] font-normal text-center tracking-[0.01em] leading-[1.1] m-0 mb-4"
+          className="text-[44px] font-normal text-center tracking-[0.01em] leading-[1.05] m-0 mb-7"
         >
           {tCharter("title")}
         </h2>
-        <p className="font-mono text-[14px] tracking-[0.04em] uppercase text-center mb-8 m-0">
+        <p className="font-mono text-[15px] tracking-[0.04em] uppercase text-center mb-10 m-0">
           {tCharter("preamble")}
         </p>
-        <p className="text-[17px] leading-[1.55] mb-10 m-0">
+
+        <p className="text-[19px] leading-[1.5] mb-12 m-0">
           {tCharter("body")}
         </p>
 
-        <div className="flex flex-col items-center gap-4">
+        <h3 className="font-mono text-[17px] tracking-[0.04em] uppercase mb-4 m-0">
+          {tCharter("sectionPresentation")}
+        </h3>
+        <p className="text-[16px] leading-[1.55] mb-4 m-0">
+          {tCharter("presentationWelcome")}
+        </p>
+        <p className="text-[16px] leading-[1.55] mb-4 m-0">
+          {tCharter("presentationBody")}
+        </p>
+        <p className="text-[16px] leading-[1.55] mb-12 m-0">
+          {tCharter("presentationInstructionsLineOne")}
+          <br />
+          {tCharter("presentationInstructionsLineTwo")}
+        </p>
+
+        <div className="flex justify-center">
           <button
             type="button"
             onClick={handleAccept}
@@ -102,12 +119,6 @@ export function CharterConsent() {
           >
             {t("accept")}
           </button>
-          <Link
-            href="/charter"
-            className="text-[15px] underline hover:opacity-80"
-          >
-            {t("readFull")}
-          </Link>
         </div>
       </div>
     </div>

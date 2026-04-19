@@ -31,7 +31,7 @@ Set in `.env.local`:
 
 ### Routing layout (App Router)
 - `src/app/layout.tsx` is the only root layout; `Nav` is rendered per-page (not in the layout) so each page can pick its `variant` ("pink" hero variant on `/`, "white" elsewhere). Rule: pages wrapping content in `.page-shell--pink` must pass `variant="pink"` to `<Nav>`; otherwise the default `"white"` matches the plain `.page-shell`.
-- Page routes: `/` (pink hero), `/template`, `/template/[slug]`, `/template/[slug]/{schema,tutorial}`, `/template/add`, `/gallery`, `/gallery/[slug]`, `/image-bank`, `/charter`, `/useful-links`, `/about`.
+- Page routes: `/` (pink hero), `/template`, `/template/[slug]`, `/template/[slug]/{schema,tutorial}`, `/template/add`, `/gallery`, `/gallery/[slug]`, `/image-bank`, `/useful-links`, `/about`. The charter is not a route — it's rendered in full as a first-visit consent modal (`CharterConsent`).
 - `[slug]` pages receive `params` as a **Promise** — must `await` it (Next 15+ behavior). See `src/app/template/[slug]/page.tsx` for the pattern, including `generateStaticParams`.
 
 ### Sanity Studio (embedded)
