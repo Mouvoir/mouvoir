@@ -42,17 +42,34 @@
     "tutorialOutro": "Dites-moi si vous voulez voir plus de tutoriels particlesGpu !"
   },
   "TemplateAdd": {
-    "title": "Template",
     "addTemplateCta": "Ajouter un template",
-    "cardTitle": "Ajouter un template",
-    "cardBody": "Propose un template à mettre sur le site et partage à la communauté !"
+    "modalTitle": "Ajouter un template",
+    "fieldTitle": "Titre",
+    "fieldCreator": "Nom créateurice",
+    "fieldDescription": "Description",
+    "fieldMaterial": "Matériel / Logiciel",
+    "fieldTemplate": "Template",
+    "fieldSchema": "Schéma / Mise en place",
+    "fieldTutorial": "Vidéo Tutoriel",
+    "fieldResult": "Vidéo résultat",
+    "submit": "Envoyer le template"
   },
   "Gallery": {
     "title": "Galerie",
     "subline": "Exemples des tests des templates par des VJs !",
-    "videoButton": "Vidéo ▶",
-    "addEntryTitle": "Ajouter un avis de tests",
-    "addEntryCta": "Ajouter"
+    "videoButton": "Vidéo ▶"
+  },
+  "GalleryAdd": {
+    "cta": "Ajouter un set",
+    "modalTitle": "Ajouter un set dans la Galerie",
+    "fieldCreator": "Nom créateurice",
+    "fieldDateLocation": "Date / Lieu",
+    "fieldTemplateName": "Nom du template de Partycule",
+    "fieldEventType": "Type de soirée / évènement",
+    "fieldComment": "Commentaire",
+    "fieldTemplateLink": "Lien du Template",
+    "fieldSetMedia": "Vidéos / images du set",
+    "submit": "Envoyer le set"
   },
   "GalleryDetail": {
     "templateUsedLabel": "Template utilisé :",
@@ -65,24 +82,16 @@
     "groovyDanceCredit": "Prise par Louise Lepeltier.",
     "danceClubTitle": "Dance Club",
     "danceClubCredit": "Image du site Pixy.",
-    "addVideoTitle": "Ajouter une vidéo",
-    "addVideoCredit": "Propose une vidéo pour alimenter la banque d'image !",
     "downloadButton": "Télécharger ↓"
   },
   "ImageBankUpload": {
-    "title": "Ajouter un asset",
-    "intro": "Dépose une vidéo, une image ou un profil artiste dans la banque.",
-    "fieldTitle": "Titre",
-    "fieldType": "Type",
-    "fieldDescription": "Description",
-    "fieldFile": "Fichier",
-    "fieldLicense": "Licence",
-    "licensePlaceholder": "CC BY-NC, etc.",
-    "typeArtistProfile": "Profil artiste",
-    "typeVideo": "Vidéo",
-    "typeImage": "Image",
-    "chooseFile": "Choisir le fichier",
-    "noFileSelected": "aucun fichier sélectionné",
+    "cta": "Ajouter une vidéo",
+    "modalTitle": "Ajouter une vidéo dans la banque à images",
+    "fieldCreator": "Nom créateurice",
+    "fieldVideoName": "Nom de la vidéo",
+    "fieldCredit": "Mention / crédit",
+    "fieldVideo": "Vidéo",
+    "fieldComment": "Commentaire",
     "submit": "Ajouter à la banque"
   },
   "Charter": {

@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AddTemplateButton } from "@/components/AddTemplateButton";
 import { Nav } from "@/components/Nav";
 import { TemplateCard } from "@/components/TemplateCard";
-import { Link } from "@/i18n/navigation";
 
 const TEMPLATES = [
   {
@@ -46,7 +46,6 @@ export default async function TemplateListPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("TemplateList");
-  const tAdd = await getTranslations("TemplateAdd");
 
   return (
     <div className="page-shell">
@@ -57,9 +56,7 @@ export default async function TemplateListPage({
           <h1 className="h-page" style={{ marginBottom: 0 }}>
             {t("title")}
           </h1>
-          <Link href="/template/add" className="btn-outline">
-            <span aria-hidden="true">+</span> {tAdd("addTemplateCta")}
-          </Link>
+          <AddTemplateButton />
         </div>
         <p className="subline">{t("introOne")}</p>
         <p className="subline">{t("introTwo")}</p>

@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AddGalleryButton } from "@/components/AddGalleryButton";
 import { Nav } from "@/components/Nav";
 import { Link } from "@/i18n/navigation";
 import { GALLERY_ENTRIES } from "@/lib/gallery";
@@ -41,9 +42,7 @@ export default async function GalleryPage({
           <h1 className="h-page" style={{ marginBottom: 0 }}>
             {t("title")}
           </h1>
-          <button type="button" className="btn-outline">
-            <span aria-hidden="true">+</span> {t("addEntryTitle")}
-          </button>
+          <AddGalleryButton />
         </div>
         <p className="subline">{t("subline")}</p>
 
