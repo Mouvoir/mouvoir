@@ -4,8 +4,7 @@
     "gallery": "Galerie",
     "imageBank": "Banque d'images",
     "usefulLinks": "Liens utiles",
-    "about": "À propos",
-    "switchLocale": "EN"
+    "about": "À propos"
   },
   "Home": {
     "welcome": "Bienvenue sur Partycule !",
@@ -96,6 +95,10 @@
     "presentationBody": "Ces templates, et ces outils sont conçus pour permettre aux VJs d'amener de l'interaction au sein de leur soirée et réintégrer le public, au cœur des visuels, transformant le mouvement en matière première artistique. Notre approche se veut éphémère, immersive, bienveillante, inclusive et féministe.",
     "presentationInstructionsLineOne": "Avant de réaliser la soirée, il faut consulter le site web dédié, avec les différents templates, banques d'images, … Chaque outil, possède un schéma explicatif, une vidéo tutoriel, et des exemples, avec parfois des sets réalisés par d'autres VJs.",
     "presentationInstructionsLineTwo": "Une fois le type de templates choisis, et la soirée prévu, vous devez prévenir le public par un message dédié (détaillé ci-dessous dans les règles). Enfin vous pouvez utiliser les templates en utilisant le nom du label."
+  },
+  "CharterConsent": {
+    "accept": "J'accepte et je continue",
+    "readFull": "Lire la charte complète"
   },
   "UsefulLinks": {
     "title": "Liens utiles",

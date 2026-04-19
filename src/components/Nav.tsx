@@ -1,8 +1,7 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
 
 const NAV_LINKS = [
   { href: "/template", key: "template" },
@@ -18,11 +17,8 @@ interface NavProps {
 
 export function Nav({ variant = "white" }: NavProps) {
   const pathname = usePathname();
-  const locale = useLocale();
   const t = useTranslations("Nav");
   const isPink = variant === "pink";
-
-  const otherLocale = routing.locales.find((l) => l !== locale) ?? locale;
 
   const linkBase =
     "inline-block text-[20px] px-[22px] py-[8px] rounded-full border-[1.5px] whitespace-nowrap transition-colors";
@@ -56,14 +52,7 @@ export function Nav({ variant = "white" }: NavProps) {
         })}
       </div>
 
-      <Link
-        href={pathname}
-        locale={otherLocale}
-        className={`${linkBase} ${inactiveHover}`}
-        aria-label={`Switch to ${otherLocale.toUpperCase()}`}
-      >
-        {t("switchLocale")}
-      </Link>
+      <span aria-hidden="true" className="w-[40px]" />
     </nav>
   );
 }

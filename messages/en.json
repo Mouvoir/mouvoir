@@ -4,8 +4,7 @@
     "gallery": "Gallery",
     "imageBank": "Image bank",
     "usefulLinks": "Useful links",
-    "about": "About",
-    "switchLocale": "FR"
+    "about": "About"
   },
   "Home": {
     "welcome": "Welcome to Partycule!",
@@ -96,6 +95,10 @@
     "presentationBody": "These templates and tools are designed to help VJs bring interaction into their events and bring the public back into the visuals, turning movement into raw artistic material. Our approach is ephemeral, immersive, caring, inclusive, and feminist.",
     "presentationInstructionsLineOne": "Before running the event, check the dedicated website with the various templates, image banks, etc. Each tool has an explanatory diagram, a video tutorial, and examples — sometimes including sets made by other VJs.",
     "presentationInstructionsLineTwo": "Once you've picked a template type and planned the event, you must notify the public via a dedicated message (detailed below in the rules). Finally, you can use the templates under the label's name."
+  },
+  "CharterConsent": {
+    "accept": "I accept and continue",
+    "readFull": "Read the full charter"
   },
   "UsefulLinks": {
     "title": "Useful links",
