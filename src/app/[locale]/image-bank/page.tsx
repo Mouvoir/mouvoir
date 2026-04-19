@@ -30,6 +30,29 @@ export default function ImageBankPage() {
 
           <div className="grid grid-cols-3 gap-8 mt-8">
             <article className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => setShowModal(true)}
+                className="w-full aspect-video rounded-[4px] border-[1.5px] border-[#1a1a1a] bg-white relative cursor-pointer"
+              >
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                  <span
+                    aria-hidden="true"
+                    className="text-[180px] leading-none font-bold text-[#1a1a1a]"
+                  >
+                    +
+                  </span>
+                </div>
+              </button>
+              <h2 className="text-[22px] font-bold mt-[18px] mb-[6px]">
+                {t("addVideoTitle")}
+              </h2>
+              <p className="text-[15px] max-w-[48ch] mb-[14px]">
+                {t("addVideoCredit")}
+              </p>
+            </article>
+
+            <article className="flex flex-col">
               <div className="w-full aspect-video rounded-[4px] overflow-hidden bg-[#111] relative">
                 <div className="w-full h-full bg-white relative">
                   <div
@@ -98,29 +121,6 @@ export default function ImageBankPage() {
                   {t("downloadButton")}
                 </button>
               </div>
-            </article>
-
-            <article className="flex flex-col">
-              <button
-                type="button"
-                onClick={() => setShowModal(true)}
-                className="w-full aspect-video rounded-[4px] border-[1.5px] border-[#1a1a1a] bg-white relative cursor-pointer"
-              >
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                  <span
-                    aria-hidden="true"
-                    className="text-[180px] leading-none font-bold text-[#1a1a1a]"
-                  >
-                    +
-                  </span>
-                </div>
-              </button>
-              <h2 className="text-[22px] font-bold mt-[18px] mb-[6px]">
-                {t("addVideoTitle")}
-              </h2>
-              <p className="text-[15px] max-w-[48ch] mb-[14px]">
-                {t("addVideoCredit")}
-              </p>
             </article>
 
             <article className="flex flex-col">

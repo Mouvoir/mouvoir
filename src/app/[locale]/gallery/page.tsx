@@ -41,6 +41,23 @@ export default async function GalleryPage({
         <p className="subline">{t("subline")}</p>
 
         <div className="grid grid-cols-3 gap-8 mt-8">
+          <article className="flex flex-col">
+            <div className="w-full aspect-video rounded-[4px] border-[1.5px] border-[#1a1a1a] bg-white relative">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                <span
+                  aria-hidden="true"
+                  className="text-[180px] leading-none font-bold text-[#1a1a1a]"
+                >
+                  +
+                </span>
+              </div>
+            </div>
+            <h2 className="text-[20px] font-bold mt-4 mb-1">
+              {t("addEntryTitle")}
+            </h2>
+            <p className="font-mono text-[13px] m-0 mb-4">{t("addEntryCta")}</p>
+          </article>
+
           {entries.map((entry) => (
             <article key={entry.slug} className="flex flex-col">
               <Link
@@ -74,23 +91,6 @@ export default async function GalleryPage({
               </div>
             </article>
           ))}
-
-          <article className="flex flex-col">
-            <div className="w-full aspect-video rounded-[4px] border-[1.5px] border-[#1a1a1a] bg-white relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                <span
-                  aria-hidden="true"
-                  className="text-[180px] leading-none font-bold text-[#1a1a1a]"
-                >
-                  +
-                </span>
-              </div>
-            </div>
-            <h2 className="text-[20px] font-bold mt-4 mb-1">
-              {t("addEntryTitle")}
-            </h2>
-            <p className="font-mono text-[13px] m-0 mb-4">{t("addEntryCta")}</p>
-          </article>
         </div>
       </div>
     </div>
