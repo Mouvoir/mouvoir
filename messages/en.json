@@ -92,7 +92,13 @@
     "fieldCredit": "Mention / credit",
     "fieldVideo": "Video",
     "fieldComment": "Comment",
-    "submit": "Add to bank"
+    "submit": "Add to bank",
+    "pending": "Uploading…",
+    "empty": "No videos yet. Be the first to add one!",
+    "errorMissingFields": "Please provide a video name and a video file.",
+    "errorFileType": "The uploaded file must be a video.",
+    "errorFileTooLarge": "The video is too large (max 200 MB).",
+    "errorGeneric": "Something went wrong. Please try again."
   },
   "Charter": {
     "brand": "Partycule",

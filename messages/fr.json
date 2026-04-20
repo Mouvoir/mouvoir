@@ -92,7 +92,13 @@
     "fieldCredit": "Mention / crédit",
     "fieldVideo": "Vidéo",
     "fieldComment": "Commentaire",
-    "submit": "Ajouter à la banque"
+    "submit": "Ajouter à la banque",
+    "pending": "Envoi en cours…",
+    "empty": "Aucune vidéo pour le moment. Sois la première à en ajouter une !",
+    "errorMissingFields": "Merci de renseigner un nom de vidéo et de joindre un fichier vidéo.",
+    "errorFileType": "Le fichier envoyé doit être une vidéo.",
+    "errorFileTooLarge": "La vidéo est trop lourde (max 200 Mo).",
+    "errorGeneric": "Une erreur est survenue. Merci de réessayer."
   },
   "Charter": {
     "brand": "Partycule",

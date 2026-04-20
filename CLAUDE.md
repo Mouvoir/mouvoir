@@ -26,6 +26,7 @@ There is no test runner configured.
 Set in `.env.local`:
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` — consumed by `src/sanity/client.ts`. Both have placeholder fallbacks, so missing values won't crash at import time but will break real fetches.
 - `YOUTUBE_API_KEY` — used by `src/lib/youtube.ts#fetchYoutubeMeta` to enrich gallery entries with title/duration/thumbnail from the YouTube Data API v3. 24h `revalidate`; silently returns `{}` when the key is missing or the request fails, so callers must tolerate empty metadata.
+- `SANITY_WRITE_TOKEN` — server-only Sanity token with write permissions, consumed by `src/sanity/writeClient.ts` for mutations (e.g. the image-bank submission server action). Not prefixed with `NEXT_PUBLIC_` so it stays out of the browser bundle. Without it, write operations will fail at runtime.
 
 ## Architecture
 
