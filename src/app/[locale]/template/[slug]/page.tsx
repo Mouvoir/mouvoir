@@ -68,6 +68,11 @@ export default async function TemplateDetailPage({
             {template.description}
           </p>
         ) : null}
+        {template.materials.length > 0 ? (
+          <p className="font-mono uppercase tracking-[0.02em] text-[14px] mt-2">
+            {tSchema("materialLabel")} {template.materials.join(", ")}
+          </p>
+        ) : null}
 
         <div
           className="w-full mt-8 rounded-[6px] relative overflow-hidden flex items-center justify-center"
@@ -109,12 +114,6 @@ export default async function TemplateDetailPage({
         </div>
 
         <section id="schema" className="mt-20 scroll-mt-24">
-          {template.materials.length > 0 ? (
-            <p className="font-mono uppercase tracking-[0.02em] text-[14px] mb-6">
-              {tSchema("materialLabel")} {template.materials.join(", ")}
-            </p>
-          ) : null}
-
           {template.hardwareTip ? (
             <div
               className="grid gap-8 items-start mt-6"
