@@ -6,14 +6,11 @@ export interface Template {
   title: string;
   description?: string;
   materials: string[];
-  thumbnail?: SanityImageSource;
   schemaImage?: SanityImageSource;
   videoTutorial?: string;
   resultVideoUrl?: string;
   downloadUrl?: string;
   tutorialAuthor?: string;
-  tutorialDescription?: string;
-  hardwareTip?: string;
 }
 
 const TEMPLATE_PROJECTION = /* groq */ `
@@ -21,14 +18,11 @@ const TEMPLATE_PROJECTION = /* groq */ `
   title,
   description,
   "materials": coalesce(materials, []),
-  thumbnail,
   schemaImage,
   videoTutorial,
   "resultVideoUrl": resultVideo.asset->url,
   "downloadUrl": downloadFile.asset->url,
-  tutorialAuthor,
-  tutorialDescription,
-  hardwareTip
+  tutorialAuthor
 `;
 
 export async function getAllTemplates(): Promise<Template[]> {

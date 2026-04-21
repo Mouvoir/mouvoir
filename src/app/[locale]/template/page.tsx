@@ -39,7 +39,6 @@ export default async function TemplateListPage({
               title={template.title}
               description={template.description}
               materials={template.materials}
-              thumbnail={template.thumbnail}
               downloadUrl={template.downloadUrl}
               resultVideoUrl={template.resultVideoUrl}
             />

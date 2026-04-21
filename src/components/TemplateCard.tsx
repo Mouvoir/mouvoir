@@ -1,7 +1,5 @@
-import type { SanityImageSource } from "@sanity/image-url";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { cropImageUrl } from "@/sanity/imageUrl";
 import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
 
 interface TemplateCardProps {
@@ -9,7 +7,6 @@ interface TemplateCardProps {
   title: string;
   description?: string;
   materials: string[];
-  thumbnail?: SanityImageSource;
   downloadUrl?: string;
   resultVideoUrl?: string;
 }
@@ -19,18 +16,15 @@ export function TemplateCard({
   title,
   description,
   materials,
-  thumbnail,
   downloadUrl,
   resultVideoUrl,
 }: TemplateCardProps) {
   const t = useTranslations("TemplateCard");
-  const thumbnailUrl = thumbnail ? cropImageUrl(thumbnail, 800, 450) : null;
 
   return (
     <article className="flex flex-col">
       <HoverVideoThumbnail
         videoUrl={resultVideoUrl}
-        posterUrl={thumbnailUrl ?? undefined}
         href={`/template/${slug}`}
         ariaLabel={t("previewAria", { title })}
       />

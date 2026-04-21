@@ -8,7 +8,6 @@ export const templateSchema = defineType({
     defineField({ name: "title", title: "Title", type: "string", validation: (r) => r.required() }),
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "title" }, validation: (r) => r.required() }),
     defineField({ name: "description", title: "Description", type: "text", rows: 3 }),
-    defineField({ name: "thumbnail", title: "Thumbnail", type: "image", options: { hotspot: true } }),
     defineField({ name: "videoTutorial", title: "Tutorial Video URL", type: "url" }),
     defineField({ name: "schemaImage", title: "Schema Image", type: "image", options: { hotspot: true } }),
     defineField({ name: "downloadFile", title: "Download File", type: "file" }),
@@ -24,21 +23,9 @@ export const templateSchema = defineType({
       title: "Tutorial Author",
       type: "string",
     }),
-    defineField({
-      name: "tutorialDescription",
-      title: "Tutorial Description",
-      type: "text",
-      rows: 4,
-    }),
-    defineField({
-      name: "hardwareTip",
-      title: "Hardware Tip",
-      type: "text",
-      rows: 3,
-    }),
     defineField({ name: "publishedAt", title: "Published At", type: "datetime" }),
   ],
   preview: {
-    select: { title: "title", media: "thumbnail" },
+    select: { title: "title" },
   },
 });

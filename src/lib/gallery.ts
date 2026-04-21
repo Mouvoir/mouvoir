@@ -10,7 +10,6 @@ export interface GalleryEntry {
   eventType: string | null;
   quote: string | null;
   thumbnail: SanityImageSource | null;
-  videoUrl: string | null;
   mediaFileUrl: string | null;
 }
 
@@ -23,7 +22,6 @@ const GALLERY_PROJECTION = /* groq */ `
   eventType,
   quote,
   thumbnail,
-  videoUrl,
   "mediaFileUrl": mediaFile.asset->url
 `;
 

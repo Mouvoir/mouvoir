@@ -70,11 +70,6 @@ export default async function GalleryDetailPage({
               </p>
             ) : null}
             <div className="flex gap-3 flex-wrap">
-              {entry.videoUrl ? (
-                <a href={entry.videoUrl} target="_blank" rel="noreferrer" className="btn-outline">
-                  {t("watchButton")}
-                </a>
-              ) : null}
               {entry.templateDownloadUrl ? (
                 <a href={entry.templateDownloadUrl} target="_blank" rel="noreferrer" className="btn-outline">
                   {t("downloadButton")}

@@ -65,13 +65,6 @@ export default async function GalleryPage({
                     «{entry.quote}»
                   </p>
                 ) : null}
-                {entry.videoUrl ? (
-                  <div className="flex gap-3 flex-wrap mt-3">
-                    <a href={entry.videoUrl} target="_blank" rel="noreferrer" className="btn-outline">
-                      {t("videoButton")}
-                    </a>
-                  </div>
-                ) : null}
               </article>
             );
           })}

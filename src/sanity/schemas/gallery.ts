@@ -9,7 +9,6 @@ export const gallerySchema = defineType({
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "vjName" }, validation: (r) => r.required() }),
     defineField({ name: "date", title: "Event Date & Location", type: "string" }),
     defineField({ name: "templateSlug", title: "Template", type: "string" }),
-    defineField({ name: "videoUrl", title: "Video URL", type: "url" }),
     defineField({ name: "thumbnail", title: "Thumbnail", type: "image", options: { hotspot: true } }),
     defineField({ name: "quote", title: "Quote / Testimonial", type: "text", rows: 3 }),
     defineField({ name: "eventType", title: "Event Type", type: "string" }),
