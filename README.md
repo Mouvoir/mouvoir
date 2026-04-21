@@ -3,7 +3,6 @@
 Website for the Partycule DJ collective — built with Next.js and Sanity CMS.
 
 ---
-
 ## Prerequisites
 
 Before you start, make sure you have installed:
@@ -75,9 +74,7 @@ Sanity Studio is the visual back-office that lets you create and edit content **
 
 With the dev server running, go to:
 
-```
-http://localhost:3000/studio
-```
+[http://localhost:3000/studio](http://localhost:3000/studio)
 
 You will be prompted to log in with your Sanity account. If you don't have one, create a free account
 at [sanity.io](https://www.sanity.io) and ask the project owner to add you to the project.
