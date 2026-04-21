@@ -1,7 +1,7 @@
 "use client";
 
-import type { FormEvent, ReactNode } from "react";
-import { useEffect, useState } from "react";
+import type { FormEvent, KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type AddEntryModalProps = {
   title: string;
@@ -150,6 +150,175 @@ export function TextAreaField({
         className="w-full rounded-[6px] px-3 py-[12px] text-[15px] bg-white resize-y"
         style={{ border: INPUT_BORDER, minHeight }}
       />
+    </div>
+  );
+}
+
+type ComboboxOption = string | { label: string; value: string };
+const optLabel = (o: ComboboxOption) => (typeof o === "string" ? o : o.label);
+const optValue = (o: ComboboxOption) => (typeof o === "string" ? o : o.value);
+
+export function ComboboxField({
+  label,
+  name,
+  options,
+  multiple = false,
+}: {
+  label: string;
+  name: string;
+  options: ComboboxOption[];
+  multiple?: boolean;
+}) {
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [highlighted, setHighlighted] = useState(-1);
+  const [selected, setSelected] = useState<string[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const selectedSet = useMemo(() => new Set(selected), [selected]);
+  const filtered = useMemo(
+    () =>
+      options.filter(
+        (opt) =>
+          !selectedSet.has(optValue(opt)) &&
+          optLabel(opt).toLowerCase().includes(query.toLowerCase()),
+      ),
+    [options, selectedSet, query],
+  );
+
+  const labelFor = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const opt of options) map.set(optValue(opt), optLabel(opt));
+    return map;
+  }, [options]);
+
+  const add = (opt: ComboboxOption) => {
+    const val = optValue(opt);
+    setSelected((s) => (multiple ? (s.includes(val) ? s : [...s, val]) : [val]));
+    setQuery("");
+    setOpen(false);
+    setHighlighted(-1);
+    inputRef.current?.focus();
+  };
+
+  const remove = (value: string) => {
+    setSelected((s) => s.filter((v) => v !== value));
+    inputRef.current?.focus();
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    const handleOutside = (e: MouseEvent) => {
+      if (!containerRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, [open]);
+
+  const handleKeyDown = (e: ReactKeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && query === "" && selected.length > 0) {
+      remove(selected[selected.length - 1]);
+      return;
+    }
+    if (!open) {
+      if (e.key === "ArrowDown" || e.key === "Enter") {
+        setOpen(true);
+        setHighlighted(0);
+        e.preventDefault();
+      }
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      setHighlighted((h) => Math.min(h + 1, filtered.length - 1));
+      e.preventDefault();
+    } else if (e.key === "ArrowUp") {
+      setHighlighted((h) => Math.max(h - 1, 0));
+      e.preventDefault();
+    } else if (e.key === "Enter" && highlighted >= 0) {
+      add(filtered[highlighted]);
+      e.preventDefault();
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-[8px]" ref={containerRef}>
+      <label htmlFor={`${name}-input`} className="text-[20px] font-bold">
+        {label}
+      </label>
+      <input type="hidden" name={name} value={multiple ? selected.join(",") : (selected[0] ?? "")} />
+      <div className="relative">
+        <div
+          className="w-full rounded-[6px] px-3 py-[8px] bg-white flex flex-wrap gap-[6px] items-center cursor-text"
+          style={{ border: INPUT_BORDER, minHeight: 48 }}
+          onClick={() => inputRef.current?.focus()}
+        >
+          {selected.map((val) => (
+            <span
+              key={val}
+              className="inline-flex items-center gap-[6px] pl-[10px] pr-[6px] py-[4px] bg-[#1a1a1a] text-white text-[13px] rounded-full leading-none"
+            >
+              {labelFor.get(val) ?? val}
+              <button
+                type="button"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  remove(val);
+                }}
+                className="flex items-center justify-center w-[16px] h-[16px] rounded-full hover:bg-white/20 transition-colors"
+                aria-label={`Remove ${labelFor.get(val) ?? val}`}
+              >
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+                  <path d="M1 1L7 7M7 1L1 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            </span>
+          ))}
+          <input
+            ref={inputRef}
+            id={`${name}-input`}
+            type="text"
+            value={query}
+            autoComplete="off"
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setOpen(true);
+              setHighlighted(-1);
+            }}
+            onFocus={() => setOpen(true)}
+            onKeyDown={handleKeyDown}
+            className="flex-1 outline-none text-[15px] bg-transparent py-[4px]"
+            style={{ minWidth: selected.length === 0 ? "100%" : 100 }}
+          />
+        </div>
+        {open && filtered.length > 0 && (
+          <ul
+            role="listbox"
+            className="absolute z-50 w-full bg-white mt-[3px] rounded-[6px] overflow-auto"
+            style={{
+              border: INPUT_BORDER,
+              boxShadow: "0 8px 28px rgba(0,0,0,0.10)",
+              maxHeight: 200,
+            }}
+          >
+            {filtered.map((opt, i) => (
+              <li
+                key={optValue(opt)}
+                role="option"
+                aria-selected={i === highlighted}
+                onMouseDown={() => add(opt)}
+                onMouseEnter={() => setHighlighted(i)}
+                className="px-3 py-[10px] text-[15px] cursor-pointer"
+                style={{ background: i === highlighted ? "#f5f5f5" : "transparent" }}
+              >
+                {optLabel(opt)}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 import { sanityWriteClient } from "@/sanity/writeClient";
-import { MAX_FILE_BYTES, slugify } from "@/lib/upload";
+import { MAX_FILE_BYTES, slugify, uploadSanityAsset } from "@/lib/upload";
 
 export type CreateTemplateResult =
   | { ok: true; slug: string }
@@ -30,17 +30,6 @@ function extractMaterials(formData: FormData): string[] {
     out.push(trimmed);
   }
   return out;
-}
-
-async function uploadFile(
-  file: File,
-  kind: "file" | "image",
-): Promise<{ _type: "reference"; _ref: string }> {
-  const uploaded = await sanityWriteClient.assets.upload(kind, file, {
-    filename: file.name,
-    contentType: file.type,
-  });
-  return { _type: "reference", _ref: uploaded._id };
 }
 
 export async function createTemplate(
@@ -98,13 +87,13 @@ export async function createTemplate(
 
     const [downloadRef, schemaRef, resultRef] = await Promise.all([
       templateFile instanceof File && templateFile.size > 0
-        ? uploadFile(templateFile, "file")
+        ? uploadSanityAsset(templateFile, "file")
         : null,
       schemaFile instanceof File && schemaFile.size > 0
-        ? uploadFile(schemaFile, "image")
+        ? uploadSanityAsset(schemaFile, "image")
         : null,
       resultFile instanceof File && resultFile.size > 0
-        ? uploadFile(resultFile, "file")
+        ? uploadSanityAsset(resultFile, "file")
         : null,
     ]);
 
@@ -128,7 +117,7 @@ export async function createTemplate(
       publishedAt: new Date().toISOString(),
     });
 
-    revalidateTag("template");
+    revalidateTag("template", {});
 
     return { ok: true, slug };
   } catch (err) {

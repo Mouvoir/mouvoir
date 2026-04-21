@@ -77,10 +77,15 @@
     "fieldComment": "Comment",
     "fieldTemplateLink": "Template link",
     "fieldSetMedia": "Set videos / images",
-    "submit": "Submit set"
+    "submit": "Submit set",
+    "pending": "Submitting…",
+    "error_missing-fields": "Creator name is required.",
+    "error_file-too-large": "File is too large (max 200 MB).",
+    "error_generic": "Something went wrong, please try again."
   },
   "GalleryDetail": {
     "templateUsedLabel": "Template used:",
+    "watchButton": "Watch video ↗",
     "downloadButton": "Download ↓"
   },
   "ImageBank": {

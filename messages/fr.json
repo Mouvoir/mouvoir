@@ -77,10 +77,15 @@
     "fieldComment": "Commentaire",
     "fieldTemplateLink": "Lien du Template",
     "fieldSetMedia": "Vidéos / images du set",
-    "submit": "Envoyer le set"
+    "submit": "Envoyer le set",
+    "pending": "Envoi en cours…",
+    "error_missing-fields": "Le nom du créateur est requis.",
+    "error_file-too-large": "Le fichier est trop volumineux (max 200 Mo).",
+    "error_generic": "Une erreur est survenue, veuillez réessayer."
   },
   "GalleryDetail": {
     "templateUsedLabel": "Template utilisé :",
+    "watchButton": "Voir la vidéo ↗",
     "downloadButton": "Télécharger ↓"
   },
   "ImageBank": {

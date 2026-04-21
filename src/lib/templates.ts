@@ -1,4 +1,4 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageSource } from "@sanity/image-url";
 import { sanityClient } from "@/sanity/client";
 
 export interface Template {
@@ -58,5 +58,13 @@ export async function getAllTemplateSlugs(): Promise<string[]> {
     /* groq */ `*[_type == "template" && defined(slug.current)].slug.current`,
     {},
     { next: { revalidate: 300, tags: ["template"] } },
+  );
+}
+
+export async function getAllTemplateOptions(): Promise<{ label: string; value: string }[]> {
+  return sanityClient.fetch(
+    /* groq */ `*[_type == "template" && defined(slug.current)] | order(coalesce(publishedAt, _createdAt) desc) { "label": title, "value": slug.current }`,
+    {},
+    { next: { revalidate: 60, tags: ["template"] } },
   );
 }

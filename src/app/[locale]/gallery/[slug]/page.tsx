@@ -1,8 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/Nav";
-import { GALLERY_ENTRIES } from "@/lib/gallery";
+import { getAllGallerySlugs, getGalleryEntryBySlug } from "@/lib/gallery";
 import { routing } from "@/i18n/routing";
+import { cropImageUrl } from "@/sanity/imageUrl";
 
 export default async function GalleryDetailPage({
   params,
@@ -11,11 +12,13 @@ export default async function GalleryDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const entry = GALLERY_ENTRIES[slug];
+  const entry = await getGalleryEntryBySlug(slug);
 
   if (!entry) notFound();
 
   const t = await getTranslations("GalleryDetail");
+
+  const thumbUrl = entry.thumbnail ? cropImageUrl(entry.thumbnail, 1200, 675) : null;
 
   return (
     <div className="page-shell">
@@ -23,55 +26,61 @@ export default async function GalleryDetailPage({
         <Nav />
 
         <h1 className="h-page">{entry.vjName}</h1>
-        <p className="font-mono text-[14px] m-0 mb-8">{entry.date}</p>
+        {entry.date ? (
+          <p className="font-mono text-[14px] m-0 mb-8">{entry.date}</p>
+        ) : null}
 
         <div
           className="grid gap-14 items-start mt-6"
           style={{ gridTemplateColumns: "1.5fr 1fr" }}
         >
-          <div
-            className="rounded-[6px] relative overflow-hidden flex items-center justify-center"
-            style={{ aspectRatio: "16 / 11", background: "#1a1a1a" }}
-          >
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, #1a1612 0%, #2b2420 45%, #3c322a 100%)",
-              }}
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(circle at 35% 40%, rgba(220, 180, 60, 0.35), transparent 45%), radial-gradient(circle at 20% 65%, rgba(60, 60, 60, 0.8), transparent 35%)",
-              }}
-            />
-            <svg
-              viewBox="0 0 80 80"
-              fill="#000"
-              aria-hidden="true"
-              className="w-[140px] h-[140px] relative z-[2]"
-            >
-              <polygon points="22,14 66,40 22,66" />
-            </svg>
+          <div className="w-full rounded-[6px] overflow-hidden bg-[#1a1a1a]" style={{ aspectRatio: "16 / 9" }}>
+            {entry.mediaFileUrl ? (
+              <video
+                src={entry.mediaFileUrl}
+                poster={thumbUrl ?? undefined}
+                controls
+                className="w-full h-full"
+              />
+            ) : thumbUrl ? (
+              <img src={thumbUrl} alt={entry.vjName} className="w-full h-full object-cover" />
+            ) : null}
           </div>
 
           <aside>
-            <h2 className="text-[22px] font-bold m-0 mb-2">
-              {entry.template} - {entry.party}
-            </h2>
-            <p className="text-[15px] leading-[1.5] m-0 mb-8">
-              «{entry.quote}»
-            </p>
-            <p className="font-mono text-[14px] m-0 mb-[14px]">
-              {t("templateUsedLabel")} {entry.template}
-            </p>
-            <button type="button" className="btn-outline">
-              {t("downloadButton")}
-            </button>
+            {(entry.templateTitle || entry.party) ? (
+              <h2 className="text-[22px] font-bold m-0 mb-2">
+                {entry.templateTitle}
+                {entry.templateTitle && entry.party ? " - " : ""}
+                {entry.party}
+              </h2>
+            ) : null}
+            {entry.quote ? (
+              <p className="text-[15px] leading-[1.5] m-0 mb-8">
+                «{entry.quote}»
+              </p>
+            ) : null}
+            {entry.templateTitle ? (
+              <p className="font-mono text-[14px] m-0 mb-[14px]">
+                {t("templateUsedLabel")} {entry.templateTitle}
+              </p>
+            ) : null}
+            <div className="flex gap-3 flex-wrap">
+              {entry.videoUrl ? (
+                <a href={entry.videoUrl} target="_blank" rel="noreferrer" className="btn-outline">
+                  {t("watchButton")}
+                </a>
+              ) : null}
+              {entry.templateDownloadUrl ? (
+                <a href={entry.templateDownloadUrl} target="_blank" rel="noreferrer" className="btn-outline">
+                  {t("downloadButton")}
+                </a>
+              ) : (
+                <button type="button" className="btn-outline" disabled>
+                  {t("downloadButton")}
+                </button>
+              )}
+            </div>
           </aside>
         </div>
       </div>
@@ -79,8 +88,9 @@ export default async function GalleryDetailPage({
   );
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const slugs = await getAllGallerySlugs();
   return routing.locales.flatMap((locale) =>
-    Object.keys(GALLERY_ENTRIES).map((slug) => ({ locale, slug })),
+    slugs.map((slug) => ({ locale, slug })),
   );
 }

@@ -1,7 +1,7 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageSource } from "@sanity/image-url";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { urlForImage } from "@/sanity/imageUrl";
+import { cropImageUrl } from "@/sanity/imageUrl";
 import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
 
 interface TemplateCardProps {
@@ -24,9 +24,7 @@ export function TemplateCard({
   resultVideoUrl,
 }: TemplateCardProps) {
   const t = useTranslations("TemplateCard");
-  const thumbnailUrl = thumbnail
-    ? urlForImage(thumbnail).width(800).height(450).fit("crop").url()
-    : null;
+  const thumbnailUrl = thumbnail ? cropImageUrl(thumbnail, 800, 450) : null;
 
   return (
     <article className="flex flex-col">
