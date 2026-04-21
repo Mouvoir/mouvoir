@@ -26,21 +26,21 @@ export default async function AboutPage({
         <div className="flex justify-around gap-10 mt-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/dancer-purple.svg"
+            src="/assets/giphy-12.gif"
             alt=""
             aria-hidden="true"
             className="w-[300px] h-auto"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/dancer-purple.svg"
+            src="/assets/giphy-12.gif"
             alt=""
             aria-hidden="true"
             className="w-[300px] h-auto"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/dancer-purple.svg"
+            src="/assets/giphy-12.gif"
             alt=""
             aria-hidden="true"
             className="w-[300px] h-auto"
