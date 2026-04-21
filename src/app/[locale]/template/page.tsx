@@ -2,41 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AddTemplateButton } from "@/components/AddTemplateButton";
 import { Nav } from "@/components/Nav";
 import { TemplateCard } from "@/components/TemplateCard";
-
-const TEMPLATES = [
-  {
-    slug: "just-dance",
-    title: "Just Dance",
-    description:
-      "Détecte le mouvement de la foule via webcam et génère des visuels réactifs en temps réel. Compatible TouchDesigner.",
-    material: "Touchdesigner, caméra IF",
-    thumbnail: (
-      <div
-        className="w-full h-full"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 45%, #a9e9db 0%, #a9e9db 46%, transparent 47%), linear-gradient(180deg, #f8c1d9 0%, #f6b0c8 100%)",
-        }}
-      />
-    ),
-  },
-  {
-    slug: "camping",
-    title: "Camping",
-    description:
-      "Set-up précaire mais faisable dans toutes les situations, il vous suffit de votre ordinateur et c'est tout !",
-    material: "Votre ordinateur",
-    thumbnail: (
-      <div
-        className="w-full h-full"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 30%, #f6b14b 0%, transparent 40%), linear-gradient(135deg, #173b1a 0%, #2f5e34 45%, #5b7a44 100%)",
-        }}
-      />
-    ),
-  },
-];
+import { getAllTemplates } from "@/lib/templates";
 
 export default async function TemplateListPage({
   params,
@@ -46,6 +12,10 @@ export default async function TemplateListPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("TemplateList");
+  const templates = await getAllTemplates();
+  const materialOptions = [...new Set(templates.flatMap((tpl) => tpl.materials))]
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
 
   return (
     <div className="page-shell">
@@ -56,14 +26,23 @@ export default async function TemplateListPage({
           <h1 className="h-page" style={{ marginBottom: 0 }}>
             {t("title")}
           </h1>
-          <AddTemplateButton />
+          <AddTemplateButton materialOptions={materialOptions} />
         </div>
         <p className="subline">{t("introOne")}</p>
         <p className="subline">{t("introTwo")}</p>
 
         <div className="grid grid-cols-2 gap-12 mt-8">
-          {TEMPLATES.map((template) => (
-            <TemplateCard key={template.slug} {...template} />
+          {templates.map((template) => (
+            <TemplateCard
+              key={template.slug}
+              slug={template.slug}
+              title={template.title}
+              description={template.description}
+              materials={template.materials}
+              thumbnail={template.thumbnail}
+              downloadUrl={template.downloadUrl}
+              resultVideoUrl={template.resultVideoUrl}
+            />
           ))}
         </div>
       </div>

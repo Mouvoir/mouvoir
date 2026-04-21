@@ -48,11 +48,19 @@
     "fieldCreator": "Nom créateurice",
     "fieldDescription": "Description",
     "fieldMaterial": "Matériel / Logiciel",
+    "fieldMaterialPlaceholder": "Tape pour chercher ou ajouter…",
+    "fieldMaterialAdd": "+ Ajouter « {value} »",
     "fieldTemplate": "Template",
     "fieldSchema": "Schéma / Mise en place",
     "fieldTutorial": "Vidéo Tutoriel",
     "fieldResult": "Vidéo résultat",
-    "submit": "Envoyer le template"
+    "submit": "Envoyer le template",
+    "pending": "Envoi en cours…",
+    "errorMissingFields": "Le titre est obligatoire.",
+    "errorFileTooLarge": "Un des fichiers dépasse la taille maximale (200 Mo).",
+    "errorSchemaType": "Le schéma doit être une image.",
+    "errorResultType": "La vidéo résultat doit être un fichier vidéo.",
+    "errorGeneric": "Une erreur est survenue, réessaie."
   },
   "Gallery": {
     "title": "Galerie",
