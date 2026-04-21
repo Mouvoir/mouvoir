@@ -48,11 +48,19 @@
     "fieldCreator": "Creator name",
     "fieldDescription": "Description",
     "fieldMaterial": "Hardware / Software",
+    "fieldMaterialPlaceholder": "Type to search or add…",
+    "fieldMaterialAdd": "+ Add \"{value}\"",
     "fieldTemplate": "Template",
     "fieldSchema": "Diagram / Setup",
     "fieldTutorial": "Tutorial video",
     "fieldResult": "Result video",
-    "submit": "Submit template"
+    "submit": "Submit template",
+    "pending": "Submitting…",
+    "errorMissingFields": "Title is required.",
+    "errorFileTooLarge": "One of the files exceeds the maximum size (200 MB).",
+    "errorSchemaType": "Diagram must be an image.",
+    "errorResultType": "Result video must be a video file.",
+    "errorGeneric": "Something went wrong, please retry."
   },
   "Gallery": {
     "title": "Gallery",

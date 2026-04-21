@@ -1,31 +1,62 @@
-export interface TemplateData {
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { sanityClient } from "@/sanity/client";
+
+export interface Template {
   slug: string;
   title: string;
-  description: string;
-  material: string;
+  description?: string;
+  materials: string[];
+  thumbnail?: SanityImageSource;
+  schemaImage?: SanityImageSource;
+  videoTutorial?: string;
+  resultVideoUrl?: string;
+  downloadUrl?: string;
   tutorialAuthor?: string;
   tutorialDescription?: string;
   hardwareTip?: string;
 }
 
-export const TEMPLATES: Record<string, TemplateData> = {
-  "just-dance": {
-    slug: "just-dance",
-    title: "Just Dance",
-    description:
-      "Détecte le mouvement de la foule via webcam et génère des visuels réactifs en temps réel. Compatible TouchDesigner.",
-    material: "Touchdesigner, caméra IF",
-    tutorialAuthor: "Tutoriel, réalisé par Paul.",
-    tutorialDescription:
-      "Description: n this #touchdesigner #tutorial we take a look how we can use webcam and #kinect as a particle source in particlesGpu from the palette for some funky interactivity, and learn some things about particlesGpu along the way. These techniques can be used with any video or pointcloud input! We also incorporate simple motion tracking and audio reactivity.",
-    hardwareTip:
-      "Conseil: GALAYOU 2k Camera Surveillance WiFi Extérieure PTZ, Caméra IP 360° Étanche, Vision Nocturne en Couleur, Audio Bidirectionnel, Alerte instantanée, Carte TF, Alexa Y4",
-  },
-  camping: {
-    slug: "camping",
-    title: "Camping",
-    description:
-      "Set-up précaire mais faisable dans toutes les situations, il vous suffit de votre ordinateur et c'est tout !",
-    material: "Votre ordinateur",
-  },
-};
+const TEMPLATE_PROJECTION = /* groq */ `
+  "slug": slug.current,
+  title,
+  description,
+  "materials": coalesce(materials, []),
+  thumbnail,
+  schemaImage,
+  videoTutorial,
+  "resultVideoUrl": resultVideo.asset->url,
+  "downloadUrl": downloadFile.asset->url,
+  tutorialAuthor,
+  tutorialDescription,
+  hardwareTip
+`;
+
+export async function getAllTemplates(): Promise<Template[]> {
+  return sanityClient.fetch(
+    /* groq */ `*[_type == "template" && defined(slug.current)] | order(coalesce(publishedAt, _createdAt) desc) {
+      ${TEMPLATE_PROJECTION}
+    }`,
+    {},
+    { next: { revalidate: 60, tags: ["template"] } },
+  );
+}
+
+export async function getTemplateBySlug(
+  slug: string,
+): Promise<Template | null> {
+  return sanityClient.fetch(
+    /* groq */ `*[_type == "template" && slug.current == $slug][0] {
+      ${TEMPLATE_PROJECTION}
+    }`,
+    { slug },
+    { next: { revalidate: 60, tags: ["template", `template:${slug}`] } },
+  );
+}
+
+export async function getAllTemplateSlugs(): Promise<string[]> {
+  return sanityClient.fetch(
+    /* groq */ `*[_type == "template" && defined(slug.current)].slug.current`,
+    {},
+    { next: { revalidate: 300, tags: ["template"] } },
+  );
+}

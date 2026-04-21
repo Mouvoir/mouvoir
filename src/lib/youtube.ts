@@ -1,3 +1,20 @@
+export function getYoutubeEmbedUrl(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname.includes("youtu.be")) {
+      return `https://www.youtube.com/embed${parsed.pathname}`;
+    }
+    if (parsed.hostname.includes("youtube.com")) {
+      const videoId = parsed.searchParams.get("v");
+      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+      if (parsed.pathname.startsWith("/embed/")) return url;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export interface YoutubeMeta {
   duration: string;
   thumbnail: string;
