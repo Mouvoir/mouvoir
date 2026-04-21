@@ -65,7 +65,8 @@
   "Gallery": {
     "title": "Gallery",
     "subline": "Examples of VJs testing the templates!",
-    "videoButton": "Video ▶"
+    "videoButton": "Video ▶",
+    "eventPrefix": "Party"
   },
   "GalleryAdd": {
     "cta": "Add a set",
@@ -86,7 +87,8 @@
   "GalleryDetail": {
     "templateUsedLabel": "Template used:",
     "watchButton": "Watch video ↗",
-    "downloadButton": "Download ↓"
+    "downloadButton": "Download ↓",
+    "eventPrefix": "Party"
   },
   "ImageBank": {
     "title": "Image bank",

@@ -49,12 +49,14 @@ export default async function GalleryPage({
                 {entry.date ? (
                   <p className="font-mono text-[13px] m-0 mb-4">{entry.date}</p>
                 ) : null}
-                {(entry.templateTitle || entry.party) ? (
+                {(entry.templateTitle || entry.eventType) ? (
                   <p className="font-bold m-0 mb-[2px]">
                     {entry.templateTitle}
-                    {entry.templateTitle && entry.party ? " - " : ""}
-                    {entry.party ? (
-                      <em className="italic font-normal">{entry.party}</em>
+                    {entry.templateTitle && entry.eventType ? " - " : ""}
+                    {entry.eventType ? (
+                      <em className="italic font-normal">
+                        {t("eventPrefix")} {entry.eventType}
+                      </em>
                     ) : null}
                   </p>
                 ) : null}

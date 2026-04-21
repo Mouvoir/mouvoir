@@ -7,7 +7,7 @@ export interface GalleryEntry {
   date: string | null;
   templateTitle: string | null;
   templateDownloadUrl: string | null;
-  party: string | null;
+  eventType: string | null;
   quote: string | null;
   thumbnail: SanityImageSource | null;
   videoUrl: string | null;
@@ -20,7 +20,7 @@ const GALLERY_PROJECTION = /* groq */ `
   date,
   "templateTitle": *[_type == "template" && slug.current == ^.templateSlug][0].title,
   "templateDownloadUrl": *[_type == "template" && slug.current == ^.templateSlug][0].downloadFile.asset->url,
-  party,
+  eventType,
   quote,
   thumbnail,
   videoUrl,

@@ -48,11 +48,15 @@ export default async function GalleryDetailPage({
           </div>
 
           <aside>
-            {(entry.templateTitle || entry.party) ? (
+            {(entry.templateTitle || entry.eventType) ? (
               <h2 className="text-[22px] font-bold m-0 mb-2">
                 {entry.templateTitle}
-                {entry.templateTitle && entry.party ? " - " : ""}
-                {entry.party}
+                {entry.templateTitle && entry.eventType ? " - " : ""}
+                {entry.eventType ? (
+                  <em className="italic font-normal">
+                    {t("eventPrefix")} {entry.eventType}
+                  </em>
+                ) : null}
               </h2>
             ) : null}
             {entry.quote ? (
