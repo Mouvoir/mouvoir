@@ -70,6 +70,27 @@ export function MultiSelectField({
     }
   };
 
+  const trimmedInput = input.trim();
+  const addNewItem =
+    trimmedInput &&
+    !normalized.has(trimmedInput.toLowerCase()) &&
+    !suggestions.some((s) => s.toLowerCase() === trimmedInput.toLowerCase()) ? (
+      <li>
+        <button
+          type="button"
+          className="w-full text-left px-[12px] py-[8px] text-[14px] hover:bg-[#f5f5f5]"
+          style={{ color: "#333" }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            addValue(trimmedInput);
+            inputRef.current?.focus();
+          }}
+        >
+          {addLabel(trimmedInput)}
+        </button>
+      </li>
+    ) : null;
+
   return (
     <div className="flex flex-col gap-[8px]" ref={rootRef}>
       <label htmlFor={`${name}-input`} className="text-[20px] font-bold">
@@ -159,31 +180,7 @@ export function MultiSelectField({
                 </button>
               </li>
             ))}
-            {(() => {
-              const trimmed = input.trim();
-              if (
-                !trimmed ||
-                normalized.has(trimmed.toLowerCase()) ||
-                suggestions.some((s) => s.toLowerCase() === trimmed.toLowerCase())
-              )
-                return null;
-              return (
-                <li>
-                  <button
-                    type="button"
-                    className="w-full text-left px-[12px] py-[8px] text-[14px] hover:bg-[#f5f5f5]"
-                    style={{ color: "#333" }}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      addValue(trimmed);
-                      inputRef.current?.focus();
-                    }}
-                  >
-                    {addLabel(trimmed)}
-                  </button>
-                </li>
-              );
-            })()}
+            {addNewItem}
           </ul>
         ) : null}
       </div>

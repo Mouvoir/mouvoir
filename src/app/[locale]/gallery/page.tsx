@@ -3,7 +3,7 @@ import { AddGalleryButton } from "@/components/AddGalleryButton";
 import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
 import { Nav } from "@/components/Nav";
 import { getAllGalleryEntries } from "@/lib/gallery";
-import { getAllTemplateOptions } from "@/lib/templates";
+import { getAllTemplates } from "@/lib/templates";
 import { cropImageUrl } from "@/sanity/imageUrl";
 
 export default async function GalleryPage({
@@ -15,10 +15,11 @@ export default async function GalleryPage({
   setRequestLocale(locale);
   const t = await getTranslations("Gallery");
 
-  const [entries, templateOptions] = await Promise.all([
+  const [entries, templates] = await Promise.all([
     getAllGalleryEntries(),
-    getAllTemplateOptions(),
+    getAllTemplates(),
   ]);
+  const templateOptions = templates.map((t) => ({ label: t.title, value: t.slug }));
 
   return (
     <div className="page-shell">

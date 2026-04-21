@@ -2,22 +2,11 @@
 
 import { revalidatePath } from "next/cache";
 import { sanityWriteClient } from "@/sanity/writeClient";
-
-const MAX_FILE_BYTES = 200 * 1024 * 1024;
+import { MAX_FILE_BYTES, slugify, uploadSanityAsset } from "@/lib/upload";
 
 export type CreateImageBankEntryResult =
   | { ok: true }
   | { ok: false; error: "missing-fields" | "file-type" | "file-too-large" | "generic" };
-
-function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 80);
-}
 
 export async function createImageBankEntry(
   formData: FormData,
@@ -46,12 +35,7 @@ export async function createImageBankEntry(
   }
 
   try {
-    const buffer = Buffer.from(await video.arrayBuffer());
-    const uploaded = await sanityWriteClient.assets.upload("file", buffer, {
-      filename: video.name || `${slugify(videoName)}.mp4`,
-      contentType: video.type,
-    });
-
+    const videoRef = await uploadSanityAsset(video, "file");
     const slugBase = slugify(videoName) || "video";
     const slugSuffix = Math.random().toString(36).slice(2, 8);
 
@@ -62,10 +46,7 @@ export async function createImageBankEntry(
       ...(creator ? { creator } : {}),
       ...(credit ? { credit } : {}),
       ...(comment ? { comment } : {}),
-      video: {
-        _type: "file",
-        asset: { _type: "reference", _ref: uploaded._id },
-      },
+      video: { _type: "file", asset: videoRef },
       publishedAt: new Date().toISOString(),
     });
 

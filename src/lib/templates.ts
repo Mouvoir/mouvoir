@@ -55,10 +55,3 @@ export async function getAllTemplateSlugs(): Promise<string[]> {
   );
 }
 
-export async function getAllTemplateOptions(): Promise<{ label: string; value: string }[]> {
-  return sanityClient.fetch(
-    /* groq */ `*[_type == "template" && defined(slug.current)] | order(coalesce(publishedAt, _createdAt) desc) { "label": title, "value": slug.current }`,
-    {},
-    { next: { revalidate: 60, tags: ["template"] } },
-  );
-}

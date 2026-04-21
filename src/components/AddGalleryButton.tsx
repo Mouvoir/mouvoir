@@ -25,7 +25,10 @@ export function AddGalleryButton({
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setError(null);
+          setOpen(true);
+        }}
         className="btn-outline"
       >
         <span aria-hidden="true">+</span> {t("cta")}
@@ -47,7 +50,7 @@ export function AddGalleryButton({
             switch (result.error) {
               case "missing-fields": setError(t("error_missing-fields")); break;
               case "file-too-large": setError(t("error_file-too-large")); break;
-              case "generic": setError(t("error_generic")); break;
+              default: setError(t("error_generic")); break;
             }
             return false;
           }
