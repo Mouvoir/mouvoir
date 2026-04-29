@@ -357,11 +357,11 @@ body {
 
 .template-fullpage-mosaic {
   height: 100%;
-  padding-top: 56px;
-  padding-bottom: 32px;
+  padding-top: 32px;
+  padding-bottom: 24px;
   overflow-y: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .template-fullpage-mosaic .template-section__inner {
@@ -369,8 +369,9 @@ body {
 }
 
 .template-fullpage-mosaic .template-section__head {
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
+
 
 .template-hero__heading {
   display: flex;
