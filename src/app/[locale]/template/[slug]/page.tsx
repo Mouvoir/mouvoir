@@ -2,7 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/Nav";
 import { getAllTemplateSlugs, getTemplateBySlug } from "@/lib/templates";
-import { urlForImage } from "@/sanity/imageUrl";
+import { safeImageUrl, urlForImage } from "@/sanity/imageUrl";
+import { MaterialChip } from "@/components/MaterialChip";
 import { getYoutubeEmbedUrl } from "@/lib/youtube";
 import { routing } from "@/i18n/routing";
 
@@ -66,9 +67,20 @@ export default async function TemplateDetailPage({
           </p>
         ) : null}
         {template.materials.length > 0 ? (
-          <p className="font-mono uppercase tracking-[0.02em] text-[14px] mt-2">
-            {tSchema("materialLabel")} {template.materials.join(", ")}
-          </p>
+          <div className="flex items-center flex-wrap gap-2 mt-2">
+            <span className="font-mono uppercase tracking-[0.02em] text-[14px]">
+              {tSchema("materialLabel")}
+            </span>
+            {template.materials.map((m) => (
+              <MaterialChip
+                key={m.id}
+                label={m.label}
+                imageUrl={safeImageUrl(m.image, (b) =>
+                  b.width(48).height(48).fit("crop"),
+                )}
+              />
+            ))}
+          </div>
         ) : null}
 
         <div

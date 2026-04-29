@@ -270,25 +270,60 @@ body {
   }
 }
 
-/* ─────────────────────────────────────────────
- * Template page — scroll snap between hero and mosaic
- * ───────────────────────────────────────────── */
-
-html:has(.template-snap-root) {
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
+/* FullPageScroll — fullPage.js-style one-section-per-viewport */
+.fullpage-root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
 }
 
-.template-snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+.fullpage-track {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html:has(.template-snap-root) {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-  }
+.fullpage-section {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.fullpage-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 50;
+}
+
+.fullpage-dot {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--dot-color, rgba(0, 0, 0, 0.25));
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.fullpage-dot:hover {
+  transform: scale(1.2);
+}
+
+.fullpage-dot.is-active {
+  background: var(--dot-active, var(--ink, #1a1a1a));
+  border-color: var(--dot-active, var(--ink, #1a1a1a));
 }
 
 /* ─────────────────────────────────────────────
@@ -296,10 +331,45 @@ html:has(.template-snap-root) {
  * ───────────────────────────────────────────── */
 
 .template-hero {
-  min-height: calc(100vh - 96px);
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+/* Make hero/mosaic sections fit exactly inside fullpage 100vh slots. */
+.template-fullpage-hero {
+  height: 100%;
+  min-height: 0;
+  padding-top: 32px;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-fullpage-hero .page-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-fullpage-mosaic {
+  height: 100%;
+  padding-top: 56px;
+  padding-bottom: 32px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+}
+
+.template-fullpage-mosaic .template-section__inner {
+  width: 100%;
+}
+
+.template-fullpage-mosaic .template-section__head {
+  margin-bottom: 28px;
 }
 
 .template-hero__heading {
@@ -503,6 +573,7 @@ html:has(.template-snap-root) {
 .template-mosaic__tag {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   background: #ffffff;
   color: var(--ink);
   height: var(--tag-row-h, 34px);
@@ -515,6 +586,16 @@ html:has(.template-snap-root) {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.template-mosaic__tag:has(.template-mosaic__tag-img) {
+  padding-left: 6px;
+}
+
+.template-mosaic__tag-img {
+  border-radius: 999px;
+  object-fit: cover;
+  flex: none;
 }
 
 .template-mosaic__desc {

@@ -16,7 +16,7 @@ export const templateSchema = defineType({
       name: "materials",
       title: "Required Materials",
       type: "array",
-      of: [{ type: "string" }],
+      of: [{ type: "reference", to: [{ type: "material" }] }],
     }),
     defineField({
       name: "tutorialAuthor",

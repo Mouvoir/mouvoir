@@ -17,7 +17,14 @@
   "TemplateList": {
     "title": "Template",
     "introOne": "Chaque templates dépendent de ton matériel, du lieu, et du contexte ! Tu trouveras des vidéos, des schémas pour chacun d'eux !",
-    "introTwo": "Choisis celui qui te conviens le mieux, et si tu peux améliore le si tu utilise un autre logiciel ! N'hésite pas à envoyer ce que tu as réalisé pour le mettre dans la Galerie !"
+    "introTwo": "Choisis celui qui te conviens le mieux, et si tu peux améliore le si tu utilise un autre logiciel ! N'hésite pas à envoyer ce que tu as réalisé pour le mettre dans la Galerie !",
+    "scrollHint": "Découvrir les templates",
+    "mosaicEyebrow": "Tous les templates",
+    "mosaicTitle": "Choisis ton template"
+  },
+  "TemplateMosaicCard": {
+    "download": "Télécharger",
+    "tutorial": "Tutoriel"
   },
   "TemplateCard": {
     "materialLabel": "Matériel :",
@@ -48,8 +55,8 @@
     "fieldCreator": "Nom créateurice",
     "fieldDescription": "Description",
     "fieldMaterial": "Matériel / Logiciel",
-    "fieldMaterialPlaceholder": "Tape pour chercher ou ajouter…",
-    "fieldMaterialAdd": "+ Ajouter « {value} »",
+    "fieldMaterialPlaceholder": "Rechercher du matériel…",
+    "fieldMaterialEmpty": "Aucun matériel disponible. Créez-en dans le Studio.",
     "fieldTemplate": "Template",
     "fieldSchema": "Schéma / Mise en place",
     "fieldTutorial": "Vidéo Tutoriel",
@@ -124,7 +131,39 @@
     "presentationWelcome": "Bienvenu dans les templates et outils «Partycule».",
     "presentationBody": "Ces templates, et ces outils sont conçus pour permettre aux VJs d'amener de l'interaction au sein de leur soirée et réintégrer le public, au cœur des visuels, transformant le mouvement en matière première artistique. Notre approche se veut éphémère, immersive, bienveillante, inclusive et féministe.",
     "presentationInstructionsLineOne": "Avant de réaliser la soirée, il faut consulter le site web dédié, avec les différents templates, banques d'images, … Chaque outil, possède un schéma explicatif, une vidéo tutoriel, et des exemples, avec parfois des sets réalisés par d'autres VJs.",
-    "presentationInstructionsLineTwo": "Une fois le type de templates choisis, et la soirée prévu, vous devez prévenir le public par un message dédié (détaillé ci-dessous dans les règles). Enfin vous pouvez utiliser les templates en utilisant le nom du label."
+    "presentationInstructionsLineTwo": "Une fois le type de templates choisis, et la soirée prévu, vous devez prévenir le public par un message dédié (détaillé ci-dessous dans les règles). Enfin vous pouvez utiliser les templates en utilisant le nom du label.",
+    "point1Title": "PRÉVENTION DU PUBLIC",
+    "point1Body": "L'objectif est de permettre une participation libre et consciente, pour que le public sache dans quelle type de soirée il se rend.",
+    "point1Sub1Title": "AVANT CHAQUE SESSION",
+    "point1Sub1Body": "Il est nécessaire que le public soit averti de la présence de caméras.",
+    "point1Sub2Title": "AVIS PUBLIC",
+    "point1Sub2Body": "Un message clair doit être présent avant chaque début de session.",
+    "point2Title": "NO RECORD",
+    "point2Body": "Partycule privilégie l'expérience du moment, non sa trace.",
+    "point2Sub1Title": "POURQUOI NO RECORD ?",
+    "point2Sub1Body": "La captation nuit à la liberté d'expression sur la piste de danse.",
+    "point2Sub2Title": "EXCEPTIONS",
+    "point2Sub2Body": "Seuls les visuels scéniques approuvés peuvent être diffusés.",
+    "point3Title": "ANONYMAT DES DANSEURS",
+    "point3Body": "La caméra capte une énergie collective, pas des identités individuelles.",
+    "point3Sub1Title": "COLLECTIF VS INDIVIDUEL",
+    "point3Sub1Body": "L'énergie du groupe prime sur l'identité individuelle.",
+    "point3Sub2Title": "PROTECTION",
+    "point3Sub2Body": "Aucun visage ne peut être diffusé sans consentement explicite.",
+    "point4Title": "INCLUSION DES CORPS",
+    "point4Body": "Un vecteur de mouvement, d'expression et de puissance collective.",
+    "point4Sub1Title": "REPRÉSENTATION",
+    "point4Sub1Body": "Toutes les morphologies et expressions corporelles sont bienvenues.",
+    "point4Sub2Title": "DIVERSITÉ",
+    "point4Sub2Body": "Partycule valorise la pluralité des corps et des mouvements.",
+    "point5Title": "BIENVEILLANCE",
+    "point5Body": "Savoir «lâcher l'image» fait partie intégrante de la pratique.",
+    "point5Sub1Title": "LÂCHER PRISE",
+    "point5Sub1Body": "Le corps comme outil d'exploration et de liberté.",
+    "point5Sub2Title": "PRATIQUE",
+    "point5Sub2Body": "Intégrer la bienveillance dans chaque interaction sur le dancefloor.",
+    "learnMore": "EN SAVOIR PLUS +",
+    "readMore": "LIRE +"
   },
   "CharterConsent": {
     "accept": "J'accepte et je continue"

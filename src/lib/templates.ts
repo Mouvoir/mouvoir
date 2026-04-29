@@ -1,11 +1,17 @@
 import type { SanityImageSource } from "@sanity/image-url";
 import { sanityClient } from "@/sanity/client";
 
+export interface TemplateMaterial {
+  id: string;
+  label: string;
+  image?: SanityImageSource;
+}
+
 export interface Template {
   slug: string;
   title: string;
   description?: string;
-  materials: string[];
+  materials: TemplateMaterial[];
   schemaImage?: SanityImageSource;
   videoTutorial?: string;
   resultVideoUrl?: string;
@@ -17,7 +23,11 @@ const TEMPLATE_PROJECTION = /* groq */ `
   "slug": slug.current,
   title,
   description,
-  "materials": coalesce(materials, []),
+  "materials": materials[]->{
+    "id": _id,
+    label,
+    image
+  },
   schemaImage,
   videoTutorial,
   "resultVideoUrl": resultVideo.asset->url,
@@ -25,26 +35,35 @@ const TEMPLATE_PROJECTION = /* groq */ `
   tutorialAuthor
 `;
 
+function normalizeTemplate(tpl: Template): Template {
+  return {
+    ...tpl,
+    materials: (tpl.materials ?? []).filter(Boolean),
+  };
+}
+
 export async function getAllTemplates(): Promise<Template[]> {
-  return sanityClient.fetch(
+  const result = await sanityClient.fetch<Template[]>(
     /* groq */ `*[_type == "template" && defined(slug.current)] | order(coalesce(publishedAt, _createdAt) desc) {
       ${TEMPLATE_PROJECTION}
     }`,
     {},
     { next: { revalidate: 60, tags: ["template"] } },
   );
+  return result.map(normalizeTemplate);
 }
 
 export async function getTemplateBySlug(
   slug: string,
 ): Promise<Template | null> {
-  return sanityClient.fetch(
+  const result = await sanityClient.fetch<Template | null>(
     /* groq */ `*[_type == "template" && slug.current == $slug][0] {
       ${TEMPLATE_PROJECTION}
     }`,
     { slug },
     { next: { revalidate: 60, tags: ["template", `template:${slug}`] } },
   );
+  return result ? normalizeTemplate(result) : null;
 }
 
 export async function getAllTemplateSlugs(): Promise<string[]> {
@@ -54,4 +73,3 @@ export async function getAllTemplateSlugs(): Promise<string[]> {
     { next: { revalidate: 300, tags: ["template"] } },
   );
 }
-

@@ -17,7 +17,14 @@
   "TemplateList": {
     "title": "Template",
     "introOne": "Each template depends on your hardware, venue, and context! You'll find videos and diagrams for each one!",
-    "introTwo": "Pick the one that suits you best, and if you can, improve it — especially if you're using different software. Don't hesitate to send in what you've made so we can feature it in the Gallery!"
+    "introTwo": "Pick the one that suits you best, and if you can, improve it — especially if you're using different software. Don't hesitate to send in what you've made so we can feature it in the Gallery!",
+    "scrollHint": "Discover the templates",
+    "mosaicEyebrow": "All templates",
+    "mosaicTitle": "Pick your template"
+  },
+  "TemplateMosaicCard": {
+    "download": "Download",
+    "tutorial": "Tutorial"
   },
   "TemplateCard": {
     "materialLabel": "Hardware:",
@@ -48,8 +55,8 @@
     "fieldCreator": "Creator name",
     "fieldDescription": "Description",
     "fieldMaterial": "Hardware / Software",
-    "fieldMaterialPlaceholder": "Type to search or add…",
-    "fieldMaterialAdd": "+ Add \"{value}\"",
+    "fieldMaterialPlaceholder": "Search materials…",
+    "fieldMaterialEmpty": "No materials available. Create them in the Studio.",
     "fieldTemplate": "Template",
     "fieldSchema": "Diagram / Setup",
     "fieldTutorial": "Tutorial video",
@@ -124,7 +131,39 @@
     "presentationWelcome": "Welcome to the \"Partycule\" templates and tools.",
     "presentationBody": "These templates and tools are designed to help VJs bring interaction into their events and bring the public back into the visuals, turning movement into raw artistic material. Our approach is ephemeral, immersive, caring, inclusive, and feminist.",
     "presentationInstructionsLineOne": "Before running the event, check the dedicated website with the various templates, image banks, etc. Each tool has an explanatory diagram, a video tutorial, and examples — sometimes including sets made by other VJs.",
-    "presentationInstructionsLineTwo": "Once you've picked a template type and planned the event, you must notify the public via a dedicated message (detailed below in the rules). Finally, you can use the templates under the label's name."
+    "presentationInstructionsLineTwo": "Once you've picked a template type and planned the event, you must notify the public via a dedicated message (detailed below in the rules). Finally, you can use the templates under the label's name.",
+    "point1Title": "AUDIENCE AWARENESS",
+    "point1Body": "The goal is to enable free and conscious participation, so the public knows what type of event they are attending.",
+    "point1Sub1Title": "BEFORE EACH SESSION",
+    "point1Sub1Body": "The public must be informed about the presence of cameras.",
+    "point1Sub2Title": "PUBLIC NOTICE",
+    "point1Sub2Body": "A clear message must appear before each session begins.",
+    "point2Title": "NO RECORD",
+    "point2Body": "Partycule prioritizes the experience of the moment, not its trace.",
+    "point2Sub1Title": "WHY NO RECORD?",
+    "point2Sub1Body": "Recording undermines freedom of expression on the dancefloor.",
+    "point2Sub2Title": "EXCEPTIONS",
+    "point2Sub2Body": "Only approved stage visuals may be broadcast.",
+    "point3Title": "DANCER ANONYMITY",
+    "point3Body": "The camera captures collective energy, not individual identities.",
+    "point3Sub1Title": "COLLECTIVE VS INDIVIDUAL",
+    "point3Sub1Body": "Group energy comes before individual identity.",
+    "point3Sub2Title": "PROTECTION",
+    "point3Sub2Body": "No face may be broadcast without explicit consent.",
+    "point4Title": "BODY INCLUSION",
+    "point4Body": "A vector of movement, expression, and collective power.",
+    "point4Sub1Title": "REPRESENTATION",
+    "point4Sub1Body": "All body shapes and physical expressions are welcome.",
+    "point4Sub2Title": "DIVERSITY",
+    "point4Sub2Body": "Partycule values the plurality of bodies and movements.",
+    "point5Title": "CARE",
+    "point5Body": "Knowing how to \"let go of the image\" is an integral part of the practice.",
+    "point5Sub1Title": "LET GO",
+    "point5Sub1Body": "The body as a tool for exploration and freedom.",
+    "point5Sub2Title": "PRACTICE",
+    "point5Sub2Body": "Bring care into every interaction on the dancefloor.",
+    "learnMore": "LEARN MORE +",
+    "readMore": "READ +"
   },
   "CharterConsent": {
     "accept": "I accept and continue"

@@ -16,18 +16,21 @@ export type CreateTemplateResult =
         | "generic";
     };
 
-function extractMaterials(formData: FormData): string[] {
+function extractMaterialRefs(formData: FormData) {
   const values = formData.getAll("material");
   const seen = new Set<string>();
-  const out: string[] = [];
+  const out: { _key: string; _type: "reference"; _ref: string }[] = [];
   for (const v of values) {
     if (typeof v !== "string") continue;
     const trimmed = v.trim();
     if (!trimmed) continue;
-    const key = trimmed.toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(trimmed);
+    if (seen.has(trimmed)) continue;
+    seen.add(trimmed);
+    out.push({
+      _key: crypto.randomUUID(),
+      _type: "reference",
+      _ref: trimmed,
+    });
   }
   return out;
 }
@@ -44,7 +47,7 @@ export async function createTemplate(
   const creator = (formData.get("creator") as string | null)?.trim() ?? "";
   const description =
     (formData.get("description") as string | null)?.trim() ?? "";
-  const materials = extractMaterials(formData);
+  const materials = extractMaterialRefs(formData);
   const tutorialUrl =
     (formData.get("tutorial") as string | null)?.trim() ?? "";
 

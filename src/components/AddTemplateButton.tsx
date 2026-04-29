@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { AddEntryModal, FileField, TextAreaField, TextField } from "./AddEntryModal";
-import { MultiSelectField } from "./MultiSelectField";
+import { MaterialPickerField, type MaterialOption } from "./MaterialPickerField";
 import { createTemplate } from "@/app/[locale]/template/actions";
 
 export function AddTemplateButton({
   materialOptions = [],
 }: {
-  materialOptions?: string[];
+  materialOptions?: MaterialOption[];
 }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,12 +90,12 @@ export function AddTemplateButton({
             <TextField label={t("fieldTitle")} name="title" />
             <TextField label={t("fieldCreator")} name="creator" />
             <TextAreaField label={t("fieldDescription")} name="description" />
-            <MultiSelectField
+            <MaterialPickerField
               label={t("fieldMaterial")}
               name="material"
               options={materialOptions}
               placeholder={t("fieldMaterialPlaceholder")}
-              addLabel={(v) => t("fieldMaterialAdd", { value: v })}
+              emptyHint={t("fieldMaterialEmpty")}
             />
           </>
         }
