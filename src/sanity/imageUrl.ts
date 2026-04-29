@@ -1,8 +1,8 @@
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { sanityConfig } from "./config";
 
-const builder = imageUrlBuilder(sanityConfig);
+const builder = createImageUrlBuilder(sanityConfig);
 
 function hasAsset(source: SanityImageSource | null | undefined): source is SanityImageSource {
   if (!source || typeof source !== "object") return false;
