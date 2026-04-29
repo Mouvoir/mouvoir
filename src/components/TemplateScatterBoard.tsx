@@ -1,28 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link } from "@/i18n/navigation";
 
-interface ScatterItem {
-  slug: string;
-  title: string;
-  resultVideoUrl?: string;
-  schemaUrl?: string;
+interface ScatterMaterial {
+  id: string;
+  label: string;
+  imageUrl?: string;
 }
 
 interface TemplateScatterBoardProps {
-  items: ScatterItem[];
+  materials: ScatterMaterial[];
 }
 
 const SCATTER_LAYOUT = [
-  { left: "3%", top: "4%", rotate: -7, width: 320, ratio: "16/10" },
-  { left: "26%", top: "16%", rotate: 4, width: 260, ratio: "4/5" },
-  { left: "47%", top: "2%", rotate: -3, width: 360, ratio: "16/9" },
-  { left: "74%", top: "10%", rotate: 9, width: 240, ratio: "4/5" },
-  { left: "10%", top: "55%", rotate: 6, width: 280, ratio: "1/1" },
-  { left: "36%", top: "62%", rotate: -10, width: 320, ratio: "16/10" },
-  { left: "62%", top: "55%", rotate: 5, width: 260, ratio: "4/3" },
-  { left: "82%", top: "60%", rotate: -6, width: 220, ratio: "4/5" },
+  { left: "3%", top: "4%", rotate: -7, width: 200, ratio: "16/10" },
+  { left: "26%", top: "16%", rotate: 4, width: 160, ratio: "4/5" },
+  { left: "47%", top: "2%", rotate: -3, width: 220, ratio: "16/9" },
+  { left: "74%", top: "10%", rotate: 9, width: 150, ratio: "4/5" },
+  { left: "10%", top: "55%", rotate: 6, width: 175, ratio: "1/1" },
+  { left: "36%", top: "62%", rotate: -10, width: 200, ratio: "16/10" },
+  { left: "62%", top: "55%", rotate: 5, width: 160, ratio: "4/3" },
+  { left: "82%", top: "60%", rotate: -6, width: 140, ratio: "4/5" },
 ] as const;
 
 const POLAROID_PALETTE = [
@@ -34,10 +32,10 @@ const POLAROID_PALETTE = [
   "linear-gradient(135deg, #ffd1d1 0%, #e1212a 100%)",
 ];
 
-export function TemplateScatterBoard({ items }: TemplateScatterBoardProps) {
+export function TemplateScatterBoard({ materials }: TemplateScatterBoardProps) {
   const slots = SCATTER_LAYOUT.map((slot, i) => ({
     ...slot,
-    item: items[i % Math.max(items.length, 1)],
+    item: materials[i],
     fallback: POLAROID_PALETTE[i % POLAROID_PALETTE.length],
   })).filter((slot) => slot.item);
 
@@ -49,7 +47,7 @@ export function TemplateScatterBoard({ items }: TemplateScatterBoardProps) {
     <div className="template-scatter" aria-hidden="false">
       {slots.map((slot, i) => (
         <motion.div
-          key={`${slot.item.slug}-${i}`}
+          key={`${slot.item.id}-${i}`}
           className="template-scatter__item"
           style={{
             left: slot.left,
@@ -71,35 +69,22 @@ export function TemplateScatterBoard({ items }: TemplateScatterBoardProps) {
             transition: { duration: 0.25 },
           }}
         >
-          <Link
-            href={`/template/${slot.item.slug}`}
-            className="template-scatter__link"
-            aria-label={slot.item.title}
-          >
+          <figure className="template-scatter__link">
             <div
               className="template-scatter__media"
               style={{ aspectRatio: slot.ratio, background: slot.fallback }}
             >
-              {slot.item.resultVideoUrl ? (
-                <video
-                  src={`${slot.item.resultVideoUrl}#t=0.1`}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="template-scatter__video"
-                />
-              ) : slot.item.schemaUrl ? (
+              {slot.item.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={slot.item.schemaUrl}
+                  src={slot.item.imageUrl}
                   alt=""
                   className="template-scatter__video"
                 />
               ) : null}
             </div>
-            <span className="template-scatter__caption">{slot.item.title}</span>
-          </Link>
+            <figcaption className="template-scatter__caption">{slot.item.label}</figcaption>
+          </figure>
         </motion.div>
       ))}
     </div>

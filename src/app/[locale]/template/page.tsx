@@ -26,12 +26,6 @@ export default async function TemplateListPage({
     imageUrl: safeImageUrl(m.image, (b) => b.width(80).height(80).fit("crop")),
   }));
 
-  const scatterItems = templates.map((tpl) => ({
-    slug: tpl.slug,
-    title: tpl.title,
-    resultVideoUrl: tpl.resultVideoUrl,
-    schemaUrl: safeImageUrl(tpl.schemaImage, (b) => b.width(640).fit("max")),
-  }));
 
   return (
     <FullPageScroll
@@ -51,12 +45,16 @@ export default async function TemplateListPage({
                 <p className="subline" style={{ marginTop: 8 }}>
                   {t("introOne")}
                 </p>
-                <p className="subline">{t("introTwo")}</p>
               </div>
-              <AddTemplateButton materialOptions={materialOptions} />
             </div>
 
-            <TemplateScatterBoard items={scatterItems} />
+            <TemplateScatterBoard
+              materials={materials.map((m) => ({
+                id: m.id,
+                label: m.label,
+                imageUrl: safeImageUrl(m.image, (b) => b.width(640).fit("max")),
+              }))}
+            />
 
             <span className="template-scroll-cue">{t("scrollHint")}</span>
           </section>
@@ -72,6 +70,7 @@ export default async function TemplateListPage({
                 {t("mosaicTitle")}
               </h2>
             </div>
+            <AddTemplateButton materialOptions={materialOptions} />
           </header>
 
           <div className="template-section__grid">
