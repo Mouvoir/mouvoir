@@ -3,7 +3,7 @@ import { AddTemplateButton } from "@/components/AddTemplateButton";
 import { FullPageScroll } from "@/components/FullPageScroll";
 import { Nav } from "@/components/Nav";
 import { TemplateMosaicCard } from "@/components/TemplateMosaicCard";
-import { TemplateScatterBoard } from "@/components/TemplateScatterBoard";
+import { TemplateMaterialGraph } from "@/components/TemplateMaterialGraph";
 import { getAllTemplates } from "@/lib/templates";
 import { getAllMaterials } from "@/lib/materials";
 import { safeImageUrl } from "@/sanity/imageUrl";
@@ -48,12 +48,13 @@ export default async function TemplateListPage({
               </div>
             </div>
 
-            <TemplateScatterBoard
+            <TemplateMaterialGraph
               materials={materials.map((m) => ({
                 id: m.id,
                 label: m.label,
-                imageUrl: safeImageUrl(m.image, (b) => b.width(640).fit("max")),
+                imageUrl: safeImageUrl(m.image, (b) => b.width(320).height(240).fit("crop")),
               }))}
+              templates={templates}
             />
 
             <span className="template-scroll-cue">{t("scrollHint")}</span>
