@@ -694,6 +694,37 @@ body {
   background: rgba(255, 255, 255, 0.35);
 }
 
+.template-mosaic--lg {
+  padding: 28px 32px 26px;
+  border-radius: 28px;
+  gap: 16px;
+}
+
+.template-mosaic--lg .template-mosaic__title {
+  font-size: 36px;
+}
+
+.template-mosaic--lg .template-mosaic__media {
+  min-height: 380px;
+}
+
+.template-mosaic--lg .template-mosaic__btn {
+  font-size: 16px;
+  padding: 14px 22px;
+}
+
+@media (max-width: 600px) {
+  .template-mosaic--lg {
+    padding: 18px 20px 18px;
+  }
+  .template-mosaic--lg .template-mosaic__title {
+    font-size: 24px;
+  }
+  .template-mosaic--lg .template-mosaic__media {
+    min-height: 220px;
+  }
+}
+
 /* ─────────────────────────────────────────────
  * Material graph (interactive template filter)
  * ───────────────────────────────────────────── */
