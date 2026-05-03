@@ -138,13 +138,19 @@ export function TemplateMaterialGraph({ materials, templates }: TemplateMaterial
   );
 
   const handleAnchorPointerUp = useCallback(
-    (materialId: string, side: AnchorSide) => {
+    (_materialId: string, _side: AnchorSide, e: ReactPointerEvent<HTMLButtonElement>) => {
+      const dropTarget = document.elementFromPoint(e.clientX, e.clientY);
+      const anchorEl = dropTarget?.closest<HTMLElement>("[data-material-id][data-side]");
       setDrag((current) => {
         if (!current) return null;
-        if (current.fromMaterialId === materialId) return null;
+        if (!anchorEl) return null;
+        const targetMaterialId = anchorEl.dataset.materialId;
+        const targetSide = anchorEl.dataset.side as AnchorSide | undefined;
+        if (!targetMaterialId || !targetSide) return null;
+        if (current.fromMaterialId === targetMaterialId) return null;
         addConnection(
           { materialId: current.fromMaterialId, side: current.fromSide },
-          { materialId, side },
+          { materialId: targetMaterialId, side: targetSide },
         );
         return null;
       });
@@ -248,7 +254,7 @@ export function TemplateMaterialGraph({ materials, templates }: TemplateMaterial
             isDragSource={drag?.fromMaterialId === m.id}
             anchorRefs={{ left: setAnchorRef(m.id, "left"), right: setAnchorRef(m.id, "right") }}
             onAnchorPointerDown={(side, e) => handleAnchorPointerDown(m.id, side, e)}
-            onAnchorPointerUp={(side, e) => handleAnchorPointerUp(m.id, side)}
+            onAnchorPointerUp={(side, e) => handleAnchorPointerUp(m.id, side, e)}
             anchorAriaLabel={(side) => t("anchorLabel", { label: m.label, side: t(`side.${side}`) })}
           />
         );

@@ -74,6 +74,8 @@ export const TemplateMaterialNode = forwardRef<HTMLDivElement, TemplateMaterialN
           type="button"
           className="material-node__anchor material-node__anchor--left"
           aria-label={anchorAriaLabel("left")}
+          data-material-id={material.id}
+          data-side="left"
           onPointerDown={(e) => onAnchorPointerDown("left", e)}
           onPointerUp={(e) => onAnchorPointerUp("left", e)}
         >
@@ -99,6 +101,8 @@ export const TemplateMaterialNode = forwardRef<HTMLDivElement, TemplateMaterialN
           type="button"
           className="material-node__anchor material-node__anchor--right"
           aria-label={anchorAriaLabel("right")}
+          data-material-id={material.id}
+          data-side="right"
           onPointerDown={(e) => onAnchorPointerDown("right", e)}
           onPointerUp={(e) => onAnchorPointerUp("right", e)}
         >
