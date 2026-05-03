@@ -9,6 +9,7 @@
   --color-muted: #6e6e6e;
   --color-red: #e1212a;
   --color-purple: #c975e8;
+  --color-cyan-blue: #1cc7ff;
 
   --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "Inter",
     system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -537,7 +538,7 @@ body {
  * ───────────────────────────────────────────── */
 
 .template-mosaic {
-  --mosaic-bg: #1cc7ff;
+  --mosaic-bg: var(--color-cyan-blue);
   --mosaic-fg: #ffffff;
   background: var(--mosaic-bg);
   color: var(--mosaic-fg);
