@@ -6,7 +6,7 @@
 
 ## Goal
 
-Turn the hero of the `/template` page into an interactive material graph. The user connects materials together by drawing lines between blue anchor points; templates that use ALL connected materials surface in a fullscreen carousel modal.
+Turn the hero of the `/template` page into an interactive material graph. The user connects materials together by drawing lines between blue anchor points; templates that use ALL connected materials surface in a carousel modal styled like the existing `AddEntryModal`.
 
 ## User flow
 
@@ -129,7 +129,7 @@ Derived (`useMemo`):
 - **Props:** `{ connections, anchorPositions: Map<materialId, { left: {x,y}, right: {x,y} }>, selectedId, dragState, onSelect }`.
 - Renders, for each connection:
   - A wide invisible `<path>` (12px, `stroke="transparent"`, `pointer-events: visibleStroke`) for hit-testing.
-  - A visible `<path>` (2.5px or 4px when selected, blue `#2563eb`).
+  - A visible `<path>` (2.5px or 4px when selected, cyan blue `#1cc7ff` — same hue as `.template-mosaic` `--mosaic-bg`, so the lines visually echo the cards they lead to).
   - A cubic Bézier with control points offset horizontally by `0.6 × |dx|` from each endpoint (slack-cable feel).
 - During drag, an extra dashed path runs from the source anchor to `dragState.cursorX/Y`. Uses `stroke-dasharray: 6 4` and animates `stroke-dashoffset` for marching-ants feedback.
 
@@ -193,8 +193,8 @@ Derived (`useMemo`):
 - `.material-graph--empty` — placeholder rendered when `materials.length === 0`.
 - `.material-graph__cta` — flex row pinned `position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);`. Above `.template-scroll-cue`.
 - `.material-node` — polaroid card visuals carried over from `.template-scatter__item`/`__media`/`__caption`. Includes `--connected` modifier (blue drop-shadow halo, slight lift).
-- `.material-node__anchor` — 16px blue square, 2px white border, blue glow shadow, hit-area 28px via padding/positioning. Hover/focus: scale + brighter glow.
-- `.connection-line` — base 2.5px stroke, blue `#2563eb`, `stroke-linecap: round`. `--selected` variant 4px + saturated + outer SVG `<filter>` glow. `--draft` variant dashed with marching-ants animation.
+- `.material-node__anchor` — 16px square in cyan blue `#1cc7ff`, 2px white border, blue glow shadow, hit-area 28px via padding/positioning. Hover/focus: scale + brighter glow.
+- `.connection-line` — base 2.5px stroke, cyan blue `#1cc7ff`, `stroke-linecap: round`. `--selected` variant 4px + saturated + outer SVG `<filter>` glow. `--draft` variant dashed with marching-ants animation.
 - `.carousel-modal*` — overlay, panel, header, dots, navigation buttons. Reuses tokens from `AddEntryModal` (pink overlay color, blur amount, panel width, border radius).
 - `.template-mosaic--lg` — scales title to ~36px, media min-height ~480px, larger action buttons.
 
@@ -219,7 +219,7 @@ Derived (`useMemo`):
 
 - All pointer interactions go through Pointer Events for unified mouse + touch.
 - Anchor hit-area is 28×28 to compensate for finger imprecision.
-- Below 600px viewport: the scatter switches to a 2-column compact layout (anchors stay on left/right). Bézier paths recompute against the new positions automatically.
+- Below 600px viewport: the scatter switches to a 2-column compact layout (anchors stay on left/right). Layout is still deterministic — `useScatterPositions` exposes both a desktop and a mobile variant and the component picks one based on a CSS breakpoint match. Bézier paths recompute against the new positions automatically.
 - Carousel: full-bleed on mobile (`padding-inline: 0`, panel becomes `100vw`); horizontal swipe via `motion.div drag="x"`; reduced media height.
 
 ## Performance
@@ -253,7 +253,8 @@ There is no test runner in this project. Verify by hand in the browser:
 10. **Keyboard connection mode.** Tab to an anchor; `Enter`; tab to a different material's anchor; `Enter`. Connection appears.
 11. **Locale parity.** Repeat steps 1, 3, 9 on `/fr/template` and `/en/template`.
 
-## Open questions for implementation
+## Implementation notes
 
-- Confirm there is no existing `--color-primary-blue` (or similar) token in `@theme inline` of `globals.css`. If there is, prefer it over the hardcoded `#2563eb`.
-- Determine whether the existing `templates` list returned by `getAllTemplates()` is small enough (current dataset) that filtering in the browser is comfortable. If it ever grows >500 entries, revisit (debounce, indexed lookup).
+- The project does not yet have a `src/hooks/` directory. Creating it is fine; there is no other convention to follow.
+- The blue used throughout this design (anchors, connection lines, halos) is `#1cc7ff`, matching the existing `--mosaic-bg` value declared inline on `.template-mosaic`. Lifting it to a shared CSS variable in `@theme inline` (e.g. `--color-cyan-blue: #1cc7ff`) is a small refactor worth doing as part of this work so both the mosaic card and the new graph components reference the same source.
+- Filtering happens on every render of the modal/CTA. With the current dataset this is trivially fast. If `getAllTemplates()` ever returns more than a few hundred entries, revisit (debounce, indexed lookup).
