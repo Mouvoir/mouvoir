@@ -693,3 +693,162 @@ body {
   height: 14px;
   background: rgba(255, 255, 255, 0.35);
 }
+
+/* ─────────────────────────────────────────────
+ * Material graph (interactive template filter)
+ * ───────────────────────────────────────────── */
+
+.material-graph {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  margin-top: 16px;
+}
+
+.material-graph--empty {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.material-graph__cta {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.material-graph__cta-button[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.material-node {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  width: 150px;
+  user-select: none;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.material-node--connected {
+  filter: drop-shadow(0 0 12px rgba(28, 199, 255, 0.55));
+}
+
+.material-node__card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.material-node__media {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  background-size: cover;
+}
+
+.material-node__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.material-node__caption {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-ink);
+}
+
+.material-node__anchor {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: crosshair;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  transform: translateY(-50%);
+}
+
+.material-node__anchor--left { left: -18px; }
+.material-node__anchor--right { right: -18px; }
+
+.material-node__anchor-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--color-cyan-blue);
+  border: 2px solid white;
+  box-shadow: 0 3px 8px rgba(28, 199, 255, 0.5);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.material-node__anchor:hover .material-node__anchor-dot,
+.material-node__anchor:focus-visible .material-node__anchor-dot {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(28, 199, 255, 0.7);
+}
+
+.connection-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.connection-line__hit {
+  stroke: transparent;
+  stroke-width: 14;
+  fill: none;
+  pointer-events: visibleStroke;
+  cursor: pointer;
+}
+
+.connection-line__visible {
+  stroke: var(--color-cyan-blue);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: stroke-width 120ms ease;
+}
+
+.connection-line--selected .connection-line__visible {
+  stroke-width: 4;
+}
+
+.connection-line__draft {
+  stroke: var(--color-cyan-blue);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 6 4;
+  animation: connection-marching 0.6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes connection-marching {
+  to { stroke-dashoffset: -10; }
+}
+
+@media (max-width: 600px) {
+  .material-graph { min-height: 720px; }
+  .material-node { width: 110px; }
+}
