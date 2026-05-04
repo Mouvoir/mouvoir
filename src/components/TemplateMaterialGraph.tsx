@@ -256,6 +256,7 @@ export function TemplateMaterialGraph({ materials, templates }: TemplateMaterial
             onAnchorPointerDown={(side, e) => handleAnchorPointerDown(m.id, side, e)}
             onAnchorPointerUp={(side, e) => handleAnchorPointerUp(m.id, side, e)}
             anchorAriaLabel={(side) => t("anchorLabel", { label: m.label, side: t(`side.${side}`) })}
+            onAnimationComplete={measureAnchors}
           />
         );
       })}
