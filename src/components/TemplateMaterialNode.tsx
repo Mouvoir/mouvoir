@@ -23,6 +23,7 @@ interface TemplateMaterialNodeProps {
   onAnchorPointerDown: (side: AnchorSide, e: ReactPointerEvent<HTMLButtonElement>) => void;
   onAnchorPointerUp: (side: AnchorSide, e: ReactPointerEvent<HTMLButtonElement>) => void;
   anchorAriaLabel: (side: AnchorSide) => string;
+  onAnimationComplete?: () => void;
 }
 
 const POLAROID_RATIOS = ["16/10", "4/5", "16/9", "4/3", "1/1"] as const;
@@ -45,6 +46,7 @@ export const TemplateMaterialNode = forwardRef<HTMLDivElement, TemplateMaterialN
       onAnchorPointerDown,
       onAnchorPointerUp,
       anchorAriaLabel,
+      onAnimationComplete,
     },
     ref,
   ) {
@@ -59,13 +61,16 @@ export const TemplateMaterialNode = forwardRef<HTMLDivElement, TemplateMaterialN
       >
       <motion.div
         className={`material-node${isConnected ? " material-node--connected" : ""}${isDragSource ? " material-node--drag-source" : ""}`}
-        initial={{ opacity: 0, scale: 0.85, rotate: 0, y: 20 }}
+        // Render at resting state during SSR/hydration so a slow first paint
+        // (Safari especially) never leaves the polaroids invisible at opacity:0.
+        initial={false}
         animate={{ opacity: 1, scale: 1, rotate: slot.rotate, y: 0 }}
         transition={{
           duration: 0.6,
           delay: 0.06 * index,
           ease: [0.22, 1, 0.36, 1],
         }}
+        onAnimationComplete={onAnimationComplete}
       >
         <button
           // eslint-disable-next-line react-hooks/refs
