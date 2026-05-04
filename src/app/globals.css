@@ -708,13 +708,17 @@ body {
   cursor: not-allowed;
 }
 
-.material-node {
+.material-node-wrap {
   position: absolute;
-  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.material-node {
+  position: relative;
   width: 150px;
   user-select: none;
   pointer-events: auto;
-  z-index: 2;
 }
 
 .material-node--connected {

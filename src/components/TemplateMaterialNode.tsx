@@ -52,14 +52,13 @@ export const TemplateMaterialNode = forwardRef<HTMLDivElement, TemplateMaterialN
     const leftAnchorRef = anchorRefs.left;
     const rightAnchorRef = anchorRefs.right;
     return (
-      <motion.div
+      <div
         ref={ref}
+        className="material-node-wrap"
+        style={{ left: `${slot.x}%`, top: `${slot.y}%` }}
+      >
+      <motion.div
         className={`material-node${isConnected ? " material-node--connected" : ""}${isDragSource ? " material-node--drag-source" : ""}`}
-        style={{
-          left: `${slot.x}%`,
-          top: `${slot.y}%`,
-          ["--rot" as string]: `${slot.rotate}deg`,
-        }}
         initial={{ opacity: 0, scale: 0.85, rotate: 0, y: 20 }}
         animate={{ opacity: 1, scale: 1, rotate: slot.rotate, y: 0 }}
         transition={{
@@ -109,6 +108,7 @@ export const TemplateMaterialNode = forwardRef<HTMLDivElement, TemplateMaterialN
           <span className="material-node__anchor-dot" aria-hidden="true" />
         </button>
       </motion.div>
+      </div>
     );
   },
 );
