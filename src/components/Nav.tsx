@@ -22,7 +22,7 @@ export function Nav({ variant = "white" }: NavProps) {
   const isPink = variant === "pink";
 
   const linkBase =
-    "inline-block text-[20px] px-[22px] py-[8px] rounded-full border-[1.5px] whitespace-nowrap transition-colors";
+    "inline-block uppercase text-[20px] px-[22px] py-[8px] rounded-full border-[1.5px] whitespace-nowrap transition-colors";
   const activeBorder = isPink ? "border-white" : "border-[#1a1a1a]";
   const inactiveHover = isPink
     ? "hover:border-white/60 border-transparent"
