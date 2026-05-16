@@ -1,10 +1,12 @@
 {
   "Nav": {
-    "template": "Template",
+    "brand": "Mouvoir",
+    "template": "Stylistes des chorés",
     "gallery": "Galerie",
-    "imageBank": "Banque d'images",
-    "usefulLinks": "Liens utiles",
-    "about": "À propos"
+    "imageBank": "Vestiaires visuels",
+    "usefulLinks": "Flyers des liens",
+    "about": "Anatomie de Mouvoir",
+    "contact": "Connexions de nuits"
   },
   "Home": {
     "welcome": "Bienvenue sur Partycule !",

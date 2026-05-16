@@ -1,10 +1,12 @@
 {
   "Nav": {
-    "template": "Template",
+    "brand": "Mouvoir",
+    "template": "Choreo stylists",
     "gallery": "Gallery",
-    "imageBank": "Image bank",
-    "usefulLinks": "Useful links",
-    "about": "About"
+    "imageBank": "Visual cloakroom",
+    "usefulLinks": "Link flyers",
+    "about": "Mouvoir anatomy",
+    "contact": "Night connections"
   },
   "Home": {
     "welcome": "Welcome to Partycule!",
