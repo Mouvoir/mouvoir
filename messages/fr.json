@@ -16,37 +16,12 @@
   },
   "TemplateList": {
     "title": "Template",
-    "introOne": "CONNECTE LES MATÉRIELS QUE TU AS POUR DÉCOUVRIR LES PROPOSITIONS DE TEMPLATES QUI S'OFFRENT À TOI",
-    "scrollHint": "Découvrir les templates",
     "mosaicEyebrow": "Tous les templates",
     "mosaicTitle": "Choisis ton template"
   },
   "TemplateMosaicCard": {
     "download": "Télécharger",
     "tutorial": "Tutoriel"
-  },
-  "TemplateGraph": {
-    "sectionLabel": "Filtre de templates par matériaux",
-    "ctaIdle": "Connecte des matériaux pour voir les templates",
-    "ctaDisconnected": "Connecte toutes tes grappes ensemble",
-    "ctaSingle": "Voir le template",
-    "ctaMany": "Voir les {count} templates",
-    "reset": "Tout réinitialiser",
-    "empty": "Aucun matériau disponible",
-    "anchorLabel": "Connecter {label} (côté {side})",
-    "side": {
-      "left": "gauche",
-      "right": "droit"
-    }
-  },
-  "TemplateCarousel": {
-    "title": "Templates correspondants",
-    "previous": "Précédent",
-    "next": "Suivant",
-    "goTo": "Aller au template {n}",
-    "counter": "{current} / {total}",
-    "close": "Fermer",
-    "empty": "Aucun template ne combine ces matériaux. Essaie d'en retirer un."
   },
   "TemplateCard": {
     "materialLabel": "Matériel :",

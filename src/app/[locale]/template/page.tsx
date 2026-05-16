@@ -1,9 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AddTemplateButton } from "@/components/AddTemplateButton";
-import { FullPageScroll } from "@/components/FullPageScroll";
 import { Nav } from "@/components/Nav";
 import { TemplateMosaicCard } from "@/components/TemplateMosaicCard";
-import { TemplateMaterialGraph } from "@/components/TemplateMaterialGraph";
 import { getAllTemplates } from "@/lib/templates";
 import { getAllMaterials } from "@/lib/materials";
 import { safeImageUrl } from "@/sanity/imageUrl";
@@ -26,74 +24,44 @@ export default async function TemplateListPage({
     imageUrl: safeImageUrl(m.image, (b) => b.width(80).height(80).fit("crop")),
   }));
 
-
   return (
-    <FullPageScroll
-      ariaLabels={[t("title"), t("mosaicTitle")]}
-      dotColor="rgba(0,0,0,0.3)"
-    >
-      <div className="page-shell template-fullpage-hero">
-        <div className="page-content">
-          <Nav />
+    <div className="page-shell">
+      <div className="page-content">
+        <Nav />
 
-          <section className="template-hero">
-            <div className="template-hero__heading">
+        <section className="template-section">
+          <div className="template-section__inner">
+            <header className="template-section__head">
               <div>
+                <p className="template-section__eyebrow">{t("mosaicEyebrow")}</p>
                 <h1 className="h-page" style={{ marginBottom: 0 }}>
-                  {t("title")}
+                  {t("mosaicTitle")}
                 </h1>
-                <p className="subline" style={{ marginTop: 8 }}>
-                  {t("introOne")}
-                </p>
               </div>
+              <AddTemplateButton materialOptions={materialOptions} />
+            </header>
+
+            <div className="template-section__grid">
+              {templates.map((template, i) => (
+                <TemplateMosaicCard
+                  key={template.slug}
+                  slug={template.slug}
+                  title={template.title}
+                  description={template.description}
+                  materials={template.materials.map((m) => ({
+                    id: m.id,
+                    label: m.label,
+                    imageUrl: safeImageUrl(m.image, (b) => b.width(48).height(48).fit("crop")),
+                  }))}
+                  downloadUrl={template.downloadUrl}
+                  resultVideoUrl={template.resultVideoUrl}
+                  index={i}
+                />
+              ))}
             </div>
-
-            <TemplateMaterialGraph
-              materials={materials.map((m) => ({
-                id: m.id,
-                label: m.label,
-                imageUrl: safeImageUrl(m.image, (b) => b.width(320).height(240).fit("crop")),
-              }))}
-              templates={templates}
-            />
-
-            <span className="template-scroll-cue">{t("scrollHint")}</span>
-          </section>
-        </div>
-      </div>
-
-      <section className="template-section template-fullpage-mosaic">
-        <div className="template-section__inner">
-          <header className="template-section__head">
-            <div>
-              <p className="template-section__eyebrow">{t("mosaicEyebrow")}</p>
-              <h2 className="h-page" style={{ marginBottom: 0 }}>
-                {t("mosaicTitle")}
-              </h2>
-            </div>
-            <AddTemplateButton materialOptions={materialOptions} />
-          </header>
-
-          <div className="template-section__grid">
-            {templates.map((template, i) => (
-              <TemplateMosaicCard
-                key={template.slug}
-                slug={template.slug}
-                title={template.title}
-                description={template.description}
-                materials={template.materials.map((m) => ({
-                  id: m.id,
-                  label: m.label,
-                  imageUrl: safeImageUrl(m.image, (b) => b.width(48).height(48).fit("crop")),
-                }))}
-                downloadUrl={template.downloadUrl}
-                resultVideoUrl={template.resultVideoUrl}
-                index={i}
-              />
-            ))}
           </div>
-        </div>
-      </section>
-    </FullPageScroll>
+        </section>
+      </div>
+    </div>
   );
 }

@@ -16,37 +16,12 @@
   },
   "TemplateList": {
     "title": "Template",
-    "introOne": "CONNECT THE MATERIALS THAT YOU HAVE TO SEE WHAT PROPOSITION OF TEMPLATE YOU CAN HAVE",
-    "scrollHint": "Discover the templates",
     "mosaicEyebrow": "All templates",
     "mosaicTitle": "Pick your template"
   },
   "TemplateMosaicCard": {
     "download": "Download",
     "tutorial": "Tutorial"
-  },
-  "TemplateGraph": {
-    "sectionLabel": "Filter templates by materials",
-    "ctaIdle": "Connect materials to see templates",
-    "ctaDisconnected": "Connect all your clusters together",
-    "ctaSingle": "View the template",
-    "ctaMany": "View {count} templates",
-    "reset": "Reset all",
-    "empty": "No materials available",
-    "anchorLabel": "Connect {label} ({side} side)",
-    "side": {
-      "left": "left",
-      "right": "right"
-    }
-  },
-  "TemplateCarousel": {
-    "title": "Matching templates",
-    "previous": "Previous",
-    "next": "Next",
-    "goTo": "Go to template {n}",
-    "counter": "{current} / {total}",
-    "close": "Close",
-    "empty": "No template combines these materials. Try removing one."
   },
   "TemplateCard": {
     "materialLabel": "Hardware:",
