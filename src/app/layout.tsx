@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { Libre_Franklin } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import "./globals.css";
+
+const libreFranklin = Libre_Franklin({
+  subsets: ["latin"],
+  variable: "--font-libre-franklin",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Partycule — Make your VJing interactive",
@@ -15,7 +22,7 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   return (
-    <html lang={locale} className="h-full antialiased">
+    <html lang={locale} className={`${libreFranklin.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

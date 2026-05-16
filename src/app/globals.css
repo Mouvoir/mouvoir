@@ -11,8 +11,9 @@
   --color-purple: #c975e8;
   --color-cyan-blue: #1cc7ff;
 
-  --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "Inter",
-    system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-libre-franklin), "Libre Franklin", -apple-system,
+    "SF Pro Display", "SF Pro Text", "Inter", system-ui, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas,
     monospace;
 
@@ -40,10 +41,10 @@
 }
 
 body {
-  font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Inter",
-    system-ui, sans-serif;
-  color: #1a1a1a;
-  background: #ffffff;
+  font-family: var(--font-libre-franklin), "Libre Franklin", -apple-system,
+    "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+  color: #ffffff;
+  background: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
