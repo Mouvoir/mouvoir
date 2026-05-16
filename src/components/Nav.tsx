@@ -5,7 +5,6 @@ import { Link, usePathname } from "@/i18n/navigation";
 
 const NAV_LINKS = [
   { href: "/template", key: "template" },
-  { href: "/gallery", key: "gallery" },
   { href: "/image-bank", key: "imageBank" },
   { href: "/useful-links", key: "usefulLinks" },
   { href: "/about", key: "about" },

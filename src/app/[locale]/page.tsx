@@ -1,5 +1,10 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AddGalleryButton } from "@/components/AddGalleryButton";
+import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
 import { Nav } from "@/components/Nav";
+import { getAllGalleryEntries } from "@/lib/gallery";
+import { getAllTemplates } from "@/lib/templates";
+import { cropImageUrl } from "@/sanity/imageUrl";
 
 export default async function HomePage({
   params,
@@ -8,38 +13,63 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("Home");
+  const t = await getTranslations("Gallery");
+
+  const [entries, templates] = await Promise.all([
+    getAllGalleryEntries(),
+    getAllTemplates(),
+  ]);
+  const templateOptions = templates.map((t) => ({ label: t.title, value: t.slug }));
 
   return (
-    <div className="page-shell page-shell--pink">
+    <div className="page-shell">
       <div className="page-content">
-        <Nav variant="pink" />
+        <Nav />
 
-        <section className="relative min-h-[75vh] flex items-center justify-center text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/dancer-red-1.svg"
-            alt=""
-            aria-hidden="true"
-            className="absolute top-1/2 left-[4%] -translate-y-1/2 w-[520px] opacity-95 pointer-events-none z-[1]"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/dancer-red-2.svg"
-            alt=""
-            aria-hidden="true"
-            className="absolute top-1/2 right-[2%] -translate-y-1/2 w-[460px] opacity-95 pointer-events-none z-[1]"
-          />
+        <div className="flex items-end justify-between gap-6 mb-3">
+          <h1 className="h-page" style={{ marginBottom: 0 }}>
+            {t("title")}
+          </h1>
+          <AddGalleryButton templateOptions={templateOptions} />
+        </div>
+        <p className="subline">{t("subline")}</p>
 
-          <div className="relative z-[2] text-white">
-            <h1 className="text-[72px] font-normal leading-[1.05] mb-14">
-              {t("welcome")}
-            </h1>
-            <h2 className="text-[72px] font-normal leading-[1.05] max-w-[1100px] mx-auto">
-              {t("tagline")}
-            </h2>
-          </div>
-        </section>
+        <div className="grid grid-cols-3 gap-8 mt-8">
+          {entries.map((entry) => {
+            const thumbUrl = entry.thumbnail ? cropImageUrl(entry.thumbnail, 600, 338) : null;
+
+            return (
+              <article key={entry.slug} className="flex flex-col">
+                <HoverVideoThumbnail
+                  videoUrl={entry.mediaFileUrl ?? undefined}
+                  posterUrl={thumbUrl ?? undefined}
+                  href={`/gallery/${entry.slug}`}
+                  ariaLabel={entry.vjName}
+                />
+                <h2 className="text-[20px] font-bold mt-4 mb-1">{entry.vjName}</h2>
+                {entry.date ? (
+                  <p className="font-mono text-[13px] m-0 mb-4">{entry.date}</p>
+                ) : null}
+                {(entry.templateTitle || entry.eventType) ? (
+                  <p className="font-bold m-0 mb-[2px]">
+                    {entry.templateTitle}
+                    {entry.templateTitle && entry.eventType ? " - " : ""}
+                    {entry.eventType ? (
+                      <em className="italic font-normal">
+                        {t("eventPrefix")} {entry.eventType}
+                      </em>
+                    ) : null}
+                  </p>
+                ) : null}
+                {entry.quote ? (
+                  <p className="text-[14px] m-0 mb-4 max-w-[48ch]">
+                    «{entry.quote}»
+                  </p>
+                ) : null}
+              </article>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
