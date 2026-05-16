@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Nav } from "@/components/Nav";
 import { fetchYoutubeMeta, type YoutubeMeta } from "@/lib/youtube";
 
 interface YoutubeLink {
@@ -226,60 +225,56 @@ export default async function UsefulLinksPage({
   const metas = await fetchYoutubeMeta(allIds);
 
   return (
-    <div className="page-shell">
-      <div className="page-content">
-        <Nav />
+    <>
+      <h1 className="h-page">{t("title")}</h1>
 
-        <h1 className="h-page">{t("title")}</h1>
+      <div
+        className="grid mt-6"
+        style={{ gridTemplateColumns: "1.4fr 1fr", gap: "80px" }}
+      >
+        <section>
+          <h2 className="font-mono uppercase tracking-[0.05em] text-[14px] m-0 mb-[18px]">
+            {t("youtubeTutorialsHeading")}
+          </h2>
 
-        <div
-          className="grid mt-6"
-          style={{ gridTemplateColumns: "1.4fr 1fr", gap: "80px" }}
-        >
-          <section>
-            <h2 className="font-mono uppercase tracking-[0.05em] text-[14px] m-0 mb-[18px]">
-              {t("youtubeTutorialsHeading")}
-            </h2>
+          <p className="text-[14px] my-[22px] mb-[14px]">
+            {t("aestheticPlaylistLabel")}
+          </p>
+          {PLAYLIST_AESTHETIC.map((item, idx) => (
+            <YoutubeArticle
+              key={`a-${item.youtubeId}-${idx}`}
+              item={item}
+              meta={metas[item.youtubeId]}
+            />
+          ))}
 
-            <p className="text-[14px] my-[22px] mb-[14px]">
-              {t("aestheticPlaylistLabel")}
-            </p>
-            {PLAYLIST_AESTHETIC.map((item, idx) => (
-              <YoutubeArticle
-                key={`a-${item.youtubeId}-${idx}`}
-                item={item}
-                meta={metas[item.youtubeId]}
-              />
-            ))}
+          <p className="text-[14px] my-[22px] mb-[14px]">
+            {t("interactionPlaylistLabel")}
+          </p>
+          {PLAYLIST_INTERACTION.map((item, idx) => (
+            <YoutubeArticle
+              key={`i-${item.youtubeId}-${idx}`}
+              item={item}
+              meta={metas[item.youtubeId]}
+            />
+          ))}
+        </section>
 
-            <p className="text-[14px] my-[22px] mb-[14px]">
-              {t("interactionPlaylistLabel")}
-            </p>
-            {PLAYLIST_INTERACTION.map((item, idx) => (
-              <YoutubeArticle
-                key={`i-${item.youtubeId}-${idx}`}
-                item={item}
-                meta={metas[item.youtubeId]}
-              />
-            ))}
-          </section>
+        <section>
+          <h2 className="font-mono uppercase tracking-[0.05em] text-[14px] m-0 mb-[18px]">
+            {t("pluginsHeading")}
+          </h2>
 
-          <section>
-            <h2 className="font-mono uppercase tracking-[0.05em] text-[14px] m-0 mb-[18px]">
-              {t("pluginsHeading")}
-            </h2>
+          <p className="text-[14px] my-[22px] mb-[14px]">
+            {t("touchDesignerLabel")}
+          </p>
+          {PLUGINS_TD.map((item) => (
+            <PluginArticle key={item.name} item={item} />
+          ))}
 
-            <p className="text-[14px] my-[22px] mb-[14px]">
-              {t("touchDesignerLabel")}
-            </p>
-            {PLUGINS_TD.map((item) => (
-              <PluginArticle key={item.name} item={item} />
-            ))}
-
-            <p className="text-[14px] mt-12 mb-[14px]">{t("resolumeLabel")}</p>
-          </section>
-        </div>
+          <p className="text-[14px] mt-12 mb-[14px]">{t("resolumeLabel")}</p>
+        </section>
       </div>
-    </div>
+    </>
   );
 }

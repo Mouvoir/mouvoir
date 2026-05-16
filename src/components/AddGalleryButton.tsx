@@ -50,6 +50,7 @@ export function AddGalleryButton({
             switch (result.error) {
               case "missing-fields": setError(t("error_missing-fields")); break;
               case "file-too-large": setError(t("error_file-too-large")); break;
+              case "invalid-image": setError(t("error_invalid-image")); break;
               default: setError(t("error_generic")); break;
             }
             return false;
@@ -59,24 +60,29 @@ export function AddGalleryButton({
         footer={error ? <p style={{ color: "red", margin: 0 }}>{error}</p> : null}
         left={
           <>
-            <TextField label={t("fieldCreator")} name="creator" />
-            <TextField label={t("fieldDateLocation")} name="dateLocation" />
+            <TextField label={t("fieldTitle")} name="title" />
+            <TextField label={t("fieldAuthor")} name="author" />
             <ComboboxField
-              label={t("fieldTemplateName")}
-              name="templateSlug"
-              options={templateOptions}
-            />
-            <ComboboxField
-              label={t("fieldEventType")}
-              name="eventType"
+              label={t("fieldType")}
+              name="type"
               options={[...EVENT_TYPES]}
             />
+            <TextField label={t("fieldDate")} name="date" />
+            <TextField label={t("fieldPlace")} name="place" />
+            <TextField label={t("fieldEvent")} name="event" />
           </>
         }
         right={
           <>
-            <TextAreaField label={t("fieldComment")} name="comment" />
-            <FileField label={t("fieldSetMedia")} name="setMedia" />
+            <TextAreaField label={t("fieldDescription")} name="description" />
+            <TextField label={t("fieldLink")} name="link" />
+            <ComboboxField
+              label={t("fieldTemplate")}
+              name="templateSlug"
+              options={templateOptions}
+            />
+            <FileField label={t("fieldMainPhoto")} name="mainPhoto" accept="image/*" />
+            <FileField label={t("fieldPhotos")} name="photos" accept="image/*" multiple />
           </>
         }
       />

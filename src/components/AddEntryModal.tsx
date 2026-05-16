@@ -327,10 +327,12 @@ export function FileField({
   label,
   name,
   accept,
+  multiple = false,
 }: {
   label: string;
   name: string;
   accept?: string;
+  multiple?: boolean;
 }) {
   return (
     <div className="flex flex-col gap-[8px]">
@@ -346,6 +348,7 @@ export function FileField({
           name={name}
           type="file"
           accept={accept}
+          multiple={multiple}
           className="text-[14px] w-full outline-none"
         />
       </div>

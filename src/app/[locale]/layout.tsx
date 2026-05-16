@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { CharterConsent } from "@/components/CharterConsent";
 import { LocaleFooter } from "@/components/LocaleFooter";
+import { Nav } from "@/components/Nav";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -24,7 +25,12 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider>
-      {children}
+      <div className="page-shell">
+        <div className="page-content">
+          <Nav />
+          {children}
+        </div>
+      </div>
       <LocaleFooter />
       <CharterConsent />
     </NextIntlClientProvider>

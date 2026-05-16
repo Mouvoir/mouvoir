@@ -1,5 +1,4 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Nav } from "@/components/Nav";
 
 export default async function ContactPage({
   params,
@@ -10,12 +9,5 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations("Nav");
 
-  return (
-    <div className="page-shell">
-      <div className="page-content">
-        <Nav />
-        <h1 className="h-page">{t("contact")}</h1>
-      </div>
-    </div>
-  );
+  return <h1 className="h-page">{t("contact")}</h1>;
 }

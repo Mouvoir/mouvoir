@@ -3,26 +3,34 @@ import { sanityClient } from "@/sanity/client";
 
 export interface GalleryEntry {
   slug: string;
-  vjName: string;
-  date: string | null;
+  title: string;
+  author: string;
+  type: string;
+  date: string;
+  place: string;
+  event: string;
+  description: string;
+  link: string | null;
+  mainPhoto: SanityImageSource | null;
+  photos: SanityImageSource[];
   templateTitle: string | null;
   templateDownloadUrl: string | null;
-  eventType: string | null;
-  quote: string | null;
-  thumbnail: SanityImageSource | null;
-  mediaFileUrl: string | null;
 }
 
 const GALLERY_PROJECTION = /* groq */ `
   "slug": slug.current,
-  vjName,
+  title,
+  author,
+  type,
   date,
+  place,
+  event,
+  description,
+  link,
+  mainPhoto,
+  "photos": coalesce(photos, []),
   "templateTitle": *[_type == "template" && slug.current == ^.templateSlug][0].title,
-  "templateDownloadUrl": *[_type == "template" && slug.current == ^.templateSlug][0].downloadFile.asset->url,
-  eventType,
-  quote,
-  thumbnail,
-  "mediaFileUrl": mediaFile.asset->url
+  "templateDownloadUrl": *[_type == "template" && slug.current == ^.templateSlug][0].downloadFile.asset->url
 `;
 
 export async function getAllGalleryEntries(): Promise<GalleryEntry[]> {
