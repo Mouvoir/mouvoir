@@ -425,12 +425,6 @@ body {
  * ───────────────────────────────────────────── */
 
 .template-section {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    var(--pink-pale) 12%,
-    var(--pink-pale) 100%
-  );
   padding: 96px 80px 120px;
 }
 
