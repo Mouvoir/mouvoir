@@ -279,7 +279,7 @@ body {
  * ───────────────────────────────────────────── */
 
 .template-section {
-  padding: 96px 80px 120px;
+  padding: 0;
 }
 
 .template-section__inner {
@@ -292,7 +292,7 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .template-section__eyebrow {
@@ -315,17 +315,11 @@ body {
   .template-section__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .template-section {
-    padding: 72px 48px 96px;
-  }
 }
 
 @media (max-width: 720px) {
   .template-section__grid {
     grid-template-columns: 1fr;
-  }
-  .template-section {
-    padding: 56px 24px 72px;
   }
 }
 
@@ -336,15 +330,29 @@ body {
 .template-mosaic {
   --mosaic-bg: var(--color-cyan-blue);
   --mosaic-fg: #ffffff;
-  background: var(--mosaic-bg);
+  position: relative;
   color: var(--mosaic-fg);
-  border-radius: 20px;
-  padding: 18px 20px 16px;
+  padding: 40px 64px 36px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 14px 30px rgba(28, 199, 255, 0.18);
+  isolation: isolate;
 }
+
+.template-mosaic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mosaic-bg);
+  -webkit-mask: url("/button_bg/4.svg") center / 100% 100% no-repeat;
+  mask: url("/button_bg/4.svg") center / 100% 100% no-repeat;
+  z-index: -1;
+}
+
+.template-mosaic--c1 { --mosaic-bg: #1cc7ff; }
+.template-mosaic--c2 { --mosaic-bg: #1b4d7a; }
+.template-mosaic--c3 { --mosaic-bg: #9560ff; }
+.template-mosaic--c4 { --mosaic-bg: #aed4f4; --mosaic-fg: #0d3f63; }
 
 .template-mosaic__title {
   margin: 0;

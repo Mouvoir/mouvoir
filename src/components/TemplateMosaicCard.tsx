@@ -34,7 +34,7 @@ export function TemplateMosaicCard({
 }: TemplateMosaicCardProps) {
   return (
     <motion.article
-      className={`template-mosaic${size === "lg" ? " template-mosaic--lg" : ""}`}
+      className={`template-mosaic${size === "lg" ? " template-mosaic--lg" : ` template-mosaic--c${(index % 4) + 1}`}`}
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

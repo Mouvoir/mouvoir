@@ -19,12 +19,6 @@ export default async function TemplateListPage() {
     <section className="template-section">
       <div className="template-section__inner">
         <header className="template-section__head">
-          <div>
-            <p className="template-section__eyebrow">Tous les templates</p>
-            <h1 className="h-page" style={{ marginBottom: 0 }}>
-              Choisis ton template
-            </h1>
-          </div>
           <AddTemplateButton materialOptions={materialOptions} />
         </header>
 
