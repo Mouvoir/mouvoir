@@ -37,13 +37,6 @@ export function GalleryCard({ entry }: GalleryCardProps) {
           </p>
         </div>
       </Link>
-
-      <h2 className="text-[22px] font-bold mt-4 mb-2">{entry.title}</h2>
-      {entry.description ? (
-        <p className="text-[15px] leading-[1.5] m-0 max-w-[52ch]">
-          {entry.description}
-        </p>
-      ) : null}
     </article>
   );
 }
