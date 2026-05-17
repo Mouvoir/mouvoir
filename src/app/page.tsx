@@ -1,17 +1,9 @@
-import { setRequestLocale } from "next-intl/server";
 import { AddGalleryButton } from "@/components/AddGalleryButton";
 import { GalleryCard } from "@/components/GalleryCard";
 import { getAllGalleryEntries } from "@/lib/gallery";
 import { getAllTemplates } from "@/lib/templates";
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default async function HomePage() {
   const [entries, templates] = await Promise.all([
     getAllGalleryEntries(),
     getAllTemplates(),

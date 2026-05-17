@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 
 const PLAY_ICON = (
   <svg

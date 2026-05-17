@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Franklin } from "next/font/google";
-import { getLocale } from "next-intl/server";
+import { CharterConsent } from "@/components/CharterConsent";
+import { Nav } from "@/components/Nav";
 import "./globals.css";
 
 const libreFranklin = Libre_Franklin({
@@ -10,20 +11,27 @@ const libreFranklin = Libre_Franklin({
 });
 
 export const metadata: Metadata = {
-  title: "Partycule — Make your VJing interactive",
+  title: "Mouvoir — Make your VJing interactive",
   description:
-    "Partycule is an interactive VJing device that places the public at the heart of visuals in real time.",
+    "Mouvoir is an interactive VJing device that places the public at the heart of visuals in real time.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
   return (
-    <html lang={locale} className={`${libreFranklin.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="fr" className={`${libreFranklin.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <div className="page-shell">
+          <div className="page-content">
+            <Nav />
+            {children}
+          </div>
+        </div>
+        <CharterConsent />
+      </body>
     </html>
   );
 }

@@ -1,4 +1,4 @@
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import type { GalleryEntry } from "@/lib/gallery";
 import { cropImageUrl } from "@/sanity/imageUrl";
 
@@ -15,7 +15,7 @@ export function GalleryCard({ entry }: GalleryCardProps) {
     <article className="flex flex-col">
       <Link
         href={`/gallery/${entry.slug}`}
-        className="group relative block w-full aspect-video overflow-hidden rounded-[4px] bg-[#111]"
+        className="group relative block w-full aspect-video overflow-hidden bg-[#111]"
         aria-label={entry.title}
       >
         {photoUrl ? (

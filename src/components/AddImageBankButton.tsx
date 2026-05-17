@@ -2,33 +2,26 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
 import {
   AddEntryModal,
   FileField,
   TextAreaField,
   TextField,
 } from "./AddEntryModal";
-import { createImageBankEntry } from "@/app/[locale]/image-bank/actions";
+import { createImageBankEntry } from "@/app/image-bank/actions";
+
+const ERROR_MESSAGES: Record<string, string> = {
+  "missing-fields":
+    "Merci de renseigner un nom de vidéo et de joindre un fichier vidéo.",
+  "file-type": "Le fichier envoyé doit être une vidéo.",
+  "file-too-large": "La vidéo est trop lourde (max 200 Mo).",
+  generic: "Une erreur est survenue. Merci de réessayer.",
+};
 
 export function AddImageBankButton() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const t = useTranslations("ImageBankUpload");
   const router = useRouter();
-
-  const errorMessage = (code: string) => {
-    switch (code) {
-      case "missing-fields":
-        return t("errorMissingFields");
-      case "file-type":
-        return t("errorFileType");
-      case "file-too-large":
-        return t("errorFileTooLarge");
-      default:
-        return t("errorGeneric");
-    }
-  };
 
   return (
     <>
@@ -40,18 +33,18 @@ export function AddImageBankButton() {
         }}
         className="btn-outline"
       >
-        <span aria-hidden="true">+</span> {t("cta")}
+        <span aria-hidden="true">+</span> Ajouter une vidéo
       </button>
 
       <AddEntryModal
-        title={t("modalTitle")}
+        title="Ajouter une vidéo dans la banque à images"
         open={open}
         onClose={() => {
           setOpen(false);
           setError(null);
         }}
-        submitLabel={t("submit")}
-        pendingLabel={t("pending")}
+        submitLabel="Ajouter à la banque"
+        pendingLabel="Envoi en cours…"
         onSubmit={async (formData) => {
           setError(null);
           const result = await createImageBankEntry(formData);
@@ -59,7 +52,7 @@ export function AddImageBankButton() {
             router.refresh();
             return true;
           }
-          setError(errorMessage(result.error));
+          setError(ERROR_MESSAGES[result.error] ?? ERROR_MESSAGES.generic);
           return false;
         }}
         footer={
@@ -85,19 +78,15 @@ export function AddImageBankButton() {
         }
         left={
           <>
-            <TextField label={t("fieldCreator")} name="creator" />
-            <TextField label={t("fieldVideoName")} name="videoName" />
-            <TextField label={t("fieldCredit")} name="credit" />
+            <TextField label="Nom créateurice" name="creator" />
+            <TextField label="Nom de la vidéo" name="videoName" />
+            <TextField label="Mention / crédit" name="credit" />
           </>
         }
         right={
           <>
-            <FileField
-              label={t("fieldVideo")}
-              name="video"
-              accept="video/*"
-            />
-            <TextAreaField label={t("fieldComment")} name="comment" />
+            <FileField label="Vidéo" name="video" accept="video/*" />
+            <TextAreaField label="Commentaire" name="comment" />
           </>
         }
       />

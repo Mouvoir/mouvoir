@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
 import { MaterialChip } from "@/components/MaterialChip";
 
@@ -33,9 +32,6 @@ export function TemplateMosaicCard({
   index,
   size = "default",
 }: TemplateMosaicCardProps) {
-  const t = useTranslations("TemplateCard");
-  const tCard = useTranslations("TemplateMosaicCard");
-
   return (
     <motion.article
       className={`template-mosaic${size === "lg" ? " template-mosaic--lg" : ""}`}
@@ -62,7 +58,7 @@ export function TemplateMosaicCard({
         <HoverVideoThumbnail
           videoUrl={resultVideoUrl}
           href={`/template/${slug}`}
-          ariaLabel={t("previewAria", { title })}
+          ariaLabel={`Aperçu de ${title}`}
         />
       </div>
 
@@ -75,18 +71,18 @@ export function TemplateMosaicCard({
               target="_blank"
               rel="noreferrer"
             >
-              {tCard("download")}
+              Télécharger
             </a>
           ) : (
             <button type="button" className="template-mosaic__btn" disabled>
-              {tCard("download")}
+              Télécharger
             </button>
           )}
           <Link
             href={`/template/${slug}#tutorial`}
             className="template-mosaic__btn"
           >
-            {tCard("tutorial")}
+            Tutoriel
           </Link>
         </div>
       </div>

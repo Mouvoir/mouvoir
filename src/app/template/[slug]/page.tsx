@@ -1,25 +1,16 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { getAllTemplateSlugs, getTemplateBySlug } from "@/lib/templates";
 import { safeImageUrl, urlForImage } from "@/sanity/imageUrl";
 import { MaterialChip } from "@/components/MaterialChip";
 import { getYoutubeEmbedUrl } from "@/lib/youtube";
-import { routing } from "@/i18n/routing";
 
 export default async function TemplateDetailPage({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { locale, slug } = await params;
-  setRequestLocale(locale);
-
-  const [template, tDetail, tSchema, tTutorial] = await Promise.all([
-    getTemplateBySlug(slug),
-    getTranslations("TemplateDetail"),
-    getTranslations("TemplateSchema"),
-    getTranslations("TemplateTutorial"),
-  ]);
+  const { slug } = await params;
+  const template = await getTemplateBySlug(slug);
 
   if (!template) notFound();
 
@@ -37,11 +28,11 @@ export default async function TemplateDetailPage({
       target="_blank"
       rel="noreferrer"
     >
-      {tDetail("downloadButton")}
+      Télécharger ↓
     </a>
   ) : (
     <button className="btn-outline" type="button" disabled>
-      {tDetail("downloadButton")}
+      Télécharger ↓
     </button>
   );
 
@@ -57,7 +48,7 @@ export default async function TemplateDetailPage({
       {template.description ? (
         <p className="subline">
           <span className="font-mono uppercase tracking-[0.02em] text-[14px]">
-            {tDetail("descriptionLabel")}
+            Description :
           </span>{" "}
           {template.description}
         </p>
@@ -65,7 +56,7 @@ export default async function TemplateDetailPage({
       {template.materials.length > 0 ? (
         <div className="flex items-center flex-wrap gap-2 mt-2">
           <span className="font-mono uppercase tracking-[0.02em] text-[14px]">
-            {tSchema("materialLabel")}
+            Matériel :
           </span>
           {template.materials.map((m) => (
             <MaterialChip
@@ -110,7 +101,7 @@ export default async function TemplateDetailPage({
       <section id="schema" className="mt-20 scroll-mt-24">
         <div className="mt-14">
           <p className="font-mono uppercase tracking-[0.02em] text-[14px] mb-[18px]">
-            {tSchema("touchDesignerSchema")}
+            Schéma de TouchDesigner :
           </p>
 
           <div className="relative">
@@ -148,7 +139,7 @@ export default async function TemplateDetailPage({
                 target="_blank"
                 rel="noreferrer"
               >
-                {tSchema("schemaButton")}
+                Schéma ⌐
               </a>
             ) : null}
           </div>
@@ -157,7 +148,7 @@ export default async function TemplateDetailPage({
 
       <section id="tutorial" className="mt-20 scroll-mt-24">
         <p className="font-mono uppercase tracking-[0.02em] text-[14px] mb-6">
-          {tTutorial("videoTutorialLabel")}
+          Vidéo tutoriel :
         </p>
 
         <div
@@ -198,7 +189,9 @@ export default async function TemplateDetailPage({
           </div>
 
           <aside>
-            <p className="m-0 text-[15px] leading-[1.5]">{tTutorial("tutorialOutro")}</p>
+            <p className="m-0 text-[15px] leading-[1.5]">
+              Dites-moi si vous voulez voir plus de tutoriels particlesGpu !
+            </p>
           </aside>
         </div>
       </section>
@@ -208,7 +201,5 @@ export default async function TemplateDetailPage({
 
 export async function generateStaticParams() {
   const slugs = await getAllTemplateSlugs();
-  return routing.locales.flatMap((locale) =>
-    slugs.map((slug) => ({ locale, slug })),
-  );
+  return slugs.map((slug) => ({ slug }));
 }

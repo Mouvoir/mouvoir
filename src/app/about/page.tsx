@@ -1,22 +1,16 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
-
-export default async function AboutPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations("About");
-
+export default function AboutPage() {
   return (
     <>
-      <h1 className="h-page">{t("title")}</h1>
+      <h1 className="h-page">À propos</h1>
       <p
         className="text-[17px] leading-[1.5]"
         style={{ maxWidth: "1200px" }}
       >
-        {t("body")}
+        «Partycule» est un dispositif de VJing interactif qui place le public au
+        cœur des visuels en temps réel. Le label collaboratif «Partycule»
+        destiné aux VJs Finta et allié·e·s, proposent des outils
+        d&apos;intéractivité permettant d&apos;intégrer le public au sein des
+        visuels, de manière encadrée, éphémère, inclusive et anonyme.
       </p>
 
       <div className="flex justify-around gap-10 mt-20">

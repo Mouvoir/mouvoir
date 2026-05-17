@@ -1,5 +1,3 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { useTranslations } from "next-intl";
 import { fetchYoutubeMeta, type YoutubeMeta } from "@/lib/youtube";
 
 interface YoutubeLink {
@@ -101,7 +99,6 @@ function YoutubeArticle({
   item: YoutubeLink;
   meta?: YoutubeMeta;
 }) {
-  const t = useTranslations("UsefulLinks");
   const url = `https://www.youtube.com/watch?v=${item.youtubeId}`;
   const duration = meta?.duration ?? item.duration ?? "—:—";
   const thumbnail =
@@ -115,7 +112,7 @@ function YoutubeArticle({
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={t("watchOnYoutubeAria", { title: item.title })}
+        aria-label={`Regarder sur YouTube : ${item.title}`}
         className="rounded-[8px] overflow-hidden relative text-white flex items-end justify-end px-[10px] py-[6px] text-[13px] font-semibold bg-black"
         style={{
           aspectRatio: "16 / 9",
@@ -168,7 +165,6 @@ function YoutubeArticle({
 }
 
 function PluginArticle({ item }: { item: PluginItem }) {
-  const t = useTranslations("UsefulLinks");
   return (
     <article
       className="grid items-start py-[18px]"
@@ -178,7 +174,7 @@ function PluginArticle({ item }: { item: PluginItem }) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={t("openOnGithubAria", { name: item.name })}
+        aria-label={`Ouvrir ${item.name} sur GitHub`}
         className="w-20 h-20 flex items-center justify-center text-[#1a1a1a]"
       >
         <GithubIcon />
@@ -210,15 +206,7 @@ function PluginArticle({ item }: { item: PluginItem }) {
   );
 }
 
-export default async function UsefulLinksPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations("UsefulLinks");
-
+export default async function UsefulLinksPage() {
   const allIds = [...PLAYLIST_AESTHETIC, ...PLAYLIST_INTERACTION].map(
     (i) => i.youtubeId,
   );
@@ -226,7 +214,7 @@ export default async function UsefulLinksPage({
 
   return (
     <>
-      <h1 className="h-page">{t("title")}</h1>
+      <h1 className="h-page">Liens utiles</h1>
 
       <div
         className="grid mt-6"
@@ -234,11 +222,11 @@ export default async function UsefulLinksPage({
       >
         <section>
           <h2 className="font-mono uppercase tracking-[0.05em] text-[14px] m-0 mb-[18px]">
-            {t("youtubeTutorialsHeading")}
+            Tutoriel YouTube
           </h2>
 
           <p className="text-[14px] my-[22px] mb-[14px]">
-            {t("aestheticPlaylistLabel")}
+            Playlist esthétique :
           </p>
           {PLAYLIST_AESTHETIC.map((item, idx) => (
             <YoutubeArticle
@@ -249,7 +237,7 @@ export default async function UsefulLinksPage({
           ))}
 
           <p className="text-[14px] my-[22px] mb-[14px]">
-            {t("interactionPlaylistLabel")}
+            Playlist intéraction :
           </p>
           {PLAYLIST_INTERACTION.map((item, idx) => (
             <YoutubeArticle
@@ -262,17 +250,17 @@ export default async function UsefulLinksPage({
 
         <section>
           <h2 className="font-mono uppercase tracking-[0.05em] text-[14px] m-0 mb-[18px]">
-            {t("pluginsHeading")}
+            Plugin
           </h2>
 
           <p className="text-[14px] my-[22px] mb-[14px]">
-            {t("touchDesignerLabel")}
+            Touchdesigner :
           </p>
           {PLUGINS_TD.map((item) => (
             <PluginArticle key={item.name} item={item} />
           ))}
 
-          <p className="text-[14px] mt-12 mb-[14px]">{t("resolumeLabel")}</p>
+          <p className="text-[14px] mt-12 mb-[14px]">Resolum :</p>
         </section>
       </div>
     </>

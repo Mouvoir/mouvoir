@@ -2,10 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { AddEntryModal, FileField, TextAreaField, TextField } from "./AddEntryModal";
 import { MaterialPickerField, type MaterialOption } from "./MaterialPickerField";
-import { createTemplate } from "@/app/[locale]/template/actions";
+import { createTemplate } from "@/app/template/actions";
+
+const ERROR_MESSAGES: Record<string, string> = {
+  "missing-fields": "Le titre est obligatoire.",
+  "file-too-large": "Un des fichiers dépasse la taille maximale (200 Mo).",
+  "schema-must-be-image": "Le schéma doit être une image.",
+  "result-must-be-video": "La vidéo résultat doit être un fichier vidéo.",
+  generic: "Une erreur est survenue, réessaie.",
+};
 
 export function AddTemplateButton({
   materialOptions = [],
@@ -14,23 +21,7 @@ export function AddTemplateButton({
 }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const t = useTranslations("TemplateAdd");
   const router = useRouter();
-
-  const errorMessage = (code: string) => {
-    switch (code) {
-      case "missing-fields":
-        return t("errorMissingFields");
-      case "file-too-large":
-        return t("errorFileTooLarge");
-      case "schema-must-be-image":
-        return t("errorSchemaType");
-      case "result-must-be-video":
-        return t("errorResultType");
-      default:
-        return t("errorGeneric");
-    }
-  };
 
   return (
     <>
@@ -42,18 +33,18 @@ export function AddTemplateButton({
         }}
         className="btn-outline"
       >
-        <span aria-hidden="true">+</span> {t("addTemplateCta")}
+        <span aria-hidden="true">+</span> Ajouter un template
       </button>
 
       <AddEntryModal
-        title={t("modalTitle")}
+        title="Ajouter un template"
         open={open}
         onClose={() => {
           setOpen(false);
           setError(null);
         }}
-        submitLabel={t("submit")}
-        pendingLabel={t("pending")}
+        submitLabel="Envoyer le template"
+        pendingLabel="Envoi en cours…"
         onSubmit={async (formData) => {
           setError(null);
           const result = await createTemplate(formData);
@@ -61,7 +52,7 @@ export function AddTemplateButton({
             router.refresh();
             return true;
           }
-          setError(errorMessage(result.error));
+          setError(ERROR_MESSAGES[result.error] ?? ERROR_MESSAGES.generic);
           return false;
         }}
         footer={
@@ -87,32 +78,24 @@ export function AddTemplateButton({
         }
         left={
           <>
-            <TextField label={t("fieldTitle")} name="title" />
-            <TextField label={t("fieldCreator")} name="creator" />
-            <TextAreaField label={t("fieldDescription")} name="description" />
+            <TextField label="Titre" name="title" />
+            <TextField label="Nom créateurice" name="creator" />
+            <TextAreaField label="Description" name="description" />
             <MaterialPickerField
-              label={t("fieldMaterial")}
+              label="Matériel / Logiciel"
               name="material"
               options={materialOptions}
-              placeholder={t("fieldMaterialPlaceholder")}
-              emptyHint={t("fieldMaterialEmpty")}
+              placeholder="Rechercher du matériel…"
+              emptyHint="Aucun matériel disponible. Créez-en dans le Studio."
             />
           </>
         }
         right={
           <>
-            <FileField label={t("fieldTemplate")} name="template" />
-            <FileField
-              label={t("fieldSchema")}
-              name="schema"
-              accept="image/*"
-            />
-            <TextField label={t("fieldTutorial")} name="tutorial" />
-            <FileField
-              label={t("fieldResult")}
-              name="result"
-              accept="video/*"
-            />
+            <FileField label="Template" name="template" />
+            <FileField label="Schéma / Mise en place" name="schema" accept="image/*" />
+            <TextField label="Vidéo Tutoriel" name="tutorial" />
+            <FileField label="Vidéo résultat" name="result" accept="video/*" />
           </>
         }
       />

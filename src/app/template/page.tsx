@@ -1,18 +1,10 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AddTemplateButton } from "@/components/AddTemplateButton";
 import { TemplateMosaicCard } from "@/components/TemplateMosaicCard";
 import { getAllTemplates } from "@/lib/templates";
 import { getAllMaterials } from "@/lib/materials";
 import { safeImageUrl } from "@/sanity/imageUrl";
 
-export default async function TemplateListPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations("TemplateList");
+export default async function TemplateListPage() {
   const [templates, materials] = await Promise.all([
     getAllTemplates(),
     getAllMaterials(),
@@ -28,9 +20,9 @@ export default async function TemplateListPage({
       <div className="template-section__inner">
         <header className="template-section__head">
           <div>
-            <p className="template-section__eyebrow">{t("mosaicEyebrow")}</p>
+            <p className="template-section__eyebrow">Tous les templates</p>
             <h1 className="h-page" style={{ marginBottom: 0 }}>
-              {t("mosaicTitle")}
+              Choisis ton template
             </h1>
           </div>
           <AddTemplateButton materialOptions={materialOptions} />

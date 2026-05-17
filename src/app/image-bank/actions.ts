@@ -50,8 +50,7 @@ export async function createImageBankEntry(
       publishedAt: new Date().toISOString(),
     });
 
-    revalidatePath("/fr/image-bank");
-    revalidatePath("/en/image-bank");
+    revalidatePath("/image-bank");
 
     return { ok: true };
   } catch (err) {

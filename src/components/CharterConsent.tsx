@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
-import { useTranslations } from "next-intl";
 
-const STORAGE_KEY = "partycule-charter-accepted";
-const CHANGE_EVENT = "partycule:charter-consent-changed";
+const STORAGE_KEY = "Mouvoir-charter-accepted";
+const CHANGE_EVENT = "Mouvoir:charter-consent-changed";
 
 function subscribe(listener: () => void) {
   const onStorage = (event: StorageEvent) => {
@@ -47,14 +46,86 @@ const DECK: readonly CardSlot[] = [
   { colors: ["#FF7AE8", "#ff5ec4", "#f040b0"], rotate: 14, zIndex: 2, left: 700 },
 ] as const;
 
+type CharterPoint = {
+  title: string;
+  body: string;
+  sub1: { title: string; body: string };
+  sub2: { title: string; body: string };
+};
+
+const POINTS: readonly CharterPoint[] = [
+  {
+    title: "PRÉVENTION DU PUBLIC",
+    body:
+      "L'objectif est de permettre une participation libre et consciente, pour que le public sache dans quelle type de soirée il se rend.",
+    sub1: {
+      title: "AVANT CHAQUE SESSION",
+      body:
+        "Il est nécessaire que le public soit averti de la présence de caméras.",
+    },
+    sub2: {
+      title: "AVIS PUBLIC",
+      body: "Un message clair doit être présent avant chaque début de session.",
+    },
+  },
+  {
+    title: "NO RECORD",
+    body: "Partycule privilégie l'expérience du moment, non sa trace.",
+    sub1: {
+      title: "POURQUOI NO RECORD ?",
+      body: "La captation nuit à la liberté d'expression sur la piste de danse.",
+    },
+    sub2: {
+      title: "EXCEPTIONS",
+      body: "Seuls les visuels scéniques approuvés peuvent être diffusés.",
+    },
+  },
+  {
+    title: "ANONYMAT DES DANSEURS",
+    body:
+      "La caméra capte une énergie collective, pas des identités individuelles.",
+    sub1: {
+      title: "COLLECTIF VS INDIVIDUEL",
+      body: "L'énergie du groupe prime sur l'identité individuelle.",
+    },
+    sub2: {
+      title: "PROTECTION",
+      body: "Aucun visage ne peut être diffusé sans consentement explicite.",
+    },
+  },
+  {
+    title: "INCLUSION DES CORPS",
+    body: "Un vecteur de mouvement, d'expression et de puissance collective.",
+    sub1: {
+      title: "REPRÉSENTATION",
+      body:
+        "Toutes les morphologies et expressions corporelles sont bienvenues.",
+    },
+    sub2: {
+      title: "DIVERSITÉ",
+      body: "Partycule valorise la pluralité des corps et des mouvements.",
+    },
+  },
+  {
+    title: "BIENVEILLANCE",
+    body: "Savoir «lâcher l'image» fait partie intégrante de la pratique.",
+    sub1: {
+      title: "LÂCHER PRISE",
+      body: "Le corps comme outil d'exploration et de liberté.",
+    },
+    sub2: {
+      title: "PRATIQUE",
+      body: "Intégrer la bienveillance dans chaque interaction sur le dancefloor.",
+    },
+  },
+];
+
 export function CharterConsent() {
   const stored = useSyncExternalStore(
     subscribe,
     getClientSnapshot,
     getServerSnapshot,
   );
-  const t = useTranslations("CharterConsent");
-  const tCharter = useTranslations("Charter");
 
   const visible = stored !== "true";
 
@@ -73,19 +144,6 @@ export function CharterConsent() {
     window.localStorage.setItem(STORAGE_KEY, "true");
     window.dispatchEvent(new Event(CHANGE_EVENT));
   };
-
-  const points = [1, 2, 3, 4, 5].map((n) => ({
-    title: tCharter(`point${n}Title`),
-    body: tCharter(`point${n}Body`),
-    sub1: {
-      title: tCharter(`point${n}Sub1Title`),
-      body: tCharter(`point${n}Sub1Body`),
-    },
-    sub2: {
-      title: tCharter(`point${n}Sub2Title`),
-      body: tCharter(`point${n}Sub2Body`),
-    },
-  }));
 
   return (
     <div
@@ -107,23 +165,23 @@ export function CharterConsent() {
           }}
         >
           <h1 className="text-[64px] font-normal leading-[1.05] m-0 mb-3">
-            {tCharter("brand")}
+            Partycule
           </h1>
           <h2
             id="charter-consent-title"
             className="text-[44px] font-bold leading-[1.05] m-0 mb-6"
           >
-            {tCharter("title")}
+            CHARTE
           </h2>
           <p className="font-mono text-[13px] tracking-[0.06em] uppercase m-0">
-            {tCharter("preamble")}
+            Charte à respecter avant de pouvoir accéder au site, et aux templates.
           </p>
         </div>
 
         {/* Charter deck — hover a card to fan its two sub-cards out from behind */}
         <div className="charter-deck-viewport">
           <div className="charter-deck">
-            {points.map((point, i) => {
+            {POINTS.map((point, i) => {
               const slot = DECK[i];
               return (
                 <div
@@ -180,7 +238,7 @@ export function CharterConsent() {
             className="btn-cta"
             style={{ width: "auto", minWidth: "260px" }}
           >
-            {t("accept")}
+            J&apos;accepte et je continue
           </button>
         </div>
       </div>
