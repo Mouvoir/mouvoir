@@ -32,12 +32,12 @@ export default async function GalleryDetailPage({
           <p className="gallery-detail__author">{entry.author}</p>
 
           <dl className="gallery-detail__meta">
-            <div className="gallery-detail__meta-row">TYPE : {entry.type}</div>
-            <div className="gallery-detail__meta-row">DATE : {entry.date}</div>
-            <div className="gallery-detail__meta-row">LIEU : {entry.place}</div>
-            <div className="gallery-detail__meta-row">
-              EVENEMENT : {entry.event}
-            </div>
+            <p className="gallery-detail__meta-row">TYPE:{entry.type}</p>
+            <p className="gallery-detail__meta-row">DATE:{entry.date}</p>
+            <p className="gallery-detail__meta-row">LIEU:{entry.place}</p>
+            <p className="gallery-detail__meta-row">
+              EVENEMENT:{entry.event}
+            </p>
           </dl>
 
           <h2 className="gallery-detail__section-title">DESCRIPTION</h2>
