@@ -33,7 +33,7 @@ export async function createGalleryEntry(
   const event = (formData.get("event") as string | null)?.trim() ?? "";
   const description = (formData.get("description") as string | null)?.trim() ?? "";
   const link = (formData.get("link") as string | null)?.trim() ?? "";
-  const templateSlug = (formData.get("templateSlug") as string | null)?.trim() ?? "";
+  const templateId = (formData.get("templateId") as string | null)?.trim() ?? "";
 
   const mainPhoto = formData.get("mainPhoto");
   const photos = formData.getAll("photos").filter((p): p is File => p instanceof File && p.size > 0);
@@ -75,7 +75,9 @@ export async function createGalleryEntry(
       event,
       description,
       ...(link ? { link } : {}),
-      ...(templateSlug ? { templateSlug } : {}),
+      ...(templateId
+        ? { template: { _type: "reference", _ref: templateId } }
+        : {}),
       mainPhoto: mainPhotoRef,
       photos: photoRefs.map((ref, i) => ({ ...ref, _key: `photo-${i}-${Math.random().toString(36).slice(2, 8)}` })),
       publishedAt: new Date().toISOString(),

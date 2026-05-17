@@ -29,8 +29,8 @@ const GALLERY_PROJECTION = /* groq */ `
   link,
   mainPhoto,
   "photos": coalesce(photos, []),
-  "templateTitle": *[_type == "template" && slug.current == ^.templateSlug][0].title,
-  "templateDownloadUrl": *[_type == "template" && slug.current == ^.templateSlug][0].downloadFile.asset->url
+  "templateTitle": template->title,
+  "templateDownloadUrl": template->downloadFile.asset->url
 `;
 
 export async function getAllGalleryEntries(): Promise<GalleryEntry[]> {

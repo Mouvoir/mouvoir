@@ -8,6 +8,7 @@ export interface TemplateMaterial {
 }
 
 export interface Template {
+  id: string;
   slug: string;
   title: string;
   description?: string;
@@ -20,6 +21,7 @@ export interface Template {
 }
 
 const TEMPLATE_PROJECTION = /* groq */ `
+  "id": _id,
   "slug": slug.current,
   title,
   description,

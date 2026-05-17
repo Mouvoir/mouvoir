@@ -8,7 +8,7 @@ export default async function HomePage() {
     getAllGalleryEntries(),
     getAllTemplates(),
   ]);
-  const templateOptions = templates.map((t) => ({ label: t.title, value: t.slug }));
+  const templateOptions = templates.map((t) => ({ label: t.title, value: t.id }));
 
   return (
     <>

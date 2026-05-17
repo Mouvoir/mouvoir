@@ -79,7 +79,7 @@ export function AddGalleryButton({
             <TextField label="Lien (optionnel)" name="link" />
             <ComboboxField
               label="Template (optionnel)"
-              name="templateSlug"
+              name="templateId"
               options={templateOptions}
             />
             <FileField label="Photo principale" name="mainPhoto" accept="image/*" />
