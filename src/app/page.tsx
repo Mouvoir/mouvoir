@@ -1,5 +1,5 @@
 import { AddGalleryButton } from "@/components/AddGalleryButton";
-import { GalleryCard } from "@/components/GalleryCard";
+import { GalleryMosaic } from "@/components/GalleryMosaic";
 import { getAllGalleryEntries } from "@/lib/gallery";
 import { getAllTemplates } from "@/lib/templates";
 
@@ -16,11 +16,7 @@ export default async function HomePage() {
         <AddGalleryButton templateOptions={templateOptions} />
       </div>
 
-      <div className="grid grid-cols-2 gap-10 mt-2">
-        {entries.map((entry) => (
-          <GalleryCard key={entry.slug} entry={entry} />
-        ))}
-      </div>
+      <GalleryMosaic entries={entries} />
     </>
   );
 }
