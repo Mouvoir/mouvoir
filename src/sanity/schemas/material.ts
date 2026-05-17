@@ -16,7 +16,6 @@ export const materialSchema = defineType({
       title: "Image",
       type: "image",
       options: { hotspot: true },
-      validation: (r) => r.required(),
     }),
   ],
   preview: {
