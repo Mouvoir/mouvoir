@@ -14,7 +14,7 @@ export interface GalleryEntry {
   mainPhoto: SanityImageSource | null;
   photos: SanityImageSource[];
   templateTitle: string | null;
-  templateDownloadUrl: string | null;
+  templateSlug: string | null;
 }
 
 const GALLERY_PROJECTION = /* groq */ `
@@ -30,7 +30,7 @@ const GALLERY_PROJECTION = /* groq */ `
   mainPhoto,
   "photos": coalesce(photos, []),
   "templateTitle": template->title,
-  "templateDownloadUrl": template->downloadFile.asset->url
+  "templateSlug": template->slug.current
 `;
 
 export async function getAllGalleryEntries(): Promise<GalleryEntry[]> {

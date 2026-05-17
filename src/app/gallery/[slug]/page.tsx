@@ -44,11 +44,9 @@ export default async function GalleryDetailPage({
           <p className="gallery-detail__description">{entry.description}</p>
 
           <div className="gallery-detail__actions">
-            {entry.templateDownloadUrl ? (
+            {entry.templateSlug ? (
               <a
-                href={entry.templateDownloadUrl}
-                target="_blank"
-                rel="noreferrer"
+                href={`/template/${entry.templateSlug}`}
                 className="btn-iridescent"
               >
                 VOIR COMMENT LE REALISER
