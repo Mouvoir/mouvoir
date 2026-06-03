@@ -51,7 +51,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 8px;
 }
 
 /* MOUVOIR + ACCEPT are wide words centred inside square canvases with large
@@ -65,13 +65,17 @@
   flex: 0 0 auto;
 }
 
+/* Heights are tuned so the cover window comfortably clears the word + its neon
+   glow (content spans ~33% of the MOUVOIR square, ~18% of the ACCEPT square);
+   the extra height is invisible black padding, so the words keep their size
+   (driven by the column width) without the halo getting clipped. */
 .stack .mouvoirCell {
-  height: 38%;
+  height: 44%;
   --scale: 1.1;
 }
 
 .stack .acceptCell {
-  height: 22%;
+  height: 26%;
   --scale: 1.1;
 }
 

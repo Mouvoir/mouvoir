@@ -48,3 +48,8 @@ next-env.d.ts
 
 # full backup of public/ video masters (7+ GB, keep local only)
 doc/public_backup
+
+# design master videos in doc/ — exceed GitHub's 100MB/file & 2GB/pack limits,
+# keep local only (the web-encoded versions the site uses live in public/)
+doc/**/*.mov
+doc/**/*.webm
