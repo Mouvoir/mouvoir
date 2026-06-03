@@ -1,0 +1,71 @@
+/* Gallery type filter dropdown */
+
+.filter {
+  position: relative;
+  display: inline-block;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 6px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: linear-gradient(
+    100deg,
+    #06009b 0%,
+    #9560ff 25%,
+    #2da0ff 50%,
+    #cce5f3 70%,
+    #2da0ff 85%,
+    #9560ff 100%
+  );
+  background-size: 260% 100%;
+  background-position: 0% 50%;
+  animation: shimmer 7s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.option {
+  appearance: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.option[aria-selected="true"] {
+  background: rgba(255, 255, 255, 0.28);
+  font-weight: 700;
+}

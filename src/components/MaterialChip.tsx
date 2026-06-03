@@ -1,3 +1,5 @@
+import styles from "./mosaicCard.module.css";
+
 type MaterialChipProps = {
   label: string;
   imageUrl?: string;
@@ -17,7 +19,7 @@ export function MaterialChipImage({
     <img
       src={imageUrl}
       alt=""
-      className="template-mosaic__tag-img"
+      className={styles.tagImg}
       style={{ width: size, height: size }}
     />
   );
@@ -25,7 +27,7 @@ export function MaterialChipImage({
 
 export function MaterialChip({ label, imageUrl, imageSize = 24 }: MaterialChipProps) {
   return (
-    <span className="template-mosaic__tag">
+    <span className={styles.tag}>
       <MaterialChipImage imageUrl={imageUrl} size={imageSize} />
       {label}
     </span>

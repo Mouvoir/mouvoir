@@ -3,6 +3,7 @@ import { TemplateMosaicCard } from "@/components/TemplateMosaicCard";
 import { getAllTemplates } from "@/lib/templates";
 import { getAllMaterials } from "@/lib/materials";
 import { safeImageUrl } from "@/sanity/imageUrl";
+import styles from "./template.module.css";
 
 export default async function TemplateListPage() {
   const [templates, materials] = await Promise.all([
@@ -16,13 +17,13 @@ export default async function TemplateListPage() {
   }));
 
   return (
-    <section className="template-section">
-      <div className="template-section__inner">
-        <header className="template-section__head">
+    <section className={styles.section}>
+      <div className={styles.inner}>
+        <header className={styles.head}>
           <AddTemplateButton materialOptions={materialOptions} />
         </header>
 
-        <div className="template-section__grid">
+        <div className={styles.grid}>
           {templates.map((template, i) => (
             <TemplateMosaicCard
               key={template.slug}

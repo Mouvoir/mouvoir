@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAllGallerySlugs, getGalleryEntryBySlug } from "@/lib/gallery";
 import { cropImageUrl } from "@/sanity/imageUrl";
+import styles from "./gallery-detail.module.css";
 
 export default async function GalleryDetailPage({
   params,
@@ -19,31 +20,31 @@ export default async function GalleryDetailPage({
 
   return (
     <>
-      <div className="gallery-detail">
-        <div className="gallery-detail__media">
+      <div className={styles.detail}>
+        <div className={styles.media}>
           {mainPhotoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={mainPhotoUrl} alt={entry.title} />
           ) : null}
         </div>
 
-        <div className="gallery-detail__info">
-          <h1 className="gallery-detail__title">{entry.title}</h1>
-          <p className="gallery-detail__author">{entry.author}</p>
+        <div className={styles.info}>
+          <h1 className={styles.title}>{entry.title}</h1>
+          <p className={styles.author}>{entry.author}</p>
 
-          <dl className="gallery-detail__meta">
-            <p className="gallery-detail__meta-row">TYPE:{entry.type}</p>
-            <p className="gallery-detail__meta-row">DATE:{entry.date}</p>
-            <p className="gallery-detail__meta-row">LIEU:{entry.place}</p>
-            <p className="gallery-detail__meta-row">
+          <dl className={styles.meta}>
+            <p className={styles.metaRow}>TYPE:{entry.type}</p>
+            <p className={styles.metaRow}>DATE:{entry.date}</p>
+            <p className={styles.metaRow}>LIEU:{entry.place}</p>
+            <p className={styles.metaRow}>
               EVENEMENT:{entry.event}
             </p>
           </dl>
 
-          <h2 className="gallery-detail__section-title">DESCRIPTION</h2>
-          <p className="gallery-detail__description">{entry.description}</p>
+          <h2 className={styles.sectionTitle}>DESCRIPTION</h2>
+          <p className={styles.description}>{entry.description}</p>
 
-          <div className="gallery-detail__actions">
+          <div className={styles.actions}>
             {entry.templateSlug ? (
               <a
                 href={`/template/${entry.templateSlug}`}

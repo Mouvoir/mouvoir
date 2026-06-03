@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { GalleryCard } from "./GalleryCard";
 import type { GalleryEntry } from "@/lib/gallery";
+import styles from "./GalleryMosaic.module.css";
 
 const ALL_TYPES_LABEL = "TOUS LES TYPES";
 
@@ -56,7 +57,7 @@ export function GalleryMosaic({ entries }: GalleryMosaicProps) {
   return (
     <>
       <div className="flex items-center justify-start mb-6">
-        <div ref={containerRef} className="gallery-filter">
+        <div ref={containerRef} className={styles.filter}>
           <button
             type="button"
             className="btn-iridescent btn-iridescent--filter"
@@ -67,12 +68,12 @@ export function GalleryMosaic({ entries }: GalleryMosaicProps) {
             {triggerLabel}
           </button>
           {open ? (
-            <div className="gallery-filter__menu" role="listbox">
+            <div className={styles.menu} role="listbox">
               <button
                 type="button"
                 role="option"
                 aria-selected={selectedType === null}
-                className="gallery-filter__option"
+                className={styles.option}
                 onClick={() => handleSelect(null)}
               >
                 {ALL_TYPES_LABEL}
@@ -83,7 +84,7 @@ export function GalleryMosaic({ entries }: GalleryMosaicProps) {
                   type="button"
                   role="option"
                   aria-selected={selectedType === type}
-                  className="gallery-filter__option"
+                  className={styles.option}
                   onClick={() => handleSelect(type)}
                 >
                   {type}

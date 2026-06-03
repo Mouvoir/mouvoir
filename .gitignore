@@ -45,3 +45,6 @@ next-env.d.ts
 .playwright-mcp
 
 .superpowers
+
+# full backup of public/ video masters (7+ GB, keep local only)
+doc/public_backup

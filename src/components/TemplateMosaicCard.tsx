@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
 import { MaterialChip } from "@/components/MaterialChip";
+import styles from "./mosaicCard.module.css";
 
 interface MosaicMaterial {
   id: string;
@@ -34,16 +35,16 @@ export function TemplateMosaicCard({
 }: TemplateMosaicCardProps) {
   return (
     <motion.article
-      className={`template-mosaic${size === "lg" ? " template-mosaic--lg" : ` template-mosaic--c${(index % 4) + 1}`}`}
+      className={`${styles.card}${size === "lg" ? ` ${styles.lg}` : ` ${styles[`c${(index % 4) + 1}`]}`}`}
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: (index % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
-      <h2 className="template-mosaic__title">{title}</h2>
+      <h2 className={styles.title}>{title}</h2>
 
       {materials.length > 0 ? (
-        <div className="template-mosaic__tags">
+        <div className={styles.tags}>
           {materials.map((m) => (
             <MaterialChip key={m.id} label={m.label} imageUrl={m.imageUrl} />
           ))}
@@ -51,10 +52,10 @@ export function TemplateMosaicCard({
       ) : null}
 
       {description ? (
-        <p className="template-mosaic__desc">{description}</p>
+        <p className={styles.desc}>{description}</p>
       ) : null}
 
-      <div className="template-mosaic__media">
+      <div className={styles.media}>
         <HoverVideoThumbnail
           videoUrl={resultVideoUrl}
           href={`/template/${slug}`}
@@ -62,25 +63,25 @@ export function TemplateMosaicCard({
         />
       </div>
 
-      <div className="template-mosaic__footer">
-        <div className="template-mosaic__actions">
+      <div className={styles.footer}>
+        <div className={styles.actions}>
           {downloadUrl ? (
             <a
               href={downloadUrl}
-              className="template-mosaic__btn"
+              className={styles.btn}
               target="_blank"
               rel="noreferrer"
             >
               Télécharger
             </a>
           ) : (
-            <button type="button" className="template-mosaic__btn" disabled>
+            <button type="button" className={styles.btn} disabled>
               Télécharger
             </button>
           )}
           <Link
             href={`/template/${slug}#tutorial`}
-            className="template-mosaic__btn"
+            className={styles.btn}
           >
             Tutoriel
           </Link>

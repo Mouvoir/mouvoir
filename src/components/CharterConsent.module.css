@@ -1,0 +1,98 @@
+/* Charter consent modal — video rule cards laid out as a 3×2 grid that
+   always fits the viewport (no scroll). */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Each row takes half of the available height; min-height:0 lets the flex
+   children shrink so the two rows together never exceed the viewport. */
+.gridRow {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.cell {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  /* Per-card tilt + scale (set inline via --rot / --scale) so the cards read
+     as scattered stickers rather than a rigid grid. Defaults are no-ops. */
+  transform: rotate(var(--rot, 0deg)) scale(var(--scale, 1));
+  transform-origin: center;
+}
+
+/* Landscape rule videos share the leftover row width. */
+.wide {
+  flex: 1 1 0;
+}
+
+/* Center column: MOUVOIR stacked above ACCEPT. Equal width to the rule cards
+   so the central block reads as prominently as the rules (matches the comp). */
+.stack {
+  height: 100%;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* MOUVOIR + ACCEPT are wide words centred inside square canvases with large
+   transparent vertical padding. The cells are wide-and-short (fixed share of
+   the row height, NOT aspect-ratio — Blink derives an aspect-ratio cell's
+   height from the 800px intrinsic video instead of the ratio, which blows the
+   stack open) and use object-fit: cover so the words fill the column width
+   while the empty padding is cropped away — mirroring the comp's banners. */
+.stack .cell {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.stack .mouvoirCell {
+  height: 38%;
+  --scale: 1.1;
+}
+
+.stack .acceptCell {
+  height: 22%;
+  --scale: 1.1;
+}
+
+.stack .cell video,
+.stack .cell img {
+  object-fit: cover;
+}
+
+.accept {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Override AssetVideo's object-cover so videos fit fully (no crop) within
+   their cell. Higher specificity than the Tailwind utility, so it wins. */
+.cell video,
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
