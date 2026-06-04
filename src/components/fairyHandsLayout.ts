@@ -1,0 +1,85 @@
+// Declarative layout for the "Fairy Hands" template tutorial view
+// (/template/fairy-hands). Mirrors the comps in doc/fairy_hand/SITE_*.pdf.
+//
+// Coordinates are percentages of the scene (the black stage below the nav):
+// `top`/`left` place the element's top-left corner, `width` sizes it relative
+// to the scene width (height follows the asset's intrinsic ratio). Values are
+// eyeballed from the PDF and meant to be fine-tuned live with `npm run dev`.
+//
+// All thermal/neon clips here are real-alpha cutouts (see ALPHA_REPORT.md:
+// min alpha = 0), so they composite normally — no `mix-blend-mode: screen`.
+// The only opaque clip is the central hero `fairy_hands.mov`.
+
+export interface Placed {
+  top: number;
+  left: number;
+  width: number;
+  rotation?: number;
+}
+
+// A neon/thermal video sticker (AssetVideo). `href` turns it into a link;
+// `info` makes hovering it reveal the matching speech bubble.
+export interface StickerEl extends Placed {
+  folder: string;
+  name: string;
+  label: string;
+  href?: string;
+  info?: InfoId;
+}
+
+// A tool-kit object (transparent PNG) that reveals its bubble on hover.
+export interface ToolObject extends Placed {
+  src: string;
+  alt: string;
+  info: InfoId;
+}
+
+// A red speech bubble that fades in while its trigger is hovered.
+export interface InfoBubble extends Placed {
+  id: InfoId;
+  folder: string;
+  name: string;
+}
+
+export type InfoId = "glitter" | "camera" | "light" | "controller" | "whisper";
+
+// Central result footage (opaque, pink border baked in). Sits lowest in the
+// stack so the neon titles read on top of it.
+export const HERO: Placed & { folder: string; name: string; label: string } = {
+  folder: "fairy_hands/fairy_hands_tuto",
+  name: "fairy_hands_tuto",
+  label: "Fairy Hands — résultat",
+  top: 20,
+  left: 26,
+  width: 50,
+};
+
+// Static stickers. `back` returns to the template landing; `lighting_you`
+// cross-links to its own tutorial; `whisper` doubles as a bubble trigger.
+export const STICKERS: StickerEl[] = [
+  { folder: "back", name: "back", label: "Retour aux templates", href: "/template", top: 5, left: 4, width: 7 },
+  { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: 3, left: 5, width: 23 },
+  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 13, left: 31, width: 42 },
+  { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
+  { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 68, left: 4, width: 18, info: "whisper" },
+  { folder: "keep_moving", name: "keep_moving", label: "Keep moving", top: 54, left: 78, width: 15 },
+  { folder: "lighting_you", name: "lighting_you", label: "Lighting you", href: "/template/lighting-you", top: 70, left: 80, width: 16 },
+];
+
+// Tool-kit objects on the right, top to bottom. Each reveals one bubble.
+export const TOOLS: ToolObject[] = [
+  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_010.png", alt: "Paillettes en flacon", info: "glitter", top: 4, left: 74, width: 9 },
+  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_020.png", alt: "Paillettes en coupelle", info: "glitter", top: 12, left: 78, width: 10 },
+  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_040.png", alt: "Webcam", info: "camera", top: 26, left: 79, width: 11 },
+  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_030.png", alt: "Lampe torche", info: "light", top: 34, left: 85, width: 11 },
+  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_050.png", alt: "Contrôleur MIDI", info: "controller", top: 41, left: 87, width: 12 },
+];
+
+// Speech bubbles, keyed by the trigger that reveals them.
+export const BUBBLES: InfoBubble[] = [
+  { id: "glitter", folder: "fairy_hands/fairy_hands_glitterinfos", name: "fairy_hands_glitterinfos", top: 5, left: 59, width: 21 },
+  { id: "camera", folder: "fairy_hands/fairy_hands_camerainfos", name: "fairy_hands_camerainfos", top: 29, left: 62, width: 20 },
+  { id: "light", folder: "fairy_hands/fairy_hands_lightinfos", name: "fairy_hands_lightinfos", top: 35, left: 69, width: 22 },
+  { id: "controller", folder: "fairy_hands/fairy_hands_controllerinfos", name: "fairy_hands_controllerinfos", top: 49, left: 74, width: 19 },
+  { id: "whisper", folder: "fairy_hands/fairy_hands_whisperinfos", name: "fairy_hands_whisperinfos", top: 71, left: 17, width: 21 },
+];
