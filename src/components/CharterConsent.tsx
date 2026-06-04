@@ -1,7 +1,7 @@
 "use client";
 
-import {useEffect, useSyncExternalStore, type CSSProperties} from "react";
-import {AssetVideo} from "./AssetVideo";
+import {useEffect, useState, useSyncExternalStore} from "react";
+import {CharterGrid} from "./CharterGrid";
 import styles from "./CharterConsent.module.css";
 
 const STORAGE_KEY = "Mouvoir-charter-accepted";
@@ -37,6 +37,8 @@ export function CharterConsent() {
   );
 
   const visible = stored !== "true";
+  // When set, the grid collapses and that rule's detailed sticker layout shows.
+  const [expanded, setExpanded] = useState<string | null>(null);
 
   useEffect(() => {
     if (!visible) return;
@@ -46,6 +48,16 @@ export function CharterConsent() {
       document.body.style.overflow = previous;
     };
   }, [visible]);
+
+  // Escape closes the expanded rule back to the grid.
+  useEffect(() => {
+    if (expanded === null) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setExpanded(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [expanded]);
 
   if (!visible) return null;
 
@@ -61,56 +73,12 @@ export function CharterConsent() {
       aria-modal="true"
       aria-labelledby="charter-consent-title"
     >
-      {/* Row 1: rule 1, the mouvoir/accept stack, rule 2 */}
-      <div className={styles.gridRow}>
-        <div
-          className={`${styles.cell} ${styles.wide}`}
-          style={{"--rot": "-4deg", "--scale": "1.12"} as CSSProperties}
-        >
-          <AssetVideo folder="regle_01/regle_01" name="regle_01"/>
-        </div>
-        <div className={styles.stack}>
-          <div className={`${styles.cell} ${styles.mouvoirCell}`}>
-            <AssetVideo folder="mouvoir_bleu_orange" name="mouvoir_bleu_orange"/>
-          </div>
-          <button
-            type="button"
-            className={`${styles.cell} ${styles.accept} ${styles.acceptCell}`}
-            onClick={handleAccept}
-            aria-label="Accepter la charte"
-          >
-            <AssetVideo folder="accept" name="accept"/>
-          </button>
-        </div>
-        <div
-          className={`${styles.cell} ${styles.wide}`}
-          style={{"--rot": "3.5deg", "--scale": "1.12"} as CSSProperties}
-        >
-          <AssetVideo folder="regle_05/regle_05" name="regle_05"/>
-        </div>
-      </div>
-
-      {/* Row 2: rules 3, 4 & 5 */}
-      <div className={styles.gridRow}>
-        <div
-          className={`${styles.cell} ${styles.wide}`}
-          style={{"--rot": "-2.5deg", "--scale": "1.12"} as CSSProperties}
-        >
-          <AssetVideo folder="regle_02/regle_02" name="regle_02"/>
-        </div>
-        <div
-          className={`${styles.cell} ${styles.wide}`}
-          style={{"--rot": "2.5deg", "--scale": "1.12"} as CSSProperties}
-        >
-          <AssetVideo folder="regle_03/regle_03" name="regle_03"/>
-        </div>
-        <div
-          className={`${styles.cell} ${styles.wide}`}
-          style={{"--rot": "4deg", "--scale": "1.12"} as CSSProperties}
-        >
-          <AssetVideo folder="regle_04/regle_04" name="regle_04"/>
-        </div>
-      </div>
+      <CharterGrid
+        expanded={expanded}
+        onSelect={setExpanded}
+        onAccept={handleAccept}
+        onBack={() => setExpanded(null)}
+      />
     </div>
   );
 }

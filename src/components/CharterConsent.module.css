@@ -6,12 +6,19 @@
   inset: 0;
   z-index: 50;
   background: black;
+  overflow: hidden;
+}
+
+/* The 3x2 landing grid fills the modal; min-height:0 on the rows keeps it
+   inside the viewport (no scroll). */
+.gridWrap {
+  position: relative;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
   padding: 20px;
-  overflow: hidden;
 }
 
 /* Each row takes half of the available height; min-height:0 lets the flex
@@ -92,6 +99,21 @@
   cursor: pointer;
 }
 
+/* Rule stickers in the grid are clickable buttons that open the detailed view.
+   Reset native button chrome but keep the .cell tilt/scale transform. */
+.ruleButton {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.ruleButton:hover {
+  filter: brightness(1.12);
+}
+
 /* Override AssetVideo's object-cover so videos fit fully (no crop) within
    their cell. Higher specificity than the Tailwind utility, so it wins. */
 .cell video,
@@ -99,4 +121,56 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* ── Expanded rule view ──────────────────────────────────────────────────
+   Transparent overlay on top of the grid: it adds the open rule's secondary
+   stickers (positioned to mirror doc/SITE_entier.pdf) without moving the main
+   sticker, which stays in its grid cell behind. pointer-events:none lets the
+   transparent gaps fall through; the stickers/BACK re-enable it. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Each sticker layer: positioned by inline top/left/width (% of the overlay);
+   height follows the sticker's intrinsic ratio. framer-motion drives the
+   scale/opacity/rotate transform, so no transform is set here. */
+.layer {
+  position: absolute;
+  transform-origin: center;
+}
+
+.overlay .layer video,
+.overlay .layer img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Neon BACK sticker, positioned per-rule via inline top/left/width. */
+.backBtn {
+  position: absolute;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1;
+  pointer-events: auto;
+  transition: filter 0.2s ease;
+}
+
+.backBtn:hover {
+  filter: brightness(1.15);
+}
+
+.backBtn video,
+.backBtn img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
