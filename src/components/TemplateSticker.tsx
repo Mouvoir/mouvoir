@@ -10,7 +10,9 @@ interface TemplateStickerProps {
 
 export function TemplateSticker({ sticker }: TemplateStickerProps) {
   const { folder, slug, title, left, top, width } = sticker;
-  const base = `${encodeURIComponent(folder)}/${encodeURIComponent(`${folder}_anim`)}`;
+  // Folder names are ASCII snake_case (see .claude/rules/asset-conventions.md),
+  // so no URL-encoding is needed for the public path.
+  const base = `${folder}/${folder}_anim`;
 
   return (
     <Link
