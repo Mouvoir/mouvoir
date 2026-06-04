@@ -10,7 +10,9 @@ import styles from "./CharterConsent.module.css";
 interface CharterGridProps {
   expanded: string | null;
   onSelect: (id: string) => void;
-  onAccept: () => void;
+  // Optional: when omitted, the "accept the charter" sticker is hidden (e.g. the
+  // read-only charter shown on the about page).
+  onAccept?: () => void;
   onBack: () => void;
 }
 
@@ -59,15 +61,17 @@ export function CharterGrid({expanded, onSelect, onAccept, onBack}: CharterGridP
           <div className={`${styles.cell} ${styles.mouvoirCell}`}>
             <AssetVideo folder="mouvoir_bleu_orange" name="mouvoir_bleu_orange"/>
           </div>
-          <button
-            type="button"
-            className={`${styles.cell} ${styles.accept} ${styles.acceptCell}`}
-            onClick={onAccept}
-            disabled={isExpanded}
-            aria-label="Accepter la charte"
-          >
-            <AssetVideo folder="accept" name="accept"/>
-          </button>
+          {onAccept ? (
+            <button
+              type="button"
+              className={`${styles.cell} ${styles.accept} ${styles.acceptCell}`}
+              onClick={onAccept}
+              disabled={isExpanded}
+              aria-label="Accepter la charte"
+            >
+              <AssetVideo folder="accept" name="accept"/>
+            </button>
+          ) : null}
         </motion.div>
         <RuleCell id="regle_05" expanded={expanded} onSelect={onSelect}/>
       </div>

@@ -51,7 +51,7 @@ export const RULES: Record<string, CharterRule> = {
     id: "regle_01",
     label: "Audience awareness",
     grid: { rot: -4, scale: 1.12 },
-    back: { top: 5, left: 85, width: 11 },
+    back: { top: -4, left: 85, width: 11 },
     detail: [
       layer("regle_01b", {top: 8, left: 38, width: 60}), // PUBLIC NOTICE / By attending
       layer("regle_01a", {top: 42, left: 2, width: 43, rotation: -2}), // Before each use
@@ -63,10 +63,10 @@ export const RULES: Record<string, CharterRule> = {
     id: "regle_02",
     label: "No record",
     grid: { rot: -2.5, scale: 1.12 },
-    back: { top: 5, left: 3, width: 11 },
+    back: { top: -4, left: 3, width: 11 },
     detail: [
-      layer("regle_02b", {top: 13, left: 27, width: 60}), // Filmed moments
-      layer("regle_02a", {top: 64, left: 42, width: 45}), // Mouvoir prioritises
+      layer("regle_02b", {top: 0, left: 27, width: 60}), // Filmed moments
+      layer("regle_02a", {top: 50, left: 42, width: 45}), // Mouvoir prioritises
     ],
   },
 
@@ -75,11 +75,11 @@ export const RULES: Record<string, CharterRule> = {
     id: "regle_03",
     label: "The anonymity of dancers",
     grid: { rot: 2.5, scale: 1.12 },
-    back: { top: 7, left: 4, width: 9 },
+    back: { top: -4, left: 4, width: 9 },
     detail: [
       layer("regle_03a", {top: 19.5, left: 0.5, width: 40.5}), // CAMERA captures ENERGY
+      layer("regle_03c", {top: 21.5, left: 62, width: 34}), // This guarantees
       layer("regle_03b", {top: 5.5, left: 32, width: 38.5}), // Videos must never be broadcast
-      layer("regle_03c", {top: 21.5, left: 65, width: 34}), // This guarantees
     ],
   },
 
@@ -87,12 +87,12 @@ export const RULES: Record<string, CharterRule> = {
   regle_04: {
     id: "regle_04",
     label: "Radical body inclusion",
-    grid: { rot: 4, scale: 1.12 },
-    back: { top: 4.5, left: 3.7, width: 10 },
+    grid: { rot: -4, scale: 1.12 },
+    back: { top: -4, left: 4, width: 10 },
     detail: [
       layer("regle_04b", {top: 4, left: 3, width: 63}), // NO body type
       layer("regle_04a", {top: -8, left: 60, width: 41, rotation: 3}), // Visuals must celebrate diversity
-      layer("regle_04c", {top: 53, left: 5, width: 61}), // This rule means avoiding
+      layer("regle_04c", {top: 40, left: 5, width: 61}), // This rule means avoiding
     ],
   },
 
@@ -101,10 +101,10 @@ export const RULES: Record<string, CharterRule> = {
     id: "regle_05",
     label: "Digital care",
     grid: { rot: 3.5, scale: 1.12 },
-    back: { top: 7.5, left: 3.6, width: 10 },
+    back: { top: -4, left: 4, width: 10 },
     detail: [
-      layer("regle_05a", {top: 16.5, left: 9, width: 33}), // NEVER TARGET ISOLATE HARASS
-      layer("regle_05b", {top: 52.5, left: 40, width: 52}), // Zooming intrusively
+      layer("regle_05a", {top: 10, left: -10, width: 64}), // NEVER TARGET ISOLATE HARASS
+      layer("regle_05b", {top: 40, left: 40, width: 52}), // Zooming intrusively
     ],
   },
 };

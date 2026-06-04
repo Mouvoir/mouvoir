@@ -9,6 +9,16 @@
   overflow: hidden;
 }
 
+/* Read-only charter embedded in a page (e.g. /about): same grid, but flowing
+   inline with a fixed viewport-relative height instead of covering the screen. */
+.embed {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+
 /* The 3x2 landing grid fills the modal; min-height:0 on the rows keeps it
    inside the viewport (no scroll). */
 .gridWrap {
