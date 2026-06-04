@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AddEntryModal, FileField, TextAreaField, TextField } from "./AddEntryModal";
-import { MaterialPickerField, type MaterialOption } from "./MaterialPickerField";
+import { AddEntryModal, FileField, TextAreaField, TextField } from "@/components/shared/AddEntryModal";
+import { MaterialPickerField, type MaterialOption } from "@/components/shared/MaterialPickerField";
 import { createTemplate } from "@/app/template/actions";
 
 const ERROR_MESSAGES: Record<string, string> = {

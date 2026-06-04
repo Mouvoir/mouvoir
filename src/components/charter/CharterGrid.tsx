@@ -2,7 +2,7 @@
 
 import {AnimatePresence, motion} from "framer-motion";
 import type {CSSProperties} from "react";
-import {AssetVideo} from "./AssetVideo";
+import {AssetVideo} from "@/components/shared/AssetVideo";
 import {CharterDetail} from "./CharterDetail";
 import {RULES} from "./charterRules";
 import styles from "./CharterConsent.module.css";

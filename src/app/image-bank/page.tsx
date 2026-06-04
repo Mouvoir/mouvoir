@@ -1,5 +1,5 @@
-import { AddImageBankButton } from "@/components/AddImageBankButton";
-import { ImageBankCard } from "@/components/ImageBankCard";
+import { AddImageBankButton } from "@/components/image-bank/AddImageBankButton";
+import { ImageBankCard } from "@/components/image-bank/ImageBankCard";
 import { fetchImageBankEntries } from "@/lib/imageBank";
 
 export default async function ImageBankPage() {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FairyHandsView } from "@/components/FairyHandsView";
+import { FairyHandsView } from "@/components/template/FairyHandsView";
 
 // A bespoke tutorial layout for the "Fairy Hands" template. This static segment
 // takes precedence over the sibling [slug] route, so every other template still

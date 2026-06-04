@@ -1,5 +1,5 @@
-import { TemplateSticker } from "@/components/TemplateSticker";
-import { TEMPLATE_STICKERS } from "@/components/templateStickers";
+import { TemplateSticker } from "@/components/template/TemplateSticker";
+import { TEMPLATE_STICKERS } from "@/components/template/templateStickers";
 import styles from "./template.module.css";
 
 const SCREENS = [1, 2] as const;

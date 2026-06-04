@@ -1,4 +1,4 @@
-import { GalleryMosaic } from "@/components/GalleryMosaic";
+import { GalleryMosaic } from "@/components/gallery/GalleryMosaic";
 import { getAllGalleryEntries } from "@/lib/gallery";
 
 export default async function HomePage() {

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, type CSSProperties } from "react";
-import { AssetVideo } from "./AssetVideo";
+import { AssetVideo } from "@/components/shared/AssetVideo";
 import {
   BUBBLES,
   HERO,

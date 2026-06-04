@@ -2,7 +2,7 @@
 
 import {motion} from "framer-motion";
 import type {CSSProperties} from "react";
-import {AssetVideo} from "./AssetVideo";
+import {AssetVideo} from "@/components/shared/AssetVideo";
 import type {CharterRule} from "./charterRules";
 import styles from "./CharterConsent.module.css";
 

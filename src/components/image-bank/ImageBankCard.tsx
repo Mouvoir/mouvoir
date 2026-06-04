@@ -1,5 +1,5 @@
 import type { ImageBankEntry } from "@/lib/imageBank";
-import { HoverVideoThumbnail } from "@/components/HoverVideoThumbnail";
+import { HoverVideoThumbnail } from "@/components/shared/HoverVideoThumbnail";
 
 type Props = {
   entry: ImageBankEntry;

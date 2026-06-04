@@ -1,4 +1,4 @@
-import {CharterDisplay} from "@/components/CharterDisplay";
+import {CharterDisplay} from "@/components/charter/CharterDisplay";
 
 export default function AboutPage() {
   return (

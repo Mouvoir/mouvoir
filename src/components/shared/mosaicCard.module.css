@@ -1,4 +1,4 @@
-/* Template mosaic card — shared by TemplateMosaicCard and MaterialChip */
+/* Template mosaic card styles — used by MaterialChip */
 
 .card {
   --mosaic-bg: var(--color-cyan-blue);

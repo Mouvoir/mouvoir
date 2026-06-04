@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAllTemplateSlugs, getTemplateBySlug } from "@/lib/templates";
 import { safeImageUrl, urlForImage } from "@/sanity/imageUrl";
-import { MaterialChip } from "@/components/MaterialChip";
+import { MaterialChip } from "@/components/shared/MaterialChip";
 import { getYoutubeEmbedUrl } from "@/lib/youtube";
 
 export default async function TemplateDetailPage({

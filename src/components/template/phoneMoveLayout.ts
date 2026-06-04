@@ -22,6 +22,8 @@ export interface PhoneMoveItem {
   width: number;
   /** stacking order (higher = in front) */
   z?: number;
+  /** optional external destination — turns the sticker into a link */
+  href?: string;
 }
 
 export interface PhoneMoveTrigger extends PhoneMoveItem {
@@ -87,11 +89,12 @@ export const DECOR: PhoneMoveItem[] = [
     key: "follow_the_beats",
     folder: "follow_the_beats",
     name: "follow_the_beats",
-    label: "Follow the beats",
+    label: "Follow the beats — voir l'app TDLidar sur derivative.ca",
     left: 73,
     top: 52,
     width: 12,
     z: 3,
+    href: "https://derivative.ca/community-post/tdlidar-%E2%80%94-turn-your-iphone-realtime-depth-tracking-and-audio-sensor-touchdesigner",
   },
   {
     key: "keep_moving",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Franklin } from "next/font/google";
-import { CharterConsent } from "@/components/CharterConsent";
-import { Nav } from "@/components/Nav";
+import { CharterConsent } from "@/components/charter/CharterConsent";
+import { Nav } from "@/components/nav/Nav";
 import "./globals.css";
 
 const libreFranklin = Libre_Franklin({

@@ -76,18 +76,32 @@ export function PhoneMoveBoard() {
         <StickerMedia folder={CENTRAL.folder} name={CENTRAL.name} />
       </div>
 
-      {/* Decorative stickers */}
-      {DECOR.map((item) => (
-        <div
-          key={item.key}
-          className={styles.sticker}
-          style={posStyle(item)}
-          aria-label={item.label}
-          role="img"
-        >
-          <StickerMedia folder={item.folder} name={item.name} />
-        </div>
-      ))}
+      {/* Decorative stickers — those with an href link out to an external page */}
+      {DECOR.map((item) =>
+        item.href ? (
+          <a
+            key={item.key}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.sticker} ${styles.back}`}
+            style={posStyle(item)}
+            aria-label={item.label}
+          >
+            <StickerMedia folder={item.folder} name={item.name} />
+          </a>
+        ) : (
+          <div
+            key={item.key}
+            className={styles.sticker}
+            style={posStyle(item)}
+            aria-label={item.label}
+            role="img"
+          >
+            <StickerMedia folder={item.folder} name={item.name} />
+          </div>
+        )
+      )}
 
       {/* Interactive triggers + their info bubbles */}
       {TRIGGERS.map((trigger) => {

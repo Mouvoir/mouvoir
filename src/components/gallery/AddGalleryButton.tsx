@@ -7,7 +7,7 @@ import {
   FileField,
   TextAreaField,
   TextField,
-} from "./AddEntryModal";
+} from "@/components/shared/AddEntryModal";
 import { EVENT_TYPES } from "@/lib/eventTypes";
 import { createGalleryEntry } from "@/app/gallery/actions";
 

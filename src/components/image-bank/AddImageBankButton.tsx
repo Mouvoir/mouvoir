@@ -7,7 +7,7 @@ import {
   FileField,
   TextAreaField,
   TextField,
-} from "./AddEntryModal";
+} from "@/components/shared/AddEntryModal";
 import { createImageBankEntry } from "@/app/image-bank/actions";
 
 const ERROR_MESSAGES: Record<string, string> = {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PhoneMoveBoard } from "@/components/PhoneMoveBoard";
+import { PhoneMoveBoard } from "@/components/template/PhoneMoveBoard";
 
 export const metadata: Metadata = {
   title: "Phone Move — Mouvoir",
