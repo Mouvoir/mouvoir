@@ -57,9 +57,9 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 // Static stickers. `back` returns to the template landing; `lighting_you`
 // cross-links to its own tutorial; `whisper` doubles as a bubble trigger.
 export const STICKERS: StickerEl[] = [
+  { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: 5, left: 5, width: 30 },
   { folder: "back", name: "back", label: "Retour aux templates", href: "/template", top: 5, left: 4, width: 7 },
-  { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: 3, left: 5, width: 23 },
-  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 13, left: 31, width: 42 },
+  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 5, left: 31, width: 42 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 68, left: 4, width: 18, info: "whisper" },
   { folder: "keep_moving", name: "keep_moving", label: "Keep moving", top: 54, left: 78, width: 15 },
@@ -77,9 +77,9 @@ export const TOOLS: ToolObject[] = [
 
 // Speech bubbles, keyed by the trigger that reveals them.
 export const BUBBLES: InfoBubble[] = [
-  { id: "glitter", folder: "fairy_hands/fairy_hands_glitterinfos", name: "fairy_hands_glitterinfos", top: 5, left: 59, width: 21 },
-  { id: "camera", folder: "fairy_hands/fairy_hands_camerainfos", name: "fairy_hands_camerainfos", top: 29, left: 62, width: 20 },
+  { id: "glitter", folder: "fairy_hands/fairy_hands_glitterinfos", name: "fairy_hands_glitterinfos", top: 4, left: 62, width: 21 },
+  { id: "camera", folder: "fairy_hands/fairy_hands_camerainfos", name: "fairy_hands_camerainfos", top: 25, left: 66, width: 20 },
   { id: "light", folder: "fairy_hands/fairy_hands_lightinfos", name: "fairy_hands_lightinfos", top: 35, left: 69, width: 22 },
-  { id: "controller", folder: "fairy_hands/fairy_hands_controllerinfos", name: "fairy_hands_controllerinfos", top: 49, left: 74, width: 19 },
-  { id: "whisper", folder: "fairy_hands/fairy_hands_whisperinfos", name: "fairy_hands_whisperinfos", top: 71, left: 17, width: 21 },
+  { id: "controller", folder: "fairy_hands/fairy_hands_controllerinfos", name: "fairy_hands_controllerinfos", top: 45, left: 78, width: 19 },
+  { id: "whisper", folder: "fairy_hands/fairy_hands_whisperinfos", name: "fairy_hands_whisperinfos", top: 71, left: 10, width: 21 },
 ];
