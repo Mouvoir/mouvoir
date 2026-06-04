@@ -14,6 +14,22 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "250mb",
     },
   },
+  // Cache static media in public/ so client navigations don't re-fetch them.
+  // Files are kept for a day and revalidated in the background for a week, so a
+  // replaced file (same name) still propagates without a year-long stale cache.
+  async headers() {
+    return [
+      {
+        source: "/:path*.(mov|webm|mp4|png|jpg|jpeg|gif|svg|webp)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
