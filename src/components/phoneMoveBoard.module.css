@@ -1,0 +1,73 @@
+/* Bespoke /template/phone-move collage. Stickers are alpha-cutout videos (and
+   one opaque central scene) freely positioned over a full-screen black board.
+   No mix-blend-mode here: these clips carry real alpha, so screen-blending the
+   opaque red info bubbles would wash them out — they composite as-is. */
+
+.board {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
+  min-height: 560px;
+  background: #000000;
+  overflow: hidden;
+}
+
+/* A freely positioned sticker. left/top/width/z come from inline style. */
+.sticker {
+  position: absolute;
+  line-height: 0;
+}
+
+.media {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Interactive triggers (phone / app / whisper) reset button chrome. */
+.trigger {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.trigger .media {
+  transition: transform 0.25s ease;
+}
+
+.trigger:hover .media,
+.trigger:focus-visible .media {
+  transform: scale(1.05);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid #ff2d55;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Info bubbles: hidden until their trigger is active. */
+.bubble {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.bubble.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The back control sits top-left, like the comp. */
+.back {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.back:hover {
+  transform: scale(1.06);
+}
