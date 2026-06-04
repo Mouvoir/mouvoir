@@ -9,10 +9,12 @@ interface TemplateStickerProps {
 }
 
 export function TemplateSticker({ sticker }: TemplateStickerProps) {
-  const { folder, slug, title, left, top, width } = sticker;
+  const { folder, slug, title, left, top, width, noAnim } = sticker;
   // Folder names are ASCII snake_case (see .claude/rules/asset-conventions.md),
-  // so no URL-encoding is needed for the public path.
-  const base = `${folder}/${folder}_anim`;
+  // so no URL-encoding is needed for the public path. Most templates ship a
+  // dedicated `<folder>_anim` sticker clip; consolidated ones (noAnim) reuse
+  // their single `<folder>` clip instead.
+  const base = noAnim ? `${folder}/${folder}` : `${folder}/${folder}_anim`;
 
   return (
     <Link
