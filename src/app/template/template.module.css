@@ -1,36 +1,17 @@
-/* Template list page — mosaic section layout */
+/* Template landing page — two full-height screens of free-floating stickers. */
 
-.section {
-  padding: 0;
+.collage {
+  background: #000000;
 }
 
-.inner {
-  max-width: 1760px;
-  margin: 0 auto;
+/* Each screen is a positioning context for its absolutely-placed stickers.
+   First screen is shorter to account for the nav sitting above it. */
+.screen {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
 }
 
-.head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
-  margin-bottom: 24px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 720px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.screen + .screen {
+  height: calc(100vh - 40px);
 }

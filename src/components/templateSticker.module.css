@@ -1,0 +1,24 @@
+/* A single template sticker: a black-background `_anim` video composited onto
+   the black page with `screen` so the opaque black frame reads as transparent
+   and overlapping stickers don't occlude each other. */
+
+.sticker {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.sticker:hover {
+  transform: scale(1.04);
+  z-index: 10;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}

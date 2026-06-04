@@ -1,33 +1,19 @@
-import { TemplateMosaicCard } from "@/components/TemplateMosaicCard";
-import { getAllTemplates } from "@/lib/templates";
-import { safeImageUrl } from "@/sanity/imageUrl";
+import { TemplateSticker } from "@/components/TemplateSticker";
+import { TEMPLATE_STICKERS } from "@/components/templateStickers";
 import styles from "./template.module.css";
 
-export default async function TemplateListPage() {
-  const templates = await getAllTemplates();
+const SCREENS = [1, 2] as const;
 
+export default function TemplateListPage() {
   return (
-    <section className={styles.section}>
-      <div className={styles.inner}>
-        <div className={styles.grid}>
-          {templates.map((template, i) => (
-            <TemplateMosaicCard
-              key={template.slug}
-              slug={template.slug}
-              title={template.title}
-              description={template.description}
-              materials={template.materials.map((m) => ({
-                id: m.id,
-                label: m.label,
-                imageUrl: safeImageUrl(m.image, (b) => b.width(48).height(48).fit("crop")),
-              }))}
-              downloadUrl={template.downloadUrl}
-              resultVideoUrl={template.resultVideoUrl}
-              index={i}
-            />
+    <div className={styles.collage}>
+      {SCREENS.map((screen) => (
+        <section key={screen} className={styles.screen}>
+          {TEMPLATE_STICKERS.filter((s) => s.screen === screen).map((sticker) => (
+            <TemplateSticker key={sticker.slug} sticker={sticker} />
           ))}
-        </div>
-      </div>
-    </section>
+        </section>
+      ))}
+    </div>
   );
 }
