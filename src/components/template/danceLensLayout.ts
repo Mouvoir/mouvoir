@@ -44,7 +44,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 };
 
 export const STICKERS: StickerEl[] = [
-  { folder: "dance_lens/dance_lens_pres", name: "dance_lens_pres", label: "Dance Lens — présentation", top: 5, left: 3, width: 21 },
+  { folder: "dance_lens/dance_lens_pres", name: "dance_lens_pres", label: "Dance Lens — présentation", top: -2, left: -7, width: 40 },
   { folder: "back_orange", name: "back_orange", label: "Retour aux templates", href: "/template", top: 0, left: 0, width: 6 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 2, left: 83, width: 17 },
@@ -54,11 +54,11 @@ export const STICKERS: StickerEl[] = [
 ];
 
 export const TOOLS: ToolObject[] = [
-  { src: "/dance_lens/objet/objet_02.png", alt: "Phone", info: "camera", top: 12, left: 75, width: 7 },
-  { src: "/dance_lens/objet/objet_05.png", alt: "Disc", info: "camera", top: 25, left: 74, width: 8 },
-  { src: "/dance_lens/objet/objet_03.png", alt: "Webcam", info: "plugin", top: 29, left: 81, width: 8 },
-  { src: "/dance_lens/objet/objet_04.png", alt: "Plugin icon", info: "plugin", top: 36, left: 85, width: 9 },
-  { src: "/dance_lens/objet/objet_01.png", alt: "Device", info: "plugin", top: 40, left: 87, width: 11 },
+  { src: "/dance_lens/objet/objet_02.png", alt: "Phone", info: "camera", top: 10, left: 76, width: 12},
+  { src: "/dance_lens/objet/objet_05.png", alt: "Disc", info: "camera", top: 20, left: 74, width: 11 },
+  { src: "/dance_lens/objet/objet_03.png", alt: "Webcam", info: "plugin", top: 23, left: 78, width: 12 },
+  { src: "/dance_lens/objet/objet_01.png", alt: "Device", info: "plugin", top: 29, left: 83, width: 12 },
+  { src: "/dance_lens/objet/objet_04.png", alt: "Plugin icon", info: "plugin", top: 29, left: 87, width: 14 },
 ];
 
 export const BUBBLES: InfoBubble[] = [
