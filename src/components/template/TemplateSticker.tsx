@@ -10,12 +10,12 @@ interface TemplateStickerProps {
 }
 
 export function TemplateSticker({ sticker }: TemplateStickerProps) {
-  const { folder, slug, title, left, top, width, noAnim, presPath } = sticker;
+  const { folder, slug, title, left, top, width, presPath } = sticker;
   // Folder names are ASCII snake_case (see .claude/rules/asset-conventions.md),
   // so no URL-encoding is needed for the public path. Most templates ship a
   // dedicated `<folder>_anim` sticker clip; consolidated ones (noAnim) reuse
   // their single `<folder>` clip instead.
-  const base = noAnim ? `${folder}/${folder}` : `${folder}/${folder}_anim`;
+  const base =  `${folder}/${folder}_anim`;
   // The hover reveal swaps in a `_pres` clip — a self-contained info-card
   // sticker (shape + title + tagline + description baked in, same alpha/screen
   // composition as `_anim`). Most templates ship it as `<folder>/<folder>_pres`;

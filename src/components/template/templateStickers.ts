@@ -19,9 +19,6 @@ export interface TemplateSticker {
   top: number;
   /** Width, % of screen width (height follows the video aspect ratio) */
   width: number;
-  /** Template consolidated to a single clip: use `<folder>/<folder>` as the
-   *  sticker source instead of the default `<folder>/<folder>_anim`. */
-  noAnim?: boolean;
   /** Override for the hover "_pres" info-card clip (path relative to public/,
    *  no extension). Defaults to `<folder>/<folder>_pres`; a few templates ship
    *  theirs nested in their own sub-folder instead — see asset audit notes in
@@ -31,24 +28,14 @@ export interface TemplateSticker {
 
 export const TEMPLATE_STICKERS: TemplateSticker[] = [
   // --- Screen 1 ---
-  { folder: "phone_move", slug: "phone-move", title: "Phone Move", screen: 1, left: 4, top: 18, width: 26, presPath: "phone_move/phone_move_pres/phone_move_pres" },
-  { folder: "mirror_mirror", slug: "mirror-mirror", title: "Mirror Mirror", screen: 1, left: 33, top: 14, width: 26 },
-  { folder: "it_has_to_shine", slug: "it-has-to-shine", title: "It Has To Shine", screen: 1, left: 64, top: 22, width: 32 },
-  { folder: "lighting_you", slug: "lighting-you", title: "Lighting You", screen: 1, left: 22, top: 58, width: 30, noAnim: true, presPath: "lighting_you/lighting_you_pres/lighting_you_pres" },
-  { folder: "shade_and_shape", slug: "shade-and-shape", title: "Shade & Shape", screen: 1, left: 54, top: 60, width: 26 },
+  { folder: "phone_move", slug: "phone-move", title: "Phone Move", screen: 1, left: -10, top: 10, width: 42, presPath: "phone_move/phone_move_pres/phone_move_pres" },
+  { folder: "lighting_you", slug: "lighting-you", title: "Lighting You", screen: 1, left: 25, top: 10, width: 42, presPath: "lighting_you/lighting_you_pres/lighting_you_pres" },
+  { folder: "dance_lens", slug: "dance-lens", title: "Dance Lens", screen: 1, left: 66, top: 5, width: 42, presPath: "dance_lens/dance_lens_pres/dance_lens_pres" },
+  { folder: "motion_skeleton", slug: "motion-skeleton", title: "Motion Skeleton", screen: 1, left: 12, top: 50, width: 42 },
+  { folder: "fairy_hands", slug: "fairy-hands", title: "Fairy Hands", screen: 1, left: 50, top: 55, width: 42, presPath: "fairy_hands/pres_fairy_hands/pres_fairy_hands" },
   // --- Screen 2 ---
-  { folder: "fairy_hands", slug: "fairy-hands", title: "Fairy Hands", screen: 2, left: 3, top: 18, width: 36, presPath: "fairy_hands/pres_fairy_hands/pres_fairy_hands" },
-  { folder: "dance_lens", slug: "dance-lens", title: "Dance Lens", screen: 2, left: 39, top: 12, width: 35, presPath: "dance_lens/dance_lens_pres/dance_lens_pres" },
-  { folder: "motion_skeleton", slug: "motion-skeleton", title: "Motion Skeleton", screen: 2, left: 26, top: 50, width: 33 },
-  { folder: "body_canvas", slug: "body-canvas", title: "Body Canvas", screen: 2, left: 71, top: 22, width: 30 },
-  // --- Screen 3 ---
-  { folder: "brightness",    slug: "brightness",    title: "Brightness",   screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "greyclub",      slug: "greyclub",      title: "Greyclub",     screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "quantu_motion", slug: "quantu-motion", title: "QUANTUMotion", screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "urbex",         slug: "urbex",         title: "Urbex",        screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "jam_ctrlf_f",   slug: "jam-ctrlf-f",   title: "Jam Ctrl+F",   screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "turfuzz",       slug: "turfuzz",       title: "Turfuzz",      screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "yoyo",          slug: "yoyo",          title: "Yoyo",         screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "modul_aura",    slug: "modul-aura",    title: "ModulAura",    screen: 3, left: 0, top: 0, width: 0 },
-  { folder: "light",         slug: "light",         title: "Light",        screen: 3, left: 0, top: 0, width: 0 },
+  { folder: "shade_and_shape", slug: "shade-and-shape", title: "Shade & Shape", screen: 2, left: 15, top: 5, width: 42 },
+  { folder: "body_canvas", slug: "body-canvas", title: "Body Canvas", screen: 2, left: 65, top: -2, width: 45 },
+  { folder: "mirror_mirror", slug: "mirror-mirror", title: "Mirror Mirror", screen: 2, left: 0, top: 50, width: 42 },
+  { folder: "it_has_to_shine", slug: "it-has-to-shine", title: "It Has To Shine", screen: 2, left: 40, top: 48, width: 42 },
 ];

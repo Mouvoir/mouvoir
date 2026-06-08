@@ -68,11 +68,11 @@ export const STICKERS: StickerEl[] = [
 
 // Tool-kit objects on the right, top to bottom. Each reveals one bubble.
 export const TOOLS: ToolObject[] = [
-  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_010.png", alt: "Paillettes en flacon", info: "glitter", top: 4, left: 74, width: 9 },
-  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_020.png", alt: "Paillettes en coupelle", info: "glitter", top: 12, left: 78, width: 10 },
-  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_040.png", alt: "Webcam", info: "camera", top: 26, left: 79, width: 11 },
-  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_030.png", alt: "Lampe torche", info: "light", top: 34, left: 85, width: 11 },
-  { src: "/fairy_hands/objet_a_wiggle/objet_a_wiggle_050.png", alt: "Contrôleur MIDI", info: "controller", top: 41, left: 87, width: 12 },
+  { src: "/fairy_hands/objet/objet_01.png", alt: "Paillettes en flacon", info: "glitter", top: 4, left: 74, width: 9 },
+  { src: "/fairy_hands/objet/objet_02.png", alt: "Paillettes en coupelle", info: "glitter", top: 12, left: 78, width: 10 },
+  { src: "/fairy_hands/objet/objet_04.png", alt: "Webcam", info: "camera", top: 26, left: 79, width: 11 },
+  { src: "/fairy_hands/objet/objet_03.png", alt: "Lampe torche", info: "light", top: 34, left: 85, width: 11 },
+  { src: "/fairy_hands/objet/objet_05.png", alt: "Contrôleur MIDI", info: "controller", top: 41, left: 87, width: 12 },
 ];
 
 // Speech bubbles, keyed by the trigger that reveals them.

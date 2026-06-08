@@ -6,7 +6,7 @@
 // to the scene width (height follows the asset's intrinsic ratio). Values are
 // eyeballed from the design screenshots and meant to be fine-tuned live.
 //
-// Note: lighting_you.mov/.webm ship without a .png poster — AssetVideo's poster
+// Note: lighting_you_anim.mov/.webm ship without a .png poster — AssetVideo's poster
 // 404s harmlessly since the clip autoplays.
 
 export interface Placed {
@@ -44,7 +44,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
   label: "Lighting You — résultat",
   top: 20,
   left: 25,
-  width: 55,
+  width: 50,
 };
 
 export const STICKERS: StickerEl[] = [
@@ -59,9 +59,9 @@ export const STICKERS: StickerEl[] = [
 export const TOOLS: ToolObject[] = [
   { src: "/lighting_you/objet/objet_02.png", alt: "Tape", info: "tape", top: 4, left: 73, width: 16 },
   { src: "/lighting_you/objet/objet_01.png", alt: "Lipstick / makeup", info: "makeup", top: 13, left: 77, width: 16 },
-  { src: "/lighting_you/objet/objet_04.png", alt: "Phone", info: "camera", top: 20, left: 80, width: 16 },
-  { src: "/lighting_you/objet/objet_03.png", alt: "Marker", info: "camera", top: 34, left: 85, width: 16 },
-  { src: "/lighting_you/objet/objet_05.png", alt: "Flash / lamp", info: "flash", top: 28, left: 88, width: 16 },
+  { src: "/lighting_you/objet/objet_04.png", alt: "Phone", info: "camera", top: 20, left: 79, width: 16 },
+  { src: "/lighting_you/objet/objet_03.png", alt: "Marker", info: "camera", top: 25, left: 83, width: 16 },
+  { src: "/lighting_you/objet/objet_05.png", alt: "Flash / lamp", info: "flash", top: 28, left: 90, width: 12 },
 ];
 
 export const BUBBLES: InfoBubble[] = [
