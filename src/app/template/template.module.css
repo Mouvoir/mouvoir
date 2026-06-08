@@ -15,3 +15,21 @@
 .screen + .screen {
   height: calc(100vh - 40px);
 }
+
+/* "Choose your dancefloor!" neon title — baked-in text on black, screen-blended
+   onto the collage so its black backing reads as transparent (see
+   TemplateSticker for the same `_anim` compositing trick). Purely decorative,
+   so it never intercepts pointer events. */
+.banner {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.bannerVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
