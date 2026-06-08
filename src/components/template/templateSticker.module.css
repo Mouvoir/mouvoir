@@ -1,6 +1,8 @@
 /* A single template sticker: a black-background `_anim` video composited onto
    the black page with `screen` so the opaque black frame reads as transparent
-   and overlapping stickers don't occlude each other. */
+   and overlapping stickers don't occlude each other. On hover, a `_pres`
+   info-card clip (same composition) crossfades on top, revealing the
+   template's tagline and description baked into the clip itself. */
 
 .sticker {
   position: absolute;
@@ -15,10 +17,36 @@
   z-index: 10;
 }
 
+.stage {
+  position: relative;
+}
+
 .video {
   width: 100%;
   height: auto;
   display: block;
   mix-blend-mode: screen;
   pointer-events: none;
+}
+
+.base {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.baseHidden {
+  opacity: 0;
+}
+
+.presentation {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.presentationVisible {
+  opacity: 1;
 }

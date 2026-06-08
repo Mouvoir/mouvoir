@@ -1,0 +1,99 @@
+/* "Dance Lens" tutorial stage — free-floating neon stickers on black.
+   Every element is absolutely placed by inline top/left/width (% of .scene);
+   height follows the asset's intrinsic ratio. All clips are real-alpha cutouts;
+   only the hero is opaque. */
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
+  background: #000000;
+  overflow: hidden;
+}
+
+.scene .hero,
+.scene .bubble,
+.scene .tool,
+.scene .sticker {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  transform-origin: center;
+}
+
+.scene .hero video,
+.scene .hero img,
+.scene .bubble video,
+.scene .bubble img,
+.scene .sticker video,
+.scene .sticker img,
+.scene .tool img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.scene .hero {
+  z-index: 1;
+}
+
+.scene .bubble {
+  z-index: 30;
+  pointer-events: none;
+}
+
+.scene .sticker {
+  z-index: 10;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.25s ease;
+}
+
+a.sticker:hover,
+button.sticker:hover {
+  filter: brightness(1.12);
+  transform: scale(1.03);
+}
+
+.scene .tool {
+  z-index: 20;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  animation: wiggle 3.6s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.scene .tool:nth-of-type(2n) {
+  animation-delay: -1.2s;
+}
+.scene .tool:nth-of-type(3n) {
+  animation-delay: -2.4s;
+}
+
+.scene .tool:hover,
+.scene .tool:focus-visible {
+  transform: scale(1.08);
+  animation-play-state: paused;
+  outline: none;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .tool {
+    animation: none;
+  }
+}
