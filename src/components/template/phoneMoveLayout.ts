@@ -40,7 +40,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 
 export const STICKERS: StickerEl[] = [
   { folder: "phone_move/phone_move_pres", name: "phone_move_pres", label: "Phone Move", top: 0, left: -5, width: 35 },
-  { folder: "back", name: "back", label: "Retour aux templates", href: "/template", top: 3, left: 0, width: 5 },
+  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 3, left: 0, width: 5 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 0, left: 82, width: 16 },
   { folder: "phone_move/phone_move_phone", name: "phone_move_phone", label: "iPhone requis — afficher les détails", top: 8, left: 72, width: 15, info: "phone" },

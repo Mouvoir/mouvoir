@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { getLogoVariant } from "./logoConfig";
 
 const NAV_LINKS = [
-  { href: "/template", label: "Stylistes des chorés" },
-  { href: "/image-bank", label: "Vestiaires visuels" },
-  { href: "/useful-links", label: "Flyers des liens" },
-  { href: "/about", label: "Anatomie de Mouvoir" },
-  { href: "/contact", label: "Connexions de nuits" },
+  { href: "/choreography-styles", label: "Choreography Styles" },
+  { href: "/mouvoir-anatomy", label: "Mouvoir's Anatomy" },
+  { href: "/flyers-links", label: "Flyer's Links" },
+  { href: "/movement-rehearsal", label: "Movement Rehearsal" },
+  { href: "/connexions", label: "Connexions" },
 ] as const;
 
 const BRAND = "Mouvoir";

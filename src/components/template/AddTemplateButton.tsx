@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AddEntryModal, FileField, TextAreaField, TextField } from "@/components/shared/AddEntryModal";
 import { MaterialPickerField, type MaterialOption } from "@/components/shared/MaterialPickerField";
-import { createTemplate } from "@/app/template/actions";
+import { createTemplate } from "@/app/choreography-styles/actions";
 
 const ERROR_MESSAGES: Record<string, string> = {
   "missing-fields": "Le titre est obligatoire.",

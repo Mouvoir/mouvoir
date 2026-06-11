@@ -58,7 +58,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 // cross-links to its own tutorial; `whisper` doubles as a bubble trigger.
 export const STICKERS: StickerEl[] = [
   { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: -2, left: -1, width: 40 },
-  { folder: "back", name: "back", label: "Retour aux templates", href: "/template", top: 0, left: 0, width: 7 },
+  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 7 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 5, left: 31, width: 42 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 60, left: 78, width: 22, info: "whisper" },

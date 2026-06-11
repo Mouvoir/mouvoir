@@ -11,7 +11,7 @@ const PATH_LOGO: Record<string, LogoVariant> = {
 // Per-slug overrides for dynamic routes. Keyed by the route base, then by slug.
 // Anything not listed here falls back to DEFAULT_LOGO.
 const SLUG_LOGO: Record<string, Record<string, LogoVariant>> = {
-  "/template": {
+  "/choreography-styles": {
     // "some-template-slug": "bleu_orange",
   },
   "/gallery": {

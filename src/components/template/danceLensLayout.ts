@@ -45,7 +45,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 
 export const STICKERS: StickerEl[] = [
   { folder: "dance_lens/dance_lens_pres", name: "dance_lens_pres", label: "Dance Lens — présentation", top: -2, left: -7, width: 40 },
-  { folder: "back_orange", name: "back_orange", label: "Retour aux templates", href: "/template", top: 0, left: 0, width: 6 },
+  { folder: "back_orange", name: "back_orange", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 2, left: 83, width: 17 },
   { folder: "follow_the_beats", name: "follow_the_beats", label: "Follow the beats", top: 53, left: 0, width: 16 },

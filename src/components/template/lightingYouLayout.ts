@@ -49,7 +49,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 
 export const STICKERS: StickerEl[] = [
   { folder: "lighting_you/lighting_you_pres", name: "lighting_you_pres", label: "Lighting You — présentation", top: -10, left: 0, width: 35 },
-  { folder: "back", name: "back", label: "Retour aux templates", href: "/template", top: 0, left: 0, width: 6 },
+  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 65, left: 80, width: 20, info: "whisper" },
