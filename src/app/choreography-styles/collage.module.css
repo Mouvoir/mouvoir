@@ -1,0 +1,16 @@
+/* Choreography Styles landing page — a single full-height screen of
+   free-floating choreography stickers, recreating doc/PAGE_PROJET_EXPLICATION.pdf. */
+
+.collage {
+  background: #000000;
+}
+
+/* Positioning context for the absolutely-placed stickers. Shorter than a full
+   viewport to account for the nav sitting above it. `overflow: hidden` clips
+   the heavy black frame padding each `_anim` clip carries (it falls offscreen
+   by design) so it never spills into page scrollbars. */
+.screen {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
+}

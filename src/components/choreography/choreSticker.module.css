@@ -1,0 +1,51 @@
+/* A single choreography sticker: a black-background `_anim` video composited
+   onto the black page with `screen` so the opaque black frame reads as
+   transparent and overlapping stickers don't occlude each other. */
+
+.sticker {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.sticker:hover {
+  transform: scale(1.04);
+  z-index: 10;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Reserved slot with no asset yet — dashed box echoing the sticker footprint. */
+.placeholder {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  aspect-ratio: 1 / 1;
+  padding: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1.5px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.placeholderTitle {
+  font-size: 18px;
+  letter-spacing: 0.04em;
+}
+
+.placeholderArtist {
+  font-size: 13px;
+  opacity: 0.7;
+}

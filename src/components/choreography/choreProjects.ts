@@ -1,0 +1,129 @@
+export interface ChoreLayerData {
+  /**
+   * Rendering mode:
+   *   'video' — renders <video autoPlay muted loop playsInline> with mov→webm sources
+   *             + png poster. `asset` is the base path WITHOUT extension,
+   *             e.g. "greyclub/greyclub_infos01" → appends .mov / .webm / .png.
+   *   'image' — renders <img>. `asset` is the FULL path INCLUDING extension,
+   *             e.g. "greyclub/greyclub_jingle_titre00.png".
+   */
+  kind: "video" | "image";
+  /** See `kind` doc-comment for the extension convention. Relative to public/ root. */
+  asset: string;
+  /** Left edge, % of the .screen box width */
+  left: number;
+  /** Top edge, % of the .screen box height */
+  top: number;
+  /** Width, % of the .screen box width */
+  width: number;
+  /**
+   * When present, the layer is wrapped in a Next.js <Link href={href}>.
+   * The media element inside always carries pointer-events:none so only
+   * the Link wrapper is interactive.
+   * When absent, the layer is purely decorative (.layer has pointer-events:none).
+   */
+  href?: string;
+  /**
+   * Accessible label used as aria-label on the <Link> wrapper.
+   * Required when href is set; omit for decorative layers.
+   */
+  label?: string;
+}
+
+const BACK_LAYER: ChoreLayerData = {
+  kind: "video",
+  asset: "back_bleu/back_bleu",
+  left: 0,
+  top: 2,
+  width: 9,
+  href: "/choreography-styles",
+  label: "Back to choreography styles",
+};
+
+const KEEP_MOVING_LAYER: ChoreLayerData = {
+  kind: "video",
+  asset: "keep_moving/keep_moving",
+  left: 83,
+  top: 72,
+  width: 14,
+  href: "/movement-rehearsal",
+  label: "Keep Moving",
+};
+
+const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
+  greyclub: [
+    { kind: "video", asset: "greyclub/greyclub", left: 2, top: 22, width: 58 },
+    { kind: "image", asset: "greyclub/greyclub_jingle_titre00.png", left: 62, top: 14, width: 33 },
+    { kind: "video", asset: "greyclub/greyclub_infos01", left: 68, top: 40, width: 22 },
+    { kind: "video", asset: "greyclub/greyclub_infos02", left: 70, top: 48, width: 24 },
+  ],
+  urbex: [
+    { kind: "video", asset: "urbex/urbex", left: 1, top: 28, width: 62 },
+    { kind: "video", asset: "urbex/urbex_titre", left: 72, top: 25, width: 24 },
+    { kind: "video", asset: "urbex/urbex_infos01", left: 70, top: 38, width: 20 },
+    { kind: "video", asset: "urbex/urbex_infos02", left: 70, top: 50, width: 24 },
+    { kind: "image", asset: "urbex/urbex_jingle_020.png", left: 2, top: 30, width: 18 },
+    { kind: "image", asset: "urbex/urbex_jingle_030.png", left: 50, top: 68, width: 17 },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 68, top: 80, width: 13, href: "/movement-rehearsal", label: "Follow the beats" },
+  ],
+  "quantu-motion": [
+    { kind: "video", asset: "quantu_motion/quantu_motion", left: 2, top: 25, width: 62 },
+    { kind: "video", asset: "quantu_motion/quantu_motion_titre", left: 72, top: 14, width: 24 },
+    { kind: "video", asset: "quantu_motion/quantu_motion_infos01", left: 70, top: 32, width: 22 },
+    { kind: "video", asset: "quantu_motion/quantu_motion_infos02", left: 70, top: 46, width: 24 },
+    { kind: "image", asset: "quantu_motion/quantu_motion_jingle020.png", left: 0, top: 38, width: 24 },
+    { kind: "image", asset: "quantu_motion/quantu_motion_jingle0300.png", left: 45, top: 26, width: 20 },
+    { kind: "image", asset: "quantu_motion/quantu_motion_jingle010.png", left: 60, top: 64, width: 12 },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 66, top: 80, width: 13, href: "/movement-rehearsal", label: "Follow the beats" },
+  ],
+  brightness: [
+    { kind: "video", asset: "brightness/brightness", left: 17, top: 36, width: 38 },
+    { kind: "image", asset: "brightness/brightness_jingle_titre00.png", left: 70, top: 14, width: 26 },
+    { kind: "video", asset: "brightness/brightness_infos01", left: 70, top: 40, width: 22 },
+    { kind: "video", asset: "brightness/brightness_infos02", left: 70, top: 52, width: 22 },
+    { kind: "image", asset: "jam_ctrlf_f/jam_ctrlf_f_020.png", left: 2, top: 32, width: 16 },
+    { kind: "image", asset: "jam_ctrlf_f/jam_ctrlf_f_010.png", left: 40, top: 24, width: 22 },
+    { kind: "image", asset: "jam_ctrlf_f/jam_ctrlf_f_030.png", left: 63, top: 68, width: 12 },
+  ],
+  light: [
+    { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+    { kind: "video", asset: "light/light_anim", left: 28, top: 38, width: 30 },
+  ],
+  yoyo: [
+    { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+    { kind: "video", asset: "yoyo/yoyo_anim", left: 28, top: 38, width: 30 },
+  ],
+  turfuzz: [
+    { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+    { kind: "video", asset: "turfuzz/turfuzz_anim", left: 28, top: 38, width: 30 },
+  ],
+  "modul-aura": [
+    { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+    { kind: "video", asset: "modul_aura/modul_aura_anim", left: 28, top: 38, width: 30 },
+  ],
+  "jam-ctrl-f": [
+    { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+    { kind: "video", asset: "jam_ctrlf_f/jam_ctrlf_f_anim", left: 28, top: 38, width: 30 },
+  ],
+  milas: [
+    { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+  ],
+};
+
+/**
+ * Returns [BACK_LAYER, ...uniqueLayers, KEEP_MOVING_LAYER]
+ * or null if slug is not in CHORE_PROJECTS.
+ */
+export function getChoreProject(slug: string): ChoreLayerData[] | null {
+  const unique = CHORE_PROJECTS[slug];
+  if (!unique) return null;
+  return [BACK_LAYER, ...unique, KEEP_MOVING_LAYER];
+}
+
+/**
+ * Returns the list of all detail slugs. Used by generateStaticParams.
+ * Must return exactly the same 10 slugs as the landing CHORE_STICKERS array.
+ */
+export function getAllChoreSlugs(): string[] {
+  return Object.keys(CHORE_PROJECTS);
+}

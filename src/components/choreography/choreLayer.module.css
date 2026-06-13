@@ -1,0 +1,33 @@
+/* A single composited layer in a choreography detail page.
+   Absolutely positioned within the .screen context box.
+   mix-blend-mode:screen drops the black backing so layers overlay cleanly.
+   pointer-events:none on the wrapper means decorative layers never intercept
+   clicks — only .layerLink re-enables interactivity for linked layers. */
+
+.layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* The actual media element — fills its parent and blends */
+.layerMedia {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Link wrapper fills the layer box so the whole sticker is clickable.
+   Re-enables pointer-events so the link fires even when nudging overlaps. */
+.layerLink {
+  display: block;
+  line-height: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.25s ease;
+}
+
+.layerLink:hover {
+  transform: scale(1.04);
+}
