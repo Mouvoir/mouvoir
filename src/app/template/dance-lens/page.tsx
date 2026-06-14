@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { DanceLensView } from "@/components/template/DanceLensView";
+import { TemplateScene } from "@/components/template/TemplateScene";
+import { danceLensScene } from "@/components/template/danceLensLayout";
 
 export const metadata: Metadata = {
   title: "Dance Lens — Mouvoir",
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function DanceLensPage() {
-  return <DanceLensView />;
+  return <TemplateScene layout={danceLensScene} />;
 }

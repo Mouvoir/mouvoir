@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { FairyHandsView } from "@/components/template/FairyHandsView";
+import { TemplateScene } from "@/components/template/TemplateScene";
+import { fairyHandsScene } from "@/components/template/fairyHandsLayout";
 
 // A bespoke tutorial layout for the "Fairy Hands" template. This static segment
 // takes precedence over the sibling [slug] route, so every other template still
@@ -11,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function FairyHandsPage() {
-  return <FairyHandsView />;
+  return <TemplateScene layout={fairyHandsScene} />;
 }

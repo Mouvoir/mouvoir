@@ -1,47 +1,21 @@
 // Declarative layout for the "Lighting You" template tutorial view
 // (/template/lighting-you). Mirrors the comps in doc/lighting_you/LIGHTING_YOU_EXPLICATION.pdf.
-//
-// Coordinates are percentages of the scene (the black stage below the nav):
-// `top`/`left` place the element's top-left corner, `width` sizes it relative
-// to the scene width (height follows the asset's intrinsic ratio). Values are
-// eyeballed from the design screenshots and meant to be fine-tuned live.
+// Shared types and rendering live in sceneTypes.ts / TemplateScene.tsx.
 //
 // Note: lighting_you_anim.mov/.webm ship without a .png poster — AssetVideo's poster
 // 404s harmlessly since the clip autoplays.
 
-export interface Placed {
-  top: number;
-  left: number;
-  width: number;
-  rotation?: number;
-  /** Entrance reveal delay (seconds). Omit to auto-stagger by render order
-   *  (see sceneReveal.ts / SCENE_STAGGER). */
-  delay?: number;
-}
+import type {
+  HeroEl,
+  InfoBubble,
+  SceneLayout,
+  StickerEl,
+  ToolObject,
+} from "./sceneTypes";
 
-export interface StickerEl extends Placed {
-  folder: string;
-  name: string;
-  label: string;
-  href?: string;
-  info?: InfoId;
-}
+type InfoId = "tape" | "makeup" | "flash" | "camera" | "whisper";
 
-export interface ToolObject extends Placed {
-  src: string;
-  alt: string;
-  info: InfoId;
-}
-
-export interface InfoBubble extends Placed {
-  id: InfoId;
-  folder: string;
-  name: string;
-}
-
-export type InfoId = "tape" | "makeup" | "flash" | "camera" | "whisper";
-
-export const HERO: Placed & { folder: string; name: string; label: string } = {
+const HERO: HeroEl = {
   folder: "lighting_you/lighting_you_tuto",
   name: "lighting_you_tuto",
   label: "Lighting You — résultat",
@@ -50,7 +24,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
   width: 50,
 };
 
-export const STICKERS: StickerEl[] = [
+const STICKERS: StickerEl<InfoId>[] = [
   { folder: "lighting_you/lighting_you_pres", name: "lighting_you_pres", label: "Lighting You — présentation", top: -10, left: 0, width: 35 },
   { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
@@ -59,7 +33,7 @@ export const STICKERS: StickerEl[] = [
   { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", href: "/choreography-styles", top: 60, left: 0, width: 15 },
 ];
 
-export const TOOLS: ToolObject[] = [
+const TOOLS: ToolObject<InfoId>[] = [
   { src: "/lighting_you/objet/objet_02.png", alt: "Tape", info: "tape", top: 4, left: 73, width: 16 },
   { src: "/lighting_you/objet/objet_01.png", alt: "Lipstick / makeup", info: "makeup", top: 13, left: 77, width: 16 },
   { src: "/lighting_you/objet/objet_04.png", alt: "Phone", info: "camera", top: 20, left: 79, width: 16 },
@@ -67,10 +41,18 @@ export const TOOLS: ToolObject[] = [
   { src: "/lighting_you/objet/objet_05.png", alt: "Flash / lamp", info: "flash", top: 28, left: 90, width: 12 },
 ];
 
-export const BUBBLES: InfoBubble[] = [
+const BUBBLES: InfoBubble<InfoId>[] = [
   { id: "tape", folder: "lighting_you/lighting_you_tapeinfos", name: "lighting_you_tapeinfos", top: 4, left: 62, width: 18 },
   { id: "makeup", folder: "lighting_you/lighting_you_makeupinfos", name: "lighting_you_makeupinfos", top: 18, left: 64, width: 18 },
   { id: "flash", folder: "lighting_you/lighting_you_flashinfos", name: "lighting_you_flashinfos", top: 34, left: 68, width: 18 },
   { id: "camera", folder: "lighting_you/lighting_you_camerainfos", name: "lighting_you_camerainfos", top: 26, left: 66, width: 19 },
   { id: "whisper", folder: "lighting_you/lighting_you_whisperinfos", name: "lighting_you_whisperinfos", top: 63, left: 70, width: 21 },
 ];
+
+export const lightingYouScene: SceneLayout<InfoId> = {
+  slug: "lighting-you",
+  hero: HERO,
+  stickers: STICKERS,
+  tools: TOOLS,
+  bubbles: BUBBLES,
+};

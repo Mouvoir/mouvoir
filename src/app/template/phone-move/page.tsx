@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { PhoneMoveBoard } from "@/components/template/PhoneMoveBoard";
+import { TemplateScene } from "@/components/template/TemplateScene";
+import { phoneMoveScene } from "@/components/template/phoneMoveLayout";
 
 export const metadata: Metadata = {
   title: "Phone Move — Mouvoir",
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 // Bespoke collage detail page. This static segment intentionally overrides the
 // generic /template/[slug] page for the "phone-move" slug.
 export default function PhoneMovePage() {
-  return <PhoneMoveBoard />;
+  return <TemplateScene layout={phoneMoveScene} />;
 }

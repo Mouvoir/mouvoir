@@ -1,54 +1,22 @@
 // Declarative layout for the "Fairy Hands" template tutorial view
 // (/template/fairy-hands). Mirrors the comps in doc/fairy_hand/SITE_*.pdf.
-//
-// Coordinates are percentages of the scene (the black stage below the nav):
-// `top`/`left` place the element's top-left corner, `width` sizes it relative
-// to the scene width (height follows the asset's intrinsic ratio). Values are
-// eyeballed from the PDF and meant to be fine-tuned live with `npm run dev`.
+// Shared types and rendering live in sceneTypes.ts / TemplateScene.tsx.
 //
 // All thermal/neon clips here are real-alpha cutouts (see ALPHA_REPORT.md:
 // min alpha = 0), so they composite normally — no `mix-blend-mode: screen`.
 // The only opaque clip is the central hero `fairy_hands.mov`.
 
-export interface Placed {
-  top: number;
-  left: number;
-  width: number;
-  rotation?: number;
-  /** Entrance reveal delay (seconds). Omit to auto-stagger by render order
-   *  (see sceneReveal.ts / SCENE_STAGGER). */
-  delay?: number;
-}
+import type {
+  HeroEl,
+  InfoBubble,
+  SceneLayout,
+  StickerEl,
+  ToolObject,
+} from "./sceneTypes";
 
-// A neon/thermal video sticker (AssetVideo). `href` turns it into a link;
-// `info` makes hovering it reveal the matching speech bubble.
-export interface StickerEl extends Placed {
-  folder: string;
-  name: string;
-  label: string;
-  href?: string;
-  info?: InfoId;
-}
+type InfoId = "glitter" | "camera" | "light" | "controller" | "whisper";
 
-// A tool-kit object (transparent PNG) that reveals its bubble on hover.
-export interface ToolObject extends Placed {
-  src: string;
-  alt: string;
-  info: InfoId;
-}
-
-// A red speech bubble that fades in while its trigger is hovered.
-export interface InfoBubble extends Placed {
-  id: InfoId;
-  folder: string;
-  name: string;
-}
-
-export type InfoId = "glitter" | "camera" | "light" | "controller" | "whisper";
-
-// Central result footage (opaque, pink border baked in). Sits lowest in the
-// stack so the neon titles read on top of it.
-export const HERO: Placed & { folder: string; name: string; label: string } = {
+const HERO: HeroEl = {
   folder: "fairy_hands/fairy_hands_tuto",
   name: "fairy_hands_tuto",
   label: "Fairy Hands — résultat",
@@ -59,7 +27,7 @@ export const HERO: Placed & { folder: string; name: string; label: string } = {
 
 // Static stickers. `back` returns to the template landing; `lighting_you`
 // cross-links to its own tutorial; `whisper` doubles as a bubble trigger.
-export const STICKERS: StickerEl[] = [
+const STICKERS: StickerEl<InfoId>[] = [
   { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: -2, left: -1, width: 40 },
   { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 7 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 5, left: 31, width: 42 },
@@ -70,7 +38,7 @@ export const STICKERS: StickerEl[] = [
 ];
 
 // Tool-kit objects on the right, top to bottom. Each reveals one bubble.
-export const TOOLS: ToolObject[] = [
+const TOOLS: ToolObject<InfoId>[] = [
   { src: "/fairy_hands/objet/objet_01.png", alt: "Paillettes en flacon", info: "glitter", top: 8, left: 73, width: 12 },
   { src: "/fairy_hands/objet/objet_02.png", alt: "Paillettes en coupelle", info: "glitter", top: 12, left: 78, width: 10 },
   { src: "/fairy_hands/objet/objet_04.png", alt: "Webcam", info: "camera", top: 26, left: 79, width: 11 },
@@ -79,10 +47,18 @@ export const TOOLS: ToolObject[] = [
 ];
 
 // Speech bubbles, keyed by the trigger that reveals them.
-export const BUBBLES: InfoBubble[] = [
+const BUBBLES: InfoBubble<InfoId>[] = [
   { id: "glitter", folder: "fairy_hands/fairy_hands_glitterinfos", name: "fairy_hands_glitterinfos", top: 4, left: 62, width: 21 },
   { id: "camera", folder: "fairy_hands/fairy_hands_camerainfos", name: "fairy_hands_camerainfos", top: 25, left: 66, width: 20 },
   { id: "light", folder: "fairy_hands/fairy_hands_lightinfos", name: "fairy_hands_lightinfos", top: 35, left: 69, width: 22 },
   { id: "controller", folder: "fairy_hands/fairy_hands_controllerinfos", name: "fairy_hands_controllerinfos", top: 40, left: 80, width: 19 },
   { id: "whisper", folder: "fairy_hands/fairy_hands_whisperinfos", name: "fairy_hands_whisperinfos", top: 68, left: 70, width: 21 },
 ];
+
+export const fairyHandsScene: SceneLayout<InfoId> = {
+  slug: "fairy-hands",
+  hero: HERO,
+  stickers: STICKERS,
+  tools: TOOLS,
+  bubbles: BUBBLES,
+};

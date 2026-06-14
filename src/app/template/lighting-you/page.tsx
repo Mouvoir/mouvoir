@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { LightingYouView } from "@/components/template/LightingYouView";
+import { TemplateScene } from "@/components/template/TemplateScene";
+import { lightingYouScene } from "@/components/template/lightingYouLayout";
 
 export const metadata: Metadata = {
   title: "Lighting You — Mouvoir",
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function LightingYouPage() {
-  return <LightingYouView />;
+  return <TemplateScene layout={lightingYouScene} />;
 }

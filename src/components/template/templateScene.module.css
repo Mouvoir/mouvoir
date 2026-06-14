@@ -1,16 +1,18 @@
-/* "Lighting You" tutorial stage — free-floating neon stickers on black.
-   Every element is absolutely placed by inline top/left/width (% of .scene);
-   height follows the asset's intrinsic ratio. All clips are real-alpha cutouts;
-   only the hero is opaque. */
+/* Shared stage for the /template/* tutorial scenes — free-floating alpha-cutout
+   stickers on black. Every element is absolutely placed by inline top/left/width
+   (% of .scene); height follows the asset's intrinsic ratio. Only the hero is
+   opaque; all other clips carry real alpha (no blend mode). */
 
 .scene {
   position: relative;
   width: 100%;
   height: calc(100vh - 124px);
+  min-height: 560px;
   background: #000000;
   overflow: hidden;
 }
 
+/* Shared absolute-layer reset. */
 .scene .hero,
 .scene .bubble,
 .scene .tool,
@@ -21,6 +23,8 @@
   transform-origin: center;
 }
 
+/* Videos/images fill their positioned box width; height follows the ratio.
+   Two-class specificity beats AssetVideo's `h-full object-cover` Tailwind. */
 .scene .hero video,
 .scene .hero img,
 .scene .bubble video,
@@ -38,11 +42,13 @@
   z-index: 1;
 }
 
+/* Bubbles sit above everything and must not intercept the trigger's hover. */
 .scene .bubble {
   z-index: 30;
   pointer-events: none;
 }
 
+/* Clickable/hoverable stickers (links + bubble triggers). */
 .scene .sticker {
   z-index: 10;
   padding: 0;
@@ -58,6 +64,7 @@ button.sticker:hover {
   transform: scale(1.03);
 }
 
+/* Tool-kit objects: bare image buttons with a gentle idle wiggle. */
 .scene .tool {
   z-index: 20;
   padding: 0;
