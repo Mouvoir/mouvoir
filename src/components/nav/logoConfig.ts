@@ -1,4 +1,4 @@
-export type LogoVariant = "bleu_orange" | "orange";
+export type LogoVariant = "bleu_orange" | "orange"| "bleu";
 
 // Fallback used for any route not matched below.
 const DEFAULT_LOGO: LogoVariant = "orange";
@@ -6,14 +6,20 @@ const DEFAULT_LOGO: LogoVariant = "orange";
 // Exact pathname → logo variant.
 const PATH_LOGO: Record<string, LogoVariant> = {
   "/": "bleu_orange",
+  "/choreography-styles": "bleu",
+  "/mouvoir-anatomy": "bleu",
+};
+
+// Route bases whose every sub-path inherits a fixed logo variant.
+// Anything under these prefixes uses the given variant unless an exact
+// PATH_LOGO entry matches first.
+const PREFIX_LOGO: Record<string, LogoVariant> = {
+  "/choreography-styles": "bleu",
 };
 
 // Per-slug overrides for dynamic routes. Keyed by the route base, then by slug.
-// Anything not listed here falls back to DEFAULT_LOGO.
+// Takes precedence over PREFIX_LOGO; anything not listed falls back to the prefix.
 const SLUG_LOGO: Record<string, Record<string, LogoVariant>> = {
-  "/choreography-styles": {
-    // "some-template-slug": "bleu_orange",
-  },
   "/gallery": {
     // "some-gallery-slug": "bleu_orange",
   },
@@ -30,6 +36,10 @@ export function getLogoVariant(pathname: string): LogoVariant {
       const variant = SLUG_LOGO[base]?.[slug];
       if (variant) return variant;
     }
+  }
+
+  for (const base of Object.keys(PREFIX_LOGO)) {
+    if (pathname.startsWith(`${base}/`)) return PREFIX_LOGO[base];
   }
 
   return DEFAULT_LOGO;
