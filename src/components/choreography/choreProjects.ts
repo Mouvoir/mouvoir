@@ -93,7 +93,7 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
     { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 68, top: 68, width: 16, href: "https://www.allierozetta.com/all/vjart/urbex-10-3/", label: "Follow the beats" },
   ],
   "quantu-motion": [
-    { kind: "video", asset: "quantu_motion/quantu_motion", left: 2, top: 25, width: 62 },
+    { kind: "video", asset: "quantu_motion/quantu_motion", left: 2, top: 0, width: 62 },
     { kind: "video", asset: "quantu_motion/quantu_motion_titre", left: 72, top: 14, width: 24 },
     { kind: "video", asset: "quantu_motion/quantu_motion_infos01", left: 70, top: 32, width: 22 },
     { kind: "video", asset: "quantu_motion/quantu_motion_infos02", left: 70, top: 46, width: 24 },
@@ -147,7 +147,7 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
 export function getChoreProject(slug: string): ChoreLayerData[] | null {
   const unique = CHORE_PROJECTS[slug];
   if (!unique) return null;
-  return [BACK_LAYER, ...unique, keepMovingLayer(slug)];
+  return [ ...unique, keepMovingLayer(slug),BACK_LAYER];
 }
 
 /**

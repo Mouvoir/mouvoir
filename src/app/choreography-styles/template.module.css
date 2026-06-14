@@ -10,6 +10,7 @@
   position: relative;
   width: 100%;
   height: calc(100vh - 124px);
+  overflow-x: clip;
 }
 
 .screen + .screen {
@@ -31,5 +32,4 @@
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: screen;
 }
