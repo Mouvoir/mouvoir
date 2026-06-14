@@ -52,3 +52,7 @@ doc/public_backup
 # design master videos in doc/ — exceed GitHub's 100MB/file & 2GB/pack limits,
 # keep local only (the web-encoded versions the site uses live in public/)
 doc/**/*
+
+# raw SwissTransfer source dumps (multi-GB masters) — same policy as doc/,
+# keep local only; web-encoded versions live in public/
+docs/swisstransfer_*/

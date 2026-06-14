@@ -30,7 +30,6 @@ export interface ChoreSticker {
 // art lands where the comp shows it. Values are derived from the comp visible
 // bounds combined with each poster's measured content-within-frame ratios.
 export const CHORE_STICKERS: ChoreSticker[] = [
-  { folder: "brightness", slug: "brightness", title: "Brightness", artist: "Rozetta + Lise", left: -18, top: 8, width: 53.7 },
   { folder: "light", slug: "light", title: "Light", artist: "Lise", left: 15.8, top: 0, width: 20 },
   { folder: "quantu_motion", slug: "quantu-motion", title: "QUANTUMotion", artist: "Rozetta", left: 27.5, top: -10, width: 40 },
   { folder: "greyclub", slug: "greyclub", title: "Greyclub", artist: "Mathilde", left: 57.4, top: 0, width: 38.9 },
@@ -42,4 +41,5 @@ export const CHORE_STICKERS: ChoreSticker[] = [
   { folder: "turfuzz", slug: "turfuzz", title: "Turfuzz", artist: "Rozetta", left: -0.9, top: 63.1, width: 20 },
   { folder: "modul_aura", slug: "modul-aura", title: "ModulAura", artist: "Rozetta", left: 25.1, top: 65.2, width: 20},
   { folder: "milas", slug: "milas", title: "Mila's", artist: "Lise", left: 76.4, top: 57.9, width: 23.4 },
+  { folder: "brightness", slug: "brightness", title: "Brightness", artist: "Rozetta + Lise", left: -18, top: 8, width: 53.7 },
 ];
