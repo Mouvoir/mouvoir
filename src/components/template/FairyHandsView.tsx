@@ -13,6 +13,8 @@ import {
   type Placed,
   type StickerEl,
 } from "./fairyHandsLayout";
+import { revealVars } from "./sceneReveal";
+import { KeepMovingCluster } from "./KeepMovingCluster";
 import styles from "./fairyHands.module.css";
 
 // Inline style for an absolutely-placed scene layer.
@@ -81,28 +83,44 @@ export function FairyHandsView() {
       ))}
 
       {/* Static neon stickers (links / triggers / decorative). */}
-      {STICKERS.map((sticker) => (
-        <Sticker key={sticker.name} sticker={sticker} triggerProps={triggerProps} />
-      ))}
+      {STICKERS.map((sticker, index) =>
+        sticker.name === "keep_moving" ? (
+          <KeepMovingCluster
+            key={sticker.name}
+            sticker={sticker}
+            index={index}
+            templateSlug="fairy-hands"
+          />
+        ) : (
+          <Sticker
+            key={sticker.name}
+            sticker={sticker}
+            index={index}
+            triggerProps={triggerProps}
+          />
+        )
+      )}
     </div>
   );
 }
 
 function Sticker({
   sticker,
+  index,
   triggerProps,
 }: {
   sticker: StickerEl;
+  index: number;
   triggerProps: (info: InfoId) => Record<string, () => void>;
 }) {
   const media = <AssetVideo folder={sticker.folder} name={sticker.name} />;
-  const style = place(sticker);
+  const style = { ...place(sticker), ...revealVars(index, sticker.delay) };
 
   if (sticker.href) {
     return (
       <Link
         href={sticker.href}
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
       >
@@ -115,7 +133,7 @@ function Sticker({
     return (
       <button
         type="button"
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
         {...triggerProps(sticker.info)}
@@ -127,7 +145,7 @@ function Sticker({
 
   return (
     <div
-      className={styles.sticker}
+      className={`${styles.sticker} scene-reveal`}
       style={style}
       role="img"
       aria-label={sticker.label}

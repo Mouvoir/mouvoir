@@ -24,18 +24,26 @@ export interface TemplateSticker {
    *  theirs nested in their own sub-folder instead — see asset audit notes in
    *  TemplateSticker.tsx. */
   presPath?: string;
+  /** Entrance reveal delay in seconds. When omitted, the sticker falls back to
+   *  an automatic stagger based on its render order (index * STICKER_STAGGER).
+   *  Set an explicit value to fine-tune when a given sticker pops in. */
+  delay?: number;
 }
+
+/** Default gap (seconds) between consecutive stickers' entrance reveals when no
+ *  explicit `delay` is set on the sticker. */
+export const STICKER_STAGGER = 0.15;
 
 export const TEMPLATE_STICKERS: TemplateSticker[] = [
   // --- Screen 1 ---
-  { folder: "phone_move", slug: "phone-move", title: "Phone Move", screen: 1, left: -10, top: 10, width: 42, presPath: "phone_move/phone_move_pres/phone_move_pres" },
-  { folder: "lighting_you", slug: "lighting-you", title: "Lighting You", screen: 1, left: 25, top: 10, width: 42, presPath: "lighting_you/lighting_you_pres/lighting_you_pres" },
-  { folder: "dance_lens", slug: "dance-lens", title: "Dance Lens", screen: 1, left: 66, top: 5, width: 42, presPath: "dance_lens/dance_lens_pres/dance_lens_pres" },
-  { folder: "motion_skeleton", slug: "motion-skeleton", title: "Motion Skeleton", screen: 1, left: 12, top: 50, width: 42 },
+  { folder: "phone_move", slug: "phone-move", title: "Phone Move", screen: 1, left: 0, top: 0, width: 40, presPath: "phone_move/phone_move_pres/phone_move_pres" },
+  { folder: "lighting_you", slug: "lighting-you", title: "Lighting You", screen: 1, left: 30, top: 10, width: 40, presPath: "lighting_you/lighting_you_pres/lighting_you_pres" },
+  { folder: "dance_lens", slug: "dance-lens", title: "Dance Lens", screen: 1, left: 66, top: 0, width: 42, presPath: "dance_lens/dance_lens_pres/dance_lens_pres" },
+  { folder: "motion_skeleton", slug: "motion-skeleton", title: "Motion Skeleton", screen: 1, left: 12, top: 50, width: 40 },
   { folder: "fairy_hands", slug: "fairy-hands", title: "Fairy Hands", screen: 1, left: 50, top: 55, width: 42, presPath: "fairy_hands/pres_fairy_hands/pres_fairy_hands" },
   // --- Screen 2 ---
-  { folder: "shade_and_shape", slug: "shade-and-shape", title: "Shade & Shape", screen: 2, left: 15, top: 5, width: 42 },
-  { folder: "body_canvas", slug: "body-canvas", title: "Body Canvas", screen: 2, left: 65, top: -2, width: 45 },
-  { folder: "mirror_mirror", slug: "mirror-mirror", title: "Mirror Mirror", screen: 2, left: 0, top: 50, width: 42 },
-  { folder: "it_has_to_shine", slug: "it-has-to-shine", title: "It Has To Shine", screen: 2, left: 40, top: 48, width: 42 },
+  { folder: "shade_and_shape", slug: "shade-and-shape", title: "Shade & Shape", screen: 2, left: 15, top: 5, width: 40 },
+  { folder: "body_canvas", slug: "body-canvas", title: "Body Canvas", screen: 2, left: 65, top: -2, width: 40 },
+  { folder: "mirror_mirror", slug: "mirror-mirror", title: "Mirror Mirror", screen: 2, left: 0, top: 50, width: 40 },
+  { folder: "it_has_to_shine", slug: "it-has-to-shine", title: "It Has To Shine", screen: 2, left: 40, top: 48, width: 40 },
 ];

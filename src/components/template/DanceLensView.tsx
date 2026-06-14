@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, type CSSProperties } from "react";
 import { AssetVideo } from "@/components/shared/AssetVideo";
+import { KeepMovingCluster } from "./KeepMovingCluster";
 import {
   BUBBLES,
   HERO,
@@ -13,6 +14,7 @@ import {
   type Placed,
   type StickerEl,
 } from "./danceLensLayout";
+import { revealVars } from "./sceneReveal";
 import styles from "./danceLens.module.css";
 
 function place({ top, left, width, rotation }: Placed): CSSProperties {
@@ -34,10 +36,10 @@ export function DanceLensView() {
     onBlur: () => setActive((cur) => (cur === info ? null : cur)),
     onClick: () => setActive((cur) => (cur === info ? null : info)),
   });
-
+  const styleHERO = { ...place(HERO), ...revealVars(0, HERO.delay) }
   return (
     <div className={styles.scene}>
-      <div className={styles.hero} style={place(HERO)}>
+      <div className={styles.hero} style={styleHERO}>
         <AssetVideo folder={HERO.folder} name={HERO.name} />
       </div>
 
@@ -71,22 +73,38 @@ export function DanceLensView() {
         </button>
       ))}
 
-      {STICKERS.map((sticker) => (
-        <Sticker key={sticker.name} sticker={sticker} triggerProps={triggerProps} />
-      ))}
+      {STICKERS.map((sticker, index) =>
+        sticker.name === "keep_moving" ? (
+          <KeepMovingCluster
+            key={sticker.name}
+            sticker={sticker}
+            index={index}
+            templateSlug="dance-lens"
+          />
+        ) : (
+          <Sticker
+            key={sticker.name}
+            sticker={sticker}
+            index={index}
+            triggerProps={triggerProps}
+          />
+        )
+      )}
     </div>
   );
 }
 
 function Sticker({
   sticker,
+  index,
   triggerProps,
 }: {
   sticker: StickerEl;
+  index: number;
   triggerProps: (info: InfoId) => Record<string, () => void>;
 }) {
   const media = <AssetVideo folder={sticker.folder} name={sticker.name} />;
-  const style = place(sticker);
+  const style = { ...place(sticker), ...revealVars(index, sticker.delay) };
 
   if (sticker.href) {
     const isExternal = sticker.href.startsWith("http");
@@ -95,7 +113,7 @@ function Sticker({
         href={sticker.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
       >
@@ -104,7 +122,7 @@ function Sticker({
     ) : (
       <Link
         href={sticker.href}
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
       >
@@ -117,7 +135,7 @@ function Sticker({
     return (
       <button
         type="button"
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
         {...triggerProps(sticker.info)}
@@ -129,7 +147,7 @@ function Sticker({
 
   return (
     <div
-      className={styles.sticker}
+      className={`${styles.sticker} scene-reveal`}
       style={style}
       role="img"
       aria-label={sticker.label}

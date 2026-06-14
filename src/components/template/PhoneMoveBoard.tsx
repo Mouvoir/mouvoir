@@ -12,6 +12,8 @@ import {
   type Placed,
   type StickerEl,
 } from "./phoneMoveLayout";
+import { revealVars } from "./sceneReveal";
+import { KeepMovingCluster } from "./KeepMovingCluster";
 import styles from "./phoneMoveBoard.module.css";
 
 function place({ top, left, width, rotation }: Placed): CSSProperties {
@@ -56,22 +58,38 @@ export function PhoneMoveBoard() {
         ))}
       </AnimatePresence>
 
-      {STICKERS.map((sticker) => (
-        <Sticker key={sticker.name} sticker={sticker} triggerProps={triggerProps} />
-      ))}
+      {STICKERS.map((sticker, index) =>
+        sticker.name === "keep_moving" ? (
+          <KeepMovingCluster
+            key={sticker.name}
+            sticker={sticker}
+            index={index}
+            templateSlug="phone-move"
+          />
+        ) : (
+          <Sticker
+            key={sticker.name}
+            sticker={sticker}
+            index={index}
+            triggerProps={triggerProps}
+          />
+        )
+      )}
     </div>
   );
 }
 
 function Sticker({
   sticker,
+  index,
   triggerProps,
 }: {
   sticker: StickerEl;
+  index: number;
   triggerProps: (info: InfoId) => Record<string, () => void>;
 }) {
   const media = <AssetVideo folder={sticker.folder} name={sticker.name} />;
-  const style = place(sticker);
+  const style = { ...place(sticker), ...revealVars(index, sticker.delay) };
 
   if (sticker.href) {
     const isExternal = sticker.href.startsWith("http");
@@ -80,7 +98,7 @@ function Sticker({
         href={sticker.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
       >
@@ -89,7 +107,7 @@ function Sticker({
     ) : (
       <Link
         href={sticker.href}
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
       >
@@ -102,7 +120,7 @@ function Sticker({
     return (
       <button
         type="button"
-        className={styles.sticker}
+        className={`${styles.sticker} scene-reveal`}
         style={style}
         aria-label={sticker.label}
         {...triggerProps(sticker.info)}
@@ -114,7 +132,7 @@ function Sticker({
 
   return (
     <div
-      className={styles.sticker}
+      className={`${styles.sticker} scene-reveal`}
       style={style}
       role="img"
       aria-label={sticker.label}

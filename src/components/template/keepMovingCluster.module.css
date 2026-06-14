@@ -1,0 +1,79 @@
+/* "Keep Moving" sticker on a template tutorial page, plus the hover-revealed
+   cluster of related choreography-project presentation clips that flies out to
+   its right. Self-contained (does not rely on the per-view .scene .sticker
+   rules) so it drops into any of the four tutorial views unchanged.
+
+   The wrapper is absolutely placed in the .scene by inline top/left/width (% of
+   the scene), matching the other stickers. The flyout is a child of the wrapper
+   so hovering it keeps the wrapper hovered; its left padding bridges the visual
+   gap to the anchor without a dead zone that would drop the hover. */
+
+.wrap {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  z-index: 10;
+}
+
+.anchor {
+  display: block;
+  line-height: 0;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.25s ease;
+}
+
+.anchor:hover {
+  filter: brightness(1.12);
+  transform: scale(1.03);
+}
+
+.anchor video,
+.thumb video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Flyout column, bottom-aligned to the anchor and growing upward so it stays in
+   the visible upper area (the anchors sit low in the scene). */
+.flyout {
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  width: 130%;
+  padding-left: 10%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 40;
+}
+
+.flyoutOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.thumb {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.25s ease;
+}
+
+.thumb:hover {
+  filter: brightness(1.12);
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchor,
+  .thumb,
+  .flyout {
+    transition: none;
+  }
+}

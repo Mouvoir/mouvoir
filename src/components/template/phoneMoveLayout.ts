@@ -10,6 +10,9 @@ export interface Placed {
   left: number;
   width: number;
   rotation?: number;
+  /** Entrance reveal delay (seconds). Omit to auto-stagger by render order
+   *  (see sceneReveal.ts / SCENE_STAGGER). */
+  delay?: number;
 }
 
 export interface StickerEl extends Placed {
@@ -56,4 +59,4 @@ export const BUBBLES: InfoBubble[] = [
   { id: "app", folder: "phone_move/phone_move_appinfos", name: "phone_move_appinfos", top: 32, left: 60, width: 28 },
   { id: "td", folder: "phone_move/phone_move_td", name: "phone_move_td", top: 34, left: 64, width: 28 },
   { id: "whisper", folder: "phone_move/phone_move_whisperinfos", name: "phone_move_whisperinfos", top: 64, left: 70, width: 28 },
-];
+] ;

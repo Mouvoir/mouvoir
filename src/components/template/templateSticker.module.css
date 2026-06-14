@@ -10,6 +10,25 @@
   line-height: 0;
   cursor: pointer;
   transition: transform 0.25s ease;
+  /* Staggered entrance: start hidden, fade in after `--reveal-delay` (set
+     per-sticker in TemplateSticker). Only opacity is animated so the hover
+     `transform: scale` stays free of conflict with a forwards-filled keyframe. */
+  opacity: 0;
+  animation: stickerReveal 0.6s ease forwards;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes stickerReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .sticker:hover {

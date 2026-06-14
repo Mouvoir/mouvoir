@@ -1,16 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
-import type { TemplateSticker as Sticker } from "./templateStickers";
+import { useRef, useState, type CSSProperties } from "react";
+import { STICKER_STAGGER, type TemplateSticker as Sticker } from "./templateStickers";
 import styles from "./templateSticker.module.css";
 
 interface TemplateStickerProps {
   sticker: Sticker;
+  /** Render order within its screen, used for the automatic entrance stagger
+   *  when the sticker has no explicit `delay`. */
+  index?: number;
 }
 
-export function TemplateSticker({ sticker }: TemplateStickerProps) {
-  const { folder, slug, title, left, top, width, presPath } = sticker;
+export function TemplateSticker({ sticker, index = 0 }: TemplateStickerProps) {
+  const { folder, slug, title, left, top, width, presPath, delay } = sticker;
+  // Entrance reveal delay: an explicit per-sticker `delay` wins, otherwise the
+  // sticker fades in staggered by its render order.
+  const revealDelay = delay ?? index * STICKER_STAGGER;
   // Folder names are ASCII snake_case (see .claude/rules/asset-conventions.md),
   // so no URL-encoding is needed for the public path. Most templates ship a
   // dedicated `<folder>_anim` sticker clip; consolidated ones (noAnim) reuse
@@ -44,7 +50,14 @@ export function TemplateSticker({ sticker }: TemplateStickerProps) {
       href={`/template/${slug}`}
       aria-label={title}
       className={styles.sticker}
-      style={{ left: `${left}%`, top: `${top}%`, width: `${width}%` }}
+      style={
+        {
+          left: `${left}%`,
+          top: `${top}%`,
+          width: `${width}%`,
+          "--reveal-delay": `${revealDelay}s`,
+        } as CSSProperties
+      }
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >

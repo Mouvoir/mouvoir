@@ -15,6 +15,9 @@ export interface Placed {
   left: number;
   width: number;
   rotation?: number;
+  /** Entrance reveal delay (seconds). Omit to auto-stagger by render order
+   *  (see sceneReveal.ts / SCENE_STAGGER). */
+  delay?: number;
 }
 
 // A neon/thermal video sticker (AssetVideo). `href` turns it into a link;
