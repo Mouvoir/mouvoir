@@ -124,19 +124,19 @@ export const SCENES: Scene[] = [
     stickers: [
       {
         folder: "crtl_f_video", top: 0, left: 4, width: 30, label: "Association Ctrl+F",
-        info: { folder: "crtl_f_infos", top: 44, left: 2, width: 34 },
+        info: { folder: "crtl_f_infos", top: 20, left: 2, width: 34 },
       },
       {
         folder: "finta_titre", top: 5, left: 40, width: 25, label: "FINTA",
-        info: { folder: "finta_infos", top: 46, left: 40, width: 34 },
+        info: { folder: "finta_infos", top: 30, left: 50, width: 34 },
       },
       {
         folder: "allies_titre", top: 56, left: 40, width: 22, label: "Allies",
-        info: { folder: "allies_infos", top: 64, left: 6, width: 34 },
+        info: { folder: "allies_infos", top: 55, left: 10, width: 34 },
       },
       {
         folder: "crtl_f_jam", top: 0, left: 70, width: 32,  label: "Jam Ctrl+F",
-        info: { folder: "crtl_f_jam_infos02", top: 64, left: 56, width: 34 },
+        info: { folder: "crtl_f_jam_infos02", top: 50, left: 60, width: 34 },
       },
       { folder: "ctrl_f", top: 62, left: 4, width: 30, label: "Ctrl+F" },
     ],

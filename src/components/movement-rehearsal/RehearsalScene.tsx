@@ -40,10 +40,12 @@ export function RehearsalScene({scene, onBack}: RehearsalSceneProps) {
                 left: `${sticker.left}%`,
                 width: `${sticker.width}%`,
               } as CSSProperties}
-              onClick={hasInfo ? () => setOpenInfo(isOpen ? null : sticker.folder) : undefined}
+              onMouseEnter={hasInfo ? () => setOpenInfo(sticker.folder) : undefined}
+              onMouseLeave={hasInfo ? () => setOpenInfo((current) => (current === sticker.folder ? null : current)) : undefined}
+              onFocus={hasInfo ? () => setOpenInfo(sticker.folder) : undefined}
+              onBlur={hasInfo ? () => setOpenInfo((current) => (current === sticker.folder ? null : current)) : undefined}
               disabled={!hasInfo}
               aria-label={sticker.label ?? sticker.folder}
-
             >
               <AssetVideo folder={sticker.folder}/>
             </motion.button>
