@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import type { ChoreSticker as Sticker } from "./choreStickers";
 import styles from "./choreSticker.module.css";
@@ -8,6 +11,8 @@ interface ChoreStickerProps {
 
 export function ChoreSticker({ sticker }: ChoreStickerProps) {
   const { folder, slug, title, artist, left, top, width, placeholder, anim } = sticker;
+  // Default to the static poster (PNG); swap to the animated clip on hover/focus.
+  const [active, setActive] = useState(false);
   const position = { left: `${left}%`, top: `${top}%`, width: `${width}%` };
   const label = artist ? `${title} — ${artist}` : title;
 
@@ -38,20 +43,29 @@ export function ChoreSticker({ sticker }: ChoreStickerProps) {
       aria-label={label}
       className={styles.sticker}
       style={position}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onFocus={() => setActive(true)}
+      onBlur={() => setActive(false)}
     >
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster={`/${base}.png`}
-        className={styles.video}
-      >
-        {/* HEVC-with-alpha-style mov first for Safari, VP9 webm for the rest */}
-        <source src={`/${base}.mov`} type="video/quicktime" />
-        <source src={`/${base}.webm`} type="video/webm" />
-      </video>
+      {active ? (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={`/${base}.png`}
+          className={styles.video}
+        >
+          {/* HEVC-with-alpha-style mov first for Safari, VP9 webm for the rest */}
+          <source src={`/${base}.mov`} type="video/quicktime" />
+          <source src={`/${base}.webm`} type="video/webm" />
+        </video>
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={`/${base}.png`} alt="" className={styles.video} />
+      )}
     </Link>
   );
 }
