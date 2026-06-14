@@ -37,12 +37,36 @@ export interface ToolObject<Info extends string = string> extends Placed {
   info: Info;
 }
 
-// A speech bubble that fades in while its trigger is hovered.
-export interface InfoBubble<Info extends string = string> extends Placed {
+// A speech bubble that appears while its trigger is hovered. Two shapes:
+//  - asset bubble: a single read-only AssetVideo (folder/name), pointer-events
+//    off, closes as soon as the trigger is left;
+//  - link bubble: a single clickable project clip with its own position, that
+//    stays open while hovered. Several link bubbles can share one `id`, so a
+//    single trigger reveals a whole set — each entry tuned independently (the
+//    "keep moving" trigger lists the related choreographies this way).
+interface BubbleBase<Info extends string> extends Placed {
   id: Info;
+}
+
+export interface AssetBubble<Info extends string = string>
+  extends BubbleBase<Info> {
   folder: string;
   name: string;
 }
+
+export interface LinkBubble<Info extends string = string>
+  extends BubbleBase<Info> {
+  folder: string;
+  name: string;
+  /** /choreography-styles/<slug> target — marks this bubble as a clickable link. */
+  slug: string;
+  /** Project title, surfaced for a11y. */
+  title: string;
+}
+
+export type InfoBubble<Info extends string = string> =
+  | AssetBubble<Info>
+  | LinkBubble<Info>;
 
 // Central result footage (opaque, border baked in). Sits lowest in the stack so
 // the neon titles read on top of it.
@@ -54,7 +78,7 @@ export interface HeroEl extends Placed {
 
 // The full declarative layout for one tutorial scene.
 export interface SceneLayout<Info extends string = string> {
-  /** /template/<slug> this scene belongs to — keys into KEEP_MOVING_PROJECTS. */
+  /** /template/<slug> this scene belongs to. */
   slug: string;
   hero: HeroEl;
   stickers: StickerEl<Info>[];

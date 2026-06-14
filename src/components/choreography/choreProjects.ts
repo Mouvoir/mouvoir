@@ -136,7 +136,7 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
   "jam-ctrl-f": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },
     { kind: "video", asset: "two_pers_dansent_thermal_bleu/two_pers_dansent_thermal_bleu", left: 0, top: 18, width: 35 },
-    { kind: "video", asset: "jam_ctrlf_f/jam_ctrlf_f_anim",left: 28, top: 38, width: 40 },
+    { kind: "video", asset: "jam_ctrlf_f/jam_ctrlf_f_anim",left: 28, top: 11, width: 40 },
   ],
   milas: [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },

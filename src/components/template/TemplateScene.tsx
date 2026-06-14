@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AssetVideo } from "@/components/shared/AssetVideo";
-import { KeepMovingCluster } from "./KeepMovingCluster";
 import { revealVars } from "./sceneReveal";
 import type { Placed, SceneLayout, StickerEl } from "./sceneTypes";
 import styles from "./templateScene.module.css";
+
+// Grace period before a bubble closes once its trigger is left, so the pointer
+// can travel from the trigger to an interactive (links) bubble without the
+// hover dropping. Re-entering the trigger or the bubble cancels the close.
+const BUBBLE_CLOSE_DELAY_MS = 120;
 
 // Inline style for an absolutely-placed scene layer.
 function place({ top, left, width, rotation }: Placed): CSSProperties {
@@ -24,16 +28,45 @@ function place({ top, left, width, rotation }: Placed): CSSProperties {
 // sticker flagged with `info`) reveals its speech bubble. All scene data comes
 // from the `layout` (see the matching `*Layout.ts` and sceneTypes.ts).
 export function TemplateScene({ layout }: { layout: SceneLayout }) {
-  const { hero, stickers, tools = [], bubbles, slug } = layout;
+  const { hero, stickers, tools = [], bubbles } = layout;
   const [active, setActive] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+  const open = (info: string) => {
+    cancelClose();
+    setActive(info);
+  };
+  // Defer closing so the pointer can reach an interactive bubble (see constant).
+  const scheduleClose = (info: string) => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => {
+      setActive((cur) => (cur === info ? null : cur));
+      closeTimer.current = null;
+    }, BUBBLE_CLOSE_DELAY_MS);
+  };
+  useEffect(() => cancelClose, []);
 
   // Hover reveals; click toggles (so touch devices can open a bubble too).
   const triggerProps = (info: string) => ({
-    onMouseEnter: () => setActive(info),
-    onMouseLeave: () => setActive((cur) => (cur === info ? null : cur)),
-    onFocus: () => setActive(info),
-    onBlur: () => setActive((cur) => (cur === info ? null : cur)),
-    onClick: () => setActive((cur) => (cur === info ? null : info)),
+    onMouseEnter: () => open(info),
+    onMouseLeave: () => scheduleClose(info),
+    onFocus: () => open(info),
+    onBlur: () => scheduleClose(info),
+    onClick: () => {
+      cancelClose();
+      setActive((cur) => (cur === info ? null : info));
+    },
+  });
+  // Interactive (links) bubbles keep themselves open while hovered.
+  const bubbleHoverProps = (info: string) => ({
+    onMouseEnter: () => open(info),
+    onMouseLeave: () => scheduleClose(info),
   });
 
   // DOM order is hero → bubbles → tools → stickers. The tools' `:nth-of-type`
@@ -41,38 +74,61 @@ export function TemplateScene({ layout }: { layout: SceneLayout }) {
   // must stay rendered before the sticker buttons to keep their animation phase.
   return (
     <div className={styles.scene}>
-      {/* Hero result footage, lowest so neon titles read on top of it. */}
-      <div className={styles.hero} style={place(hero)}>
+      {/* Hero result footage, lowest so neon titles read on top of it. It reveals
+          last: its stagger index continues past every sticker and tool so the
+          black stage fills with stickers before the result clip fades in. */}
+      <div
+        className={`${styles.hero} scene-reveal`}
+        style={{
+          ...place(hero),
+          ...revealVars(stickers.length + tools.length, hero.delay),
+        }}
+      >
         <AssetVideo folder={hero.folder} name={hero.name} />
       </div>
 
-      {/* Speech bubbles: only the active one is mounted. pointer-events:none so
-          hovering the bubble itself never steals the trigger's hover. */}
+      {/* Speech bubbles: every bubble whose id is active mounts (link bubbles
+          share an id so one trigger reveals a whole set). Asset bubbles are
+          pointer-events:none so hovering them never steals the trigger's hover;
+          link bubbles opt back in (.bubbleLinks) and keep themselves open. */}
       <AnimatePresence>
         {bubbles
           .filter((b) => b.id === active)
           .map((bubble) => (
             <motion.div
-              key={bubble.id}
-              className={styles.bubble}
+              key={"slug" in bubble ? `${bubble.id}-${bubble.slug}` : bubble.id}
+              className={`${styles.bubble} ${"slug" in bubble ? styles.bubbleLinks : ""}`}
               style={place(bubble)}
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.85 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
+              {...("slug" in bubble ? bubbleHoverProps(bubble.id) : {})}
             >
-              <AssetVideo folder={bubble.folder} name={bubble.name} />
+              {"slug" in bubble ? (
+                <Link
+                  href={`/choreography-styles/${bubble.slug}`}
+                  className={styles.link}
+                  aria-label={`${bubble.title} — voir le projet`}
+                >
+                  <AssetVideo folder={bubble.folder} name={bubble.name} />
+                </Link>
+              ) : (
+                <AssetVideo folder={bubble.folder} name={bubble.name} />
+              )}
             </motion.div>
           ))}
       </AnimatePresence>
 
-      {/* Tool-kit objects (transparent PNGs) — hover targets. */}
-      {tools.map((tool) => (
+      {/* Tool-kit objects (transparent PNGs) — hover targets. They share the
+          stickers' staggered entrance; their reveal index continues after the
+          stickers so they no longer pop in first (tune per-tool via `delay`). */}
+      {tools.map((tool, index) => (
         <button
           key={tool.src}
           type="button"
-          className={styles.tool}
-          style={place(tool)}
+          className={`${styles.tool} scene-reveal`}
+          style={{ ...place(tool), ...revealVars(stickers.length + index, tool.delay) }}
           aria-label={tool.alt}
           {...triggerProps(tool.info)}
         >
@@ -82,23 +138,14 @@ export function TemplateScene({ layout }: { layout: SceneLayout }) {
       ))}
 
       {/* Static neon stickers (links / triggers / decorative). */}
-      {stickers.map((sticker, index) =>
-        sticker.name === "keep_moving" ? (
-          <KeepMovingCluster
-            key={sticker.name}
-            sticker={sticker}
-            index={index}
-            templateSlug={slug}
-          />
-        ) : (
-          <Sticker
-            key={sticker.name}
-            sticker={sticker}
-            index={index}
-            triggerProps={triggerProps}
-          />
-        )
-      )}
+      {stickers.map((sticker, index) => (
+        <Sticker
+          key={sticker.name}
+          sticker={sticker}
+          index={index}
+          triggerProps={triggerProps}
+        />
+      ))}
     </div>
   );
 }

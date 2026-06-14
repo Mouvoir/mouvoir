@@ -13,7 +13,7 @@ import type {
   ToolObject,
 } from "./sceneTypes";
 
-type InfoId = "tape" | "makeup" | "flash" | "camera" | "whisper";
+type InfoId = "tape" | "makeup" | "flash" | "camera" | "whisper" | "keepMoving";
 
 const HERO: HeroEl = {
   folder: "lighting_you/lighting_you_tuto",
@@ -30,7 +30,7 @@ const STICKERS: StickerEl<InfoId>[] = [
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 65, left: 80, width: 20, info: "whisper" },
-  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", href: "/choreography-styles", top: 60, left: 0, width: 15 },
+  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", info: "keepMoving", top: 60, left: 0, width: 15 },
 ];
 
 const TOOLS: ToolObject<InfoId>[] = [
@@ -47,6 +47,13 @@ const BUBBLES: InfoBubble<InfoId>[] = [
   { id: "flash", folder: "lighting_you/lighting_you_flashinfos", name: "lighting_you_flashinfos", top: 34, left: 68, width: 18 },
   { id: "camera", folder: "lighting_you/lighting_you_camerainfos", name: "lighting_you_camerainfos", top: 26, left: 66, width: 19 },
   { id: "whisper", folder: "lighting_you/lighting_you_whisperinfos", name: "lighting_you_whisperinfos", top: 63, left: 70, width: 21 },
+  // Choreography projects made with this template — one bubble per link, each
+  // positioned independently. They share id "keepMoving" so the keep_moving
+  // sticker (top:60 left:0 w:15) reveals them all; keep them adjacent to it so
+  // the pointer can bridge across. Tune positions visually.
+  { id: "keepMoving", slug: "brightness", folder: "brightness", name: "brightness_anim", title: "Brightness", top: 32, left: 14, width: 14 },
+  { id: "keepMoving", slug: "light", folder: "light", name: "light_anim", title: "Light", top: 46, left: 14, width: 14 },
+  { id: "keepMoving", slug: "yoyo", folder: "yoyo", name: "yoyo_anim", title: "Yoyo", top: 60, left: 14, width: 14 },
 ];
 
 export const lightingYouScene: SceneLayout<InfoId> = {

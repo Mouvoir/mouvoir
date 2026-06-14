@@ -16,7 +16,6 @@ export function TemplateSticker({ sticker, index = 0 }: TemplateStickerProps) {
   const { folder, slug, title, left, top, width, presPath, delay } = sticker;
   // Entrance reveal delay: an explicit per-sticker `delay` wins, otherwise the
   // sticker fades in staggered by its render order.
-  const revealDelay = delay ?? index * STICKER_STAGGER;
   // Folder names are ASCII snake_case (see .claude/rules/asset-conventions.md),
   // so no URL-encoding is needed for the public path. Most templates ship a
   // dedicated `<folder>_anim` sticker clip; consolidated ones (noAnim) reuse
@@ -55,7 +54,6 @@ export function TemplateSticker({ sticker, index = 0 }: TemplateStickerProps) {
           left: `${left}%`,
           top: `${top}%`,
           width: `${width}%`,
-          "--reveal-delay": `${revealDelay}s`,
         } as CSSProperties
       }
       onMouseEnter={handleEnter}

@@ -7,7 +7,7 @@ import type { CSSProperties } from "react";
 
 /** Default gap (seconds) between consecutive stickers' entrance reveals when no
  *  explicit `delay` is set on the layout element. */
-export const SCENE_STAGGER =0.5;
+export const SCENE_STAGGER =0.2;
 
 /** Inline CSS vars driving a single element's staggered entrance. An explicit
  *  per-element `delay` (seconds) overrides the automatic order-based stagger. */

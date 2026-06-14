@@ -64,29 +64,38 @@ button.sticker:hover {
   transform: scale(1.03);
 }
 
-/* Tool-kit objects: bare image buttons with a gentle idle wiggle. */
+/* Tool-kit objects: bare image buttons with a gentle idle wiggle. The button
+   owns the staggered entrance fade (.scene-reveal); the wiggle lives on the
+   inner img so the two animations never collide on the same element. */
 .scene .tool {
   z-index: 20;
   padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
-  animation: wiggle 3.6s ease-in-out infinite;
   transition: transform 0.2s ease;
 }
 
-.scene .tool:nth-of-type(2n) {
+.scene .tool img {
+  animation: wiggle 3.6s ease-in-out infinite;
+}
+
+.scene .tool:nth-of-type(2n) img {
   animation-delay: -1.2s;
 }
-.scene .tool:nth-of-type(3n) {
+.scene .tool:nth-of-type(3n) img {
   animation-delay: -2.4s;
 }
 
 .scene .tool:hover,
 .scene .tool:focus-visible {
   transform: scale(1.08);
-  animation-play-state: paused;
   outline: none;
+}
+
+.scene .tool:hover img,
+.scene .tool:focus-visible img {
+  animation-play-state: paused;
 }
 
 @keyframes wiggle {
@@ -100,7 +109,32 @@ button.sticker:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scene .tool {
+  .scene .tool img {
     animation: none;
+  }
+}
+
+/* Interactive "keep moving" link bubble: a single clickable choreography clip.
+   Unlike asset bubbles it must take the pointer so the link is reachable, and it
+   keeps itself open while hovered (see TemplateScene hover-intent). Must come
+   after `.scene .bubble` to win the pointer-events rule at equal specificity. */
+.scene .bubbleLinks {
+  pointer-events: auto;
+}
+
+.link {
+  display: block;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.25s ease;
+}
+
+.link:hover {
+  filter: brightness(1.12);
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
   }
 }
