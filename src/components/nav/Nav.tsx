@@ -24,7 +24,7 @@ export function Nav() {
   const inactiveHover = "hover:border-white/60 border-transparent";
 
   return (
-    <nav className="flex space-around items-center gap-6 pt-3 pb-3 text-white">
+    <nav className="flex justify-around items-center gap-6 pt-3 pb-3 text-white">
       <Link href="/" aria-label={BRAND} className="inline-flex shrink-0">
         <video
           key={logo}

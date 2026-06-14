@@ -1,0 +1,17 @@
+/* Flyers / Liens landing page — a single full-height screen of free-floating
+   stickers recreating docs/.../PAGE_LIEN_EXPLICATION.pdf. */
+
+.collage {
+  background: #000000;
+}
+
+/* Positioning context for the absolutely-placed stickers. Shorter than a full
+   viewport to account for the nav sitting above it. `overflow: hidden` clips
+   the transparent frame padding each sticker carries so it never spills into
+   page scrollbars. */
+.screen {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
+  overflow: hidden;
+}

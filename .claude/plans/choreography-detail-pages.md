@@ -228,7 +228,6 @@ interface ChoreLayerProps {
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: screen;
   pointer-events: none;
 }
 

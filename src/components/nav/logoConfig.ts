@@ -8,6 +8,7 @@ const PATH_LOGO: Record<string, LogoVariant> = {
   "/": "bleu_orange",
   "/choreography-styles": "bleu",
   "/mouvoir-anatomy": "bleu",
+  "/movement-rehearsal": "bleu",
 };
 
 // Route bases whose every sub-path inherits a fixed logo variant.

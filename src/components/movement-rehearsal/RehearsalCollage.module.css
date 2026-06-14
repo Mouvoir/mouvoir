@@ -1,0 +1,100 @@
+/* Movement-rehearsal collage — scattered alpha-video stickers on a black stage.
+   Same model as the charter grid, but every element is absolutely positioned by
+   the % coordinates in rehearsalScenes.ts so the layout matches the comps. */
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 82vh;
+  background: black;
+  overflow: hidden;
+}
+
+/* Landing entry sticker → opens its scene. */
+.entry {
+  position: absolute;
+  transform-origin: center;
+  transform: rotate(var(--rot, 0deg));
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.entry:hover {
+  filter: brightness(1.12);
+}
+
+/* Transparent overlay holding an open scene's stickers + BACK. pointer-events
+   fall through the gaps; the interactive children re-enable them. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* A scene sticker (title or footage blob). Clickable when it owns an info. */
+.sticker {
+  position: absolute;
+  transform-origin: center;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: filter 0.2s ease;
+}
+
+.sticker:hover {
+  filter: brightness(1.12);
+}
+
+/* Decorative sticker (no info bubble): not interactive. */
+.stickerStatic {
+  cursor: default;
+}
+
+/* Info bubble toggled on top of its sticker. */
+.info {
+  position: absolute;
+  transform-origin: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Neon BACK sticker. */
+.backBtn {
+  position: absolute;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 3;
+  pointer-events: auto;
+  transition: filter 0.2s ease;
+}
+
+.backBtn:hover {
+  filter: brightness(1.15);
+}
+
+/* Override AssetVideo's object-cover so stickers show whole (no crop); height
+   follows the asset ratio from the % width. Higher specificity than the
+   Tailwind utility, so it wins. */
+.entry video,
+.entry img,
+.sticker video,
+.sticker img,
+.info video,
+.info img,
+.backBtn video,
+.backBtn img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}

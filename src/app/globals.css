@@ -241,3 +241,27 @@ body {
   -webkit-mask-image: url("/button_bg/4.svg");
   mask-image: url("/button_bg/4.svg");
 }
+
+/* Staggered entrance reveal for template-scene elements (stickers on the
+   /template/* tutorial views). Opacity-only so the hover `transform: scale`
+   and any `rotate()` placement stay free of conflict with a forwards-filled
+   keyframe. The per-element start time is fed through `--reveal-delay`
+   (see sceneReveal.ts). */
+.scene-reveal {
+  opacity: 0;
+  animation: scene-reveal-fade 0.55s ease forwards;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes scene-reveal-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-reveal {
+    animation: none;
+    opacity: 1;
+  }
+}

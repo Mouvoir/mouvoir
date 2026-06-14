@@ -33,8 +33,8 @@ export default function HomePage() {
               </video>
             </div>
           )}
-          {TEMPLATE_STICKERS.filter((s) => s.screen === screen).map((sticker) => (
-            <TemplateSticker key={sticker.slug} sticker={sticker} />
+          {TEMPLATE_STICKERS.filter((s) => s.screen === screen).map((sticker, index) => (
+            <TemplateSticker key={sticker.slug} sticker={sticker} index={index} />
           ))}
         </section>
       ))}

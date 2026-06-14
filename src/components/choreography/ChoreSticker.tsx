@@ -7,9 +7,9 @@ interface ChoreStickerProps {
 }
 
 export function ChoreSticker({ sticker }: ChoreStickerProps) {
-  const { folder, slug, title, artist, left, top, width, placeholder } = sticker;
+  const { folder, slug, title, artist, left, top, width, placeholder, anim } = sticker;
   const position = { left: `${left}%`, top: `${top}%`, width: `${width}%` };
-  const label = `${title} — ${artist}`;
+  const label = artist ? `${title} — ${artist}` : title;
 
   // Reserved slot with no asset yet — render a labelled placeholder box.
   if (placeholder) {
@@ -29,7 +29,8 @@ export function ChoreSticker({ sticker }: ChoreStickerProps) {
   // Folder names are ASCII snake_case (see .claude/rules/asset-conventions.md),
   // so no URL-encoding is needed. The `_anim` clip bakes the cutout, neon title
   // and artist name onto black; `screen` blending drops the black backing.
-  const base = `${folder}/${folder}_anim`;
+  // Folders without an `_anim` variant (`anim: false`) source the base triple.
+  const base = anim === false ? `${folder}/${folder}` : `${folder}/${folder}_anim`;
 
   return (
     <Link

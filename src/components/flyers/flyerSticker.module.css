@@ -1,0 +1,63 @@
+/* A single flyer sticker, absolutely placed within the .screen box. The media
+   carries genuine alpha (transparent background), so overlapping stickers
+   compose cleanly with no blend-mode trickery. */
+
+.sticker {
+  position: absolute;
+  display: block;
+  line-height: 0;
+}
+
+/* Only the linked stickers (YouTube / VJ / plugins) react to the cursor. */
+.link {
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.link:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.media {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* Gentle continuous wiggle for the still plugin thumbnails, so they feel as
+   alive as the surrounding video stickers. */
+.wiggle {
+  animation: flyer-wiggle 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.link:hover .wiggle {
+  /* Pause the idle wiggle while the hover scale takes over. */
+  animation-play-state: paused;
+}
+
+@keyframes flyer-wiggle {
+  0% {
+    transform: rotate(-2.5deg) translateY(0);
+  }
+  25% {
+    transform: rotate(1.8deg) translateY(-2px);
+  }
+  50% {
+    transform: rotate(-1.4deg) translateY(1px);
+  }
+  75% {
+    transform: rotate(2.2deg) translateY(-1px);
+  }
+  100% {
+    transform: rotate(-2.5deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiggle {
+    animation: none;
+  }
+}
