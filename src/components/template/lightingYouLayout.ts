@@ -53,7 +53,7 @@ export const STICKERS: StickerEl[] = [
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 65, left: 80, width: 20, info: "whisper" },
-  { folder: "keep_moving", name: "keep_moving", label: "Keep moving", top: 60, left: 0, width: 15 },
+  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", href: "/choreography-styles", top: 60, left: 0, width: 15 },
 ];
 
 export const TOOLS: ToolObject[] = [

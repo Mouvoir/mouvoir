@@ -48,8 +48,8 @@ export const STICKERS: StickerEl[] = [
   { folder: "back_orange", name: "back_orange", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 2, left: 83, width: 17 },
-  { folder: "follow_the_beats", name: "follow_the_beats", label: "Follow the beats", top: 53, left: 0, width: 16 },
-  { folder: "keep_moving", name: "keep_moving", label: "Keep moving", top: 67, left: 10, width: 16 },
+  { folder: "follow_the_beats", name: "follow_the_beats", label: "Follow the beats — plugin MediaPipe sur GitHub", href: "https://github.com/torinmb/mediapipe-touchdesigner", top: 53, left: 0, width: 16 },
+  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", href: "/choreography-styles", top: 67, left: 10, width: 16 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 71, left: 78, width: 16, info: "whisper" },
 ];
 

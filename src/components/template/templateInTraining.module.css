@@ -1,0 +1,64 @@
+/* "Still in training" template placeholder — a single full-height black screen
+   with the still_in_training_thermal title, two thermal dancers and the
+   template's own _anim sticker in the centre. Recreates doc/TEMPLATE_RIEN.pdf. */
+
+.collage {
+  background: #000000;
+}
+
+/* Positioning context for the absolutely-placed layers. Shorter than a full
+   viewport to account for the nav sitting above it. `overflow: hidden` clips
+   the black frame padding each baked-on-black clip carries (it falls offscreen
+   by design) so it never spills into the page scrollbars. */
+.screen {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  pointer-events: none;
+}
+
+/* Clips baked on a black background: `screen` makes the black backing read as
+   transparent so overlapping layers don't occlude each other. */
+.screenVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+/* Dancer cutouts carry a genuine alpha channel — composite them normally. */
+.alphaVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.title {
+  left: 29%;
+  width: 42%;
+}
+
+.center {
+  left: 30%;
+  top: 30%;
+  width: 40%;
+}
+
+.dancerLeft {
+  left: -5%;
+  top: 20%;
+  width: 30%;
+}
+
+.dancerRight {
+  left: 70%;
+  top: 20%;
+  width: 30%;
+}

@@ -89,7 +89,19 @@ function Sticker({
   const style = place(sticker);
 
   if (sticker.href) {
-    return (
+    const isExternal = sticker.href.startsWith("http");
+    return isExternal ? (
+      <a
+        href={sticker.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.sticker}
+        style={style}
+        aria-label={sticker.label}
+      >
+        {media}
+      </a>
+    ) : (
       <Link
         href={sticker.href}
         className={styles.sticker}

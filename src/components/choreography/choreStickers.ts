@@ -30,18 +30,16 @@ export interface ChoreSticker {
 // art lands where the comp shows it. Values are derived from the comp visible
 // bounds combined with each poster's measured content-within-frame ratios.
 export const CHORE_STICKERS: ChoreSticker[] = [
-  { folder: "brightness", slug: "brightness", title: "Brightness", artist: "Rozetta + Lise", left: -16.6, top: 10.2, width: 53.7 },
-  { folder: "light", slug: "light", title: "Light", artist: "Lise", left: 15.8, top: 6.1, width: 25.9 },
-  { folder: "quantu_motion", slug: "quantu-motion", title: "QUANTUMotion", artist: "Rozetta", left: 27.5, top: 0.3, width: 43.0 },
-  { folder: "greyclub", slug: "greyclub", title: "Greyclub", artist: "Mathilde", left: 57.4, top: 8.9, width: 38.9 },
-  { folder: "urbex", slug: "urbex", title: "Urbex 10.3", artist: "Rozetta", left: 15.0, top: 32.2, width: 35.1 },
+  { folder: "brightness", slug: "brightness", title: "Brightness", artist: "Rozetta + Lise", left: -18, top: 8, width: 53.7 },
+  { folder: "light", slug: "light", title: "Light", artist: "Lise", left: 15.8, top: 0, width: 20 },
+  { folder: "quantu_motion", slug: "quantu-motion", title: "QUANTUMotion", artist: "Rozetta", left: 27.5, top: -10, width: 40 },
+  { folder: "greyclub", slug: "greyclub", title: "Greyclub", artist: "Mathilde", left: 57.4, top: 0, width: 38.9 },
+  { folder: "urbex", slug: "urbex", title: "Urbex 10.3", artist: "Rozetta", left: 14, top: 28, width: 35.1 },
   // yoyo nudged ~1.2% left so its right edge fits inside the 1760 screen box.
   { folder: "yoyo", slug: "yoyo", title: "Yoyo", artist: "Lise", left: 78.9, top: 25.6, width: 26.2 },
-  { folder: "jam_ctrlf_f", slug: "jam-ctrl-f", title: "Jam Ctrl+F", artist: "Rozetta + Lise", left: 59.8, top: 50.8, width: 21.3 },
+  { folder: "jam_ctrlf_f", slug: "jam-ctrl-f", title: "Jam Ctrl+F", artist: "Rozetta + Lise", left: 59.8, top: 40, width: 21.3 },
   // turfuzz/modul_aura nudged up so their bottoms clear the screen box bottom.
-  { folder: "turfuzz", slug: "turfuzz", title: "Turfuzz", artist: "Rozetta", left: -0.9, top: 63.1, width: 28.2 },
-  { folder: "modul_aura", slug: "modul-aura", title: "ModulAura", artist: "Rozetta", left: 25.1, top: 65.2, width: 33.1 },
-  // MILA'S appears in the comp but ships no asset yet — reserved placeholder.
-  // Plain box, so this is the visible bound directly (no frame padding to offset).
-  { folder: "milas", slug: "milas", title: "Mila's", artist: "Lise", left: 80.7, top: 63.0, width: 14.3, placeholder: true },
+  { folder: "turfuzz", slug: "turfuzz", title: "Turfuzz", artist: "Rozetta", left: -0.9, top: 63.1, width: 20 },
+  { folder: "modul_aura", slug: "modul-aura", title: "ModulAura", artist: "Rozetta", left: 25.1, top: 65.2, width: 20},
+  { folder: "milas", slug: "milas", title: "Mila's", artist: "Lise", left: 76.4, top: 57.9, width: 23.4 },
 ];

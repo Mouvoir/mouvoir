@@ -40,15 +40,39 @@ const BACK_LAYER: ChoreLayerData = {
   label: "Back to choreography styles",
 };
 
-const KEEP_MOVING_LAYER: ChoreLayerData = {
-  kind: "video",
-  asset: "keep_moving/keep_moving",
-  left: 83,
-  top: 72,
-  width: 14,
-  href: "/movement-rehearsal",
-  label: "Keep Moving",
+interface ProjectLinks {
+  /** Template detail page the "keep moving" sticker links to. */
+  keepMovingHref: string;
+}
+
+// Per-project cross-link targets. "keep moving" bridges a choreography project
+// back to the template it was made with. "follow the beats" (the external VJ
+// link) is declared inline in CHORE_PROJECTS below, since only some projects
+// ship that layer and each is positioned individually.
+const PROJECT_LINKS: Record<string, ProjectLinks> = {
+  greyclub: { keepMovingHref: "/template/phone-move" },
+  urbex: { keepMovingHref: "/template/phone-move" },
+  "quantu-motion": { keepMovingHref: "/template/motion-skeleton" },
+  brightness: { keepMovingHref: "/template/fairy-hands" },
+  light: { keepMovingHref: "/template/lighting-you" },
+  yoyo: { keepMovingHref: "/template/lighting-you" },
+  turfuzz: { keepMovingHref: "/template/body-canvas" },
+  "modul-aura": { keepMovingHref: "/template/dance-lens" },
+  "jam-ctrl-f": { keepMovingHref: "/template/motion-skeleton" },
+  milas: { keepMovingHref: "/template/dance-lens" },
 };
+
+function keepMovingLayer(slug: string): ChoreLayerData {
+  return {
+    kind: "video",
+    asset: "keep_moving/keep_moving",
+    left: 83,
+    top: 72,
+    width: 14,
+    href: PROJECT_LINKS[slug]?.keepMovingHref ?? "/choreography-styles",
+    label: "Keep Moving",
+  };
+}
 
 const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
   greyclub: [
@@ -64,7 +88,7 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
     { kind: "video", asset: "urbex/urbex_infos02", left: 70, top: 50, width: 24 },
     { kind: "image", asset: "urbex/urbex_jingle_020.png", left: 2, top: 30, width: 18 },
     { kind: "image", asset: "urbex/urbex_jingle_030.png", left: 50, top: 68, width: 17 },
-    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 68, top: 80, width: 13, href: "/movement-rehearsal", label: "Follow the beats" },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 68, top: 80, width: 13, href: "https://www.allierozetta.com/all/vjart/urbex-10-3/", label: "Follow the beats" },
   ],
   "quantu-motion": [
     { kind: "video", asset: "quantu_motion/quantu_motion", left: 2, top: 25, width: 62 },
@@ -74,7 +98,7 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
     { kind: "image", asset: "quantu_motion/quantu_motion_jingle020.png", left: 0, top: 38, width: 24 },
     { kind: "image", asset: "quantu_motion/quantu_motion_jingle0300.png", left: 45, top: 26, width: 20 },
     { kind: "image", asset: "quantu_motion/quantu_motion_jingle010.png", left: 60, top: 64, width: 12 },
-    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 66, top: 80, width: 13, href: "/movement-rehearsal", label: "Follow the beats" },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 66, top: 80, width: 13, href: "https://www.allierozetta.com/all/vjart/quantumotion/", label: "Follow the beats" },
   ],
   brightness: [
     { kind: "video", asset: "brightness/brightness", left: 17, top: 36, width: 38 },
@@ -96,10 +120,12 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
   turfuzz: [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
     { kind: "video", asset: "turfuzz/turfuzz_anim", left: 28, top: 38, width: 30 },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 10, top: 72, width: 16, href: "https://www.allierozetta.com/all/filmphoto/turfuzz-ft-pumpum-paradise/", label: "Follow the beats" },
   ],
   "modul-aura": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
     { kind: "video", asset: "modul_aura/modul_aura_anim", left: 28, top: 38, width: 30 },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 10, top: 72, width: 16, href: "https://www.allierozetta.com/all/vjart/modulaura/", label: "Follow the beats" },
   ],
   "jam-ctrl-f": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
@@ -107,17 +133,19 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
   ],
   milas: [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 18, width: 38 },
+    { kind: "video", asset: "milas/milas_anim", left: 33, top: 34, width: 26 },
   ],
 };
 
 /**
- * Returns [BACK_LAYER, ...uniqueLayers, KEEP_MOVING_LAYER]
- * or null if slug is not in CHORE_PROJECTS.
+ * Returns [BACK_LAYER, ...uniqueLayers, keepMovingLayer]
+ * or null if slug is not in CHORE_PROJECTS. The "keep moving" sticker links
+ * back to the template this project was made with (see PROJECT_LINKS).
  */
 export function getChoreProject(slug: string): ChoreLayerData[] | null {
   const unique = CHORE_PROJECTS[slug];
   if (!unique) return null;
-  return [BACK_LAYER, ...unique, KEEP_MOVING_LAYER];
+  return [BACK_LAYER, ...unique, keepMovingLayer(slug)];
 }
 
 /**

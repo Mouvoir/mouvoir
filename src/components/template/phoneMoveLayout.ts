@@ -48,7 +48,7 @@ export const STICKERS: StickerEl[] = [
   { folder: "phone_move/phone_move_app", name: "phone_move_app", label: "Application TDLidar — afficher les détails", top: 27, left: 76, width: 12, info: "app" },
   { folder: "follow_the_beats", name: "follow_the_beats", label: "Follow the beats — voir l'app TDLidar sur derivative.ca", top: 52, left: 0, width: 12, href: "https://derivative.ca/community-post/tdlidar-%E2%80%94-turn-your-iphone-realtime-depth-tracking-and-audio-sensor-touchdesigner" },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper — afficher les détails", top: 70, left: 78, width: 17, info: "whisper" },
-  { folder: "keep_moving", name: "keep_moving", label: "Keep moving", top: 70, left: 10, width: 11 },
+  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", href: "/choreography-styles", top: 70, left: 10, width: 11 },
 ];
 
 export const BUBBLES: InfoBubble[] = [
