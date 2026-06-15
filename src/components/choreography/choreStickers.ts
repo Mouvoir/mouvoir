@@ -35,8 +35,10 @@ export interface ChoreSticker {
 // the whole frame — the screen-blended padding falls offscreen and the visible
 // art lands where the comp shows it. Values are derived from the comp visible
 // bounds combined with each poster's measured content-within-frame ratios.
+// NOTE: the "Threshold Thermal" sticker that used to head this list is no
+// longer a choreography — it now drives the template filter dropdown. Its asset
+// and collage position live in choreFilters.ts#FILTER_TRIGGER.
 export const CHORE_STICKERS: ChoreSticker[] = [
-  { folder: "threshold_thermal_bleu", slug: "threshold-thermal-bleu", title: "Threshold Thermal", artist: "", left: 5, top: 0, width: 10, anim: false },
   { folder: "light", slug: "light", title: "Light", artist: "Lise", left: 22, top: -5, width: 20 },
   { folder: "quantu_motion", slug: "quantu-motion", title: "QUANTUMotion", artist: "Rozetta", left: 30, top: -10, width: 35 },
   { folder: "greyclub", slug: "greyclub", title: "Greyclub", artist: "Mathilde", left: 57.4, top: 0, width: 35 },

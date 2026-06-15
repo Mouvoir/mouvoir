@@ -1,0 +1,98 @@
+/* Custom template filter dropdown that replaces the "Threshold Thermal"
+   sticker on the /choreography-styles collage. Neon-on-black to match the
+   surrounding stickers. Positioned absolutely from inline left/top/width. */
+
+.root {
+  position: absolute;
+  z-index: 20;
+  line-height: 0;
+}
+
+/* Closed-state trigger: the threshold video sits on the black collage exactly
+   where the sticker used to (its black frame reads transparent against black). */
+.trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  transform: scale(1.04);
+  outline: none;
+}
+
+.triggerMedia {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* Active-filter caption under the trigger so the current selection is legible. */
+.activeLabel {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--cyan-blue, #1cc7ff);
+  text-shadow: 0 0 8px rgba(28, 199, 255, 0.7);
+}
+
+/* Open panel: a neon list anchored under the trigger. Min-width keeps template
+   names readable even though the trigger is only ~10% of the screen wide. */
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: max(100%, 220px);
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1.5px solid rgba(28, 199, 255, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 0 24px rgba(28, 199, 255, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.option:hover,
+.option:focus-visible {
+  background: rgba(28, 199, 255, 0.18);
+  color: var(--cyan-blue, #1cc7ff);
+  outline: none;
+}
+
+.optionSelected {
+  color: var(--cyan-blue, #1cc7ff);
+  text-shadow: 0 0 8px rgba(28, 199, 255, 0.6);
+}
+
+.optionReset {
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px 10px 0 0;
+}
