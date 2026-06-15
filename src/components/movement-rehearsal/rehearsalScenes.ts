@@ -136,7 +136,7 @@ export const SCENES: Scene[] = [
       },
       {
         folder: "crtl_f_jam", top: 0, left: 70, width: 32,  label: "Jam Ctrl+F",
-        info: { folder: "crtl_f_jam_infos02", top: 50, left: 60, width: 34 },
+        info: { folder: "crtl_f_jam_infos", top: 50, left: 60, width: 34 },
       },
       { folder: "ctrl_f", top: 62, left: 4, width: 30, label: "Ctrl+F" },
     ],

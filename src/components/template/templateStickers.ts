@@ -36,7 +36,7 @@ export const STICKER_STAGGER = 0.15;
 
 export const TEMPLATE_STICKERS: TemplateSticker[] = [
   // --- Screen 1 ---
-  { folder: "phone_move", slug: "phone-move", title: "Phone Move", screen: 1, left: 0, top: 0, width: 40, presPath: "phone_move/phone_move_pres/phone_move_pres" },
+  { folder: "phone_move", slug: "phone-move", title: "Phone Move", screen: 1, left: 5, top: 2, width: 25, presPath: "phone_move/phone_move_pres/phone_move_pres" },
   { folder: "lighting_you", slug: "lighting-you", title: "Lighting You", screen: 1, left: 30, top: 10, width: 40, presPath: "lighting_you/lighting_you_pres/lighting_you_pres" },
   { folder: "dance_lens", slug: "dance-lens", title: "Dance Lens", screen: 1, left: 66, top: 0, width: 42, presPath: "dance_lens/dance_lens_pres/dance_lens_pres" },
   { folder: "motion_skeleton", slug: "motion-skeleton", title: "Motion Skeleton", screen: 1, left: 12, top: 50, width: 40 },
