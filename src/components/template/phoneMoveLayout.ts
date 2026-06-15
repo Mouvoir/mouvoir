@@ -26,7 +26,7 @@ const HERO: HeroEl = {
 // No `tools` array — the phone / touch / app trigger stickers ARE this scene's
 // tool kit, so they share step 1 with the tool-kit title.
 const STICKERS: StickerEl<InfoId>[] = [
-  { folder: "phone_move/phone_move_pres", name: "phone_move_pres", label: "Phone Move", top: 0, left: -5, width: 35, step: 0 },
+  { folder: "phone_move/phone_move_pres2", name: "phone_move_pres2", label: "Phone Move", top: 0, left: 5, width: 20, step: 0 },
   { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 3, left: 0, width: 5, delay: 0 },
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50, step: 3 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 0, left: 82, width: 16, step: 1 },
@@ -39,10 +39,10 @@ const STICKERS: StickerEl<InfoId>[] = [
 ];
 
 const BUBBLES: InfoBubble<InfoId>[] = [
-  { id: "phone", folder: "phone_move/phone_move_phoneinfo", name: "phone_move_phoneinfo", top: 3, left: 54, width: 28 },
-  { id: "app", folder: "phone_move/phone_move_appinfos", name: "phone_move_appinfos", top: 32, left: 60, width: 28 },
-  { id: "td", folder: "phone_move/phone_move_td", name: "phone_move_td", top: 34, left: 64, width: 28 },
-  { id: "whisper", folder: "phone_move/phone_move_whisperinfos", name: "phone_move_whisperinfos", top: 64, left: 70, width: 28 },
+  { id: "phone", folder: "phone_move/phone_move_phoneinfo", name: "phone_move_phoneinfo", top: 3, left: 60, width: 20 },
+  { id: "app", folder: "phone_move/phone_move_appinfos", name: "phone_move_appinfos", top: 32, left: 65, width: 20 },
+  { id: "td", folder: "phone_move/phone_move_td", name: "phone_move_td", top: 38, left: 70, width: 20 },
+  { id: "whisper", folder: "phone_move/phone_move_whisperinfos", name: "phone_move_whisperinfos", top: 64, left: 70, width: 20 },
   // Choreography projects made with this template — one bubble per link, each
   // positioned independently. They share id "keepMoving" so the keep_moving
   // sticker (top:70 left:10 w:11) reveals them all; keep them adjacent to it so
