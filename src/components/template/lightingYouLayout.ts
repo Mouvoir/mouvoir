@@ -22,23 +22,24 @@ const HERO: HeroEl = {
   top: 20,
   left: 25,
   width: 50,
+  step: 3,
 };
 
 const STICKERS: StickerEl<InfoId>[] = [
-  { folder: "lighting_you/lighting_you_pres", name: "lighting_you_pres", label: "Lighting You — présentation", top: -10, left: 0, width: 35 },
-  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6 },
-  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50 },
-  { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
-  { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 65, left: 80, width: 20, info: "whisper" },
-  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", info: "keepMoving", top: 60, left: 0, width: 15 },
+  { folder: "lighting_you/lighting_you_pres", name: "lighting_you_pres", label: "Lighting You — présentation", top: -10, left: 0, width: 35, step: 0 },
+  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6, delay: 0 },
+  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50, step: 3 },
+  { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16, step: 1 },
+  { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 65, left: 80, width: 20, info: "whisper", step: 2 },
+  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", info: "keepMoving", top: 60, left: 0, width: 15, step: 4 },
 ];
 
 const TOOLS: ToolObject<InfoId>[] = [
-  { src: "/lighting_you/objet/objet_02.png", alt: "Tape", info: "tape", top: 4, left: 73, width: 16 },
-  { src: "/lighting_you/objet/objet_01.png", alt: "Lipstick / makeup", info: "makeup", top: 13, left: 77, width: 16 },
-  { src: "/lighting_you/objet/objet_04.png", alt: "Phone", info: "camera", top: 20, left: 79, width: 16 },
-  { src: "/lighting_you/objet/objet_03.png", alt: "Marker", info: "camera", top: 25, left: 83, width: 16 },
-  { src: "/lighting_you/objet/objet_05.png", alt: "Flash / lamp", info: "flash", top: 28, left: 90, width: 12 },
+  { src: "/lighting_you/objet/objet_02.png", alt: "Tape", info: "tape", top: 4, left: 73, width: 16, step: 1 },
+  { src: "/lighting_you/objet/objet_01.png", alt: "Lipstick / makeup", info: "makeup", top: 13, left: 77, width: 16, step: 1 },
+  { src: "/lighting_you/objet/objet_04.png", alt: "Phone", info: "camera", top: 20, left: 79, width: 16, step: 1 },
+  { src: "/lighting_you/objet/objet_03.png", alt: "Marker", info: "camera", top: 25, left: 83, width: 16, step: 1 },
+  { src: "/lighting_you/objet/objet_05.png", alt: "Flash / lamp", info: "flash", top: 28, left: 90, width: 12, step: 1 },
 ];
 
 const BUBBLES: InfoBubble<InfoId>[] = [

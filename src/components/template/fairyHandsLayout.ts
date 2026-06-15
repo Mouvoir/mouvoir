@@ -29,27 +29,28 @@ const HERO: HeroEl = {
   top: 20,
   left: 26,
   width: 50,
+  step: 3,
 };
 
 // Static stickers. `back` returns to the template landing; `lighting_you`
 // cross-links to its own tutorial; `whisper` doubles as a bubble trigger.
 const STICKERS: StickerEl<InfoId>[] = [
-  { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: -2, left: -1, width: 40 },
-  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 7 },
-  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 5, left: 31, width: 42 },
-  { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16 },
-  { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 60, left: 78, width: 22, info: "whisper" },
-  { folder: "keep_moving_thermal", name: "keep_moving_thermal", label: "Keep moving — voir les projets", info: "keepMoving", top: 54, left: 10, width: 15 },
-  { folder: "lighting_you", name: "lighting_you", label: "Lighting you", href: "/template/lighting-you", top: 70, left: 80, width: 16 },
+  { folder: "fairy_hands/pres_fairy_hands", name: "pres_fairy_hands", label: "Fairy Hands — présentation", top: -2, left: -1, width: 40, step: 0 },
+  { folder: "back", name: "back", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 7, delay: 0 },
+  { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 5, left: 31, width: 42, step: 3 },
+  { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16, step: 1 },
+  { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 60, left: 78, width: 22, info: "whisper", step: 2 },
+  { folder: "keep_moving_thermal", name: "keep_moving_thermal", label: "Keep moving — voir les projets", info: "keepMoving", top: 54, left: 10, width: 15, step: 4 },
+  { folder: "lighting_you", name: "lighting_you", label: "Lighting you", href: "/template/lighting-you", top: 70, left: 80, width: 16, step: 4 },
 ];
 
 // Tool-kit objects on the right, top to bottom. Each reveals one bubble.
 const TOOLS: ToolObject<InfoId>[] = [
-  { src: "/fairy_hands/objet/objet_01.png", alt: "Paillettes en flacon", info: "glitter", top: 8, left: 73, width: 12 },
-  { src: "/fairy_hands/objet/objet_02.png", alt: "Paillettes en coupelle", info: "glitter", top: 12, left: 78, width: 10 },
-  { src: "/fairy_hands/objet/objet_04.png", alt: "Webcam", info: "camera", top: 26, left: 79, width: 11 },
-  { src: "/fairy_hands/objet/objet_03.png", alt: "Lampe torche", info: "light", top: 30, left: 85, width: 11 },
-  { src: "/fairy_hands/objet/objet_05.png", alt: "Contrôleur MIDI", info: "controller", top: 32, left: 89, width: 12 },
+  { src: "/fairy_hands/objet/objet_01.png", alt: "Paillettes en flacon", info: "glitter", top: 8, left: 73, width: 12, step: 1 },
+  { src: "/fairy_hands/objet/objet_02.png", alt: "Paillettes en coupelle", info: "glitter", top: 12, left: 78, width: 10, step: 1 },
+  { src: "/fairy_hands/objet/objet_04.png", alt: "Webcam", info: "camera", top: 26, left: 79, width: 11, step: 1 },
+  { src: "/fairy_hands/objet/objet_03.png", alt: "Lampe torche", info: "light", top: 30, left: 85, width: 11, step: 1 },
+  { src: "/fairy_hands/objet/objet_05.png", alt: "Contrôleur MIDI", info: "controller", top: 32, left: 89, width: 12, step: 1 },
 ];
 
 // Speech bubbles, keyed by the trigger that reveals them.
