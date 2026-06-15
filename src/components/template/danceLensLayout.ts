@@ -28,7 +28,7 @@ const STICKERS: StickerEl<InfoId>[] = [
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50, step: 3 },
   { folder: "follow_the_beats", name: "follow_the_beats", label: "Follow the beats — plugin MediaPipe sur GitHub", href: "https://github.com/torinmb/mediapipe-touchdesigner", top: 53, left: 0, width: 16, step: 4 },
   { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", info: "keepMoving", top: 67, left: 10, width: 16, step: 4 },
-  { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 71, left: 78, width: 16, info: "whisper", step: 2 },
+  { folder: "keep_moving_thermal", name: "keep_moving_thermal", label: "Whisper", top: 71, left: 78, width: 16, info: "whisper", step: 2 },
   { folder: "back_orange", name: "back_orange", label: "Retour aux templates", href: "/", top: 0, left: 0, width: 6, delay: 0 },
 ];
 

@@ -31,7 +31,7 @@ const STICKERS: StickerEl<InfoId>[] = [
   { folder: "step_by_step_thermal", name: "step_by_step_thermal", label: "Step by step", top: 1, left: 29, width: 50, step: 3 },
   { folder: "tool_kit_rose_thermal", name: "tool_kit_rose_thermal", label: "Tool kit", top: 1, left: 83, width: 16, step: 1 },
   { folder: "whisper_thermal", name: "whisper_thermal", label: "Whisper", top: 65, left: 80, width: 20, info: "whisper", step: 2 },
-  { folder: "keep_moving", name: "keep_moving", label: "Keep moving — voir les projets", info: "keepMoving", top: 60, left: 0, width: 15, step: 4 },
+  { folder: "keep_moving_thermal", name: "keep_moving_thermal", label: "Keep moving — voir les projets", info: "keepMoving", top: 60, left: 0, width: 15, step: 4 },
 ];
 
 const TOOLS: ToolObject<InfoId>[] = [
@@ -43,10 +43,10 @@ const TOOLS: ToolObject<InfoId>[] = [
 ];
 
 const BUBBLES: InfoBubble<InfoId>[] = [
-  { id: "tape", folder: "lighting_you/lighting_you_tapeinfos", name: "lighting_you_tapeinfos", top: 4, left: 62, width: 18 },
-  { id: "makeup", folder: "lighting_you/lighting_you_makeupinfos", name: "lighting_you_makeupinfos", top: 18, left: 64, width: 18 },
-  { id: "flash", folder: "lighting_you/lighting_you_flashinfos", name: "lighting_you_flashinfos", top: 34, left: 68, width: 18 },
-  { id: "camera", folder: "lighting_you/lighting_you_camerainfos", name: "lighting_you_camerainfos", top: 26, left: 66, width: 19 },
+  { id: "tape", folder: "lighting_you/lighting_you_tapeinfos", name: "lighting_you_tapeinfos", top: 4, left: 62, width: 20 },
+  { id: "makeup", folder: "lighting_you/lighting_you_makeupinfos", name: "lighting_you_makeupinfos", top: 18, left: 64, width: 20 },
+  { id: "camera", folder: "lighting_you/lighting_you_camerainfos", name: "lighting_you_camerainfos", top: 26, left: 70, width: 20 },
+  { id: "flash", folder: "lighting_you/lighting_you_flashinfos", name: "lighting_you_flashinfos", top: 34, left: 75, width: 20 },
   { id: "whisper", folder: "lighting_you/lighting_you_whisperinfos", name: "lighting_you_whisperinfos", top: 63, left: 70, width: 21 },
   // Choreography projects made with this template — one bubble per link, each
   // positioned independently. They share id "keepMoving" so the keep_moving

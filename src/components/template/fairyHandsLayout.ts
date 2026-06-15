@@ -55,11 +55,11 @@ const TOOLS: ToolObject<InfoId>[] = [
 
 // Speech bubbles, keyed by the trigger that reveals them.
 const BUBBLES: InfoBubble<InfoId>[] = [
-  { id: "glitter", folder: "fairy_hands/fairy_hands_glitterinfos", name: "fairy_hands_glitterinfos", top: 4, left: 62, width: 21 },
-  { id: "camera", folder: "fairy_hands/fairy_hands_camerainfos", name: "fairy_hands_camerainfos", top: 25, left: 66, width: 20 },
-  { id: "light", folder: "fairy_hands/fairy_hands_lightinfos", name: "fairy_hands_lightinfos", top: 35, left: 69, width: 22 },
-  { id: "controller", folder: "fairy_hands/fairy_hands_controllerinfos", name: "fairy_hands_controllerinfos", top: 40, left: 80, width: 19 },
-  { id: "whisper", folder: "fairy_hands/fairy_hands_whisperinfos", name: "fairy_hands_whisperinfos", top: 68, left: 70, width: 21 },
+  { id: "glitter", folder: "fairy_hands/fairy_hands_glitterinfos", name: "fairy_hands_glitterinfos", top: 4, left: 62, width: 24 },
+  { id: "camera", folder: "fairy_hands/fairy_hands_camerainfos", name: "fairy_hands_camerainfos", top: 25, left: 66, width: 24 },
+  { id: "light", folder: "fairy_hands/fairy_hands_lightinfos", name: "fairy_hands_lightinfos", top: 35, left: 69, width: 24 },
+  { id: "controller", folder: "fairy_hands/fairy_hands_controllerinfos", name: "fairy_hands_controllerinfos", top: 38, left: 78, width: 24 },
+  { id: "whisper", folder: "fairy_hands/fairy_hands_whisperinfos", name: "fairy_hands_whisperinfos", top: 65, left: 70, width: 24 },
   // Choreography projects made with this template — one bubble per link, each
   // positioned independently (id "keepMoving" ties them to the keep_moving
   // sticker, top:54 left:10 w:15). Keep adjacent so the pointer can bridge; tune
