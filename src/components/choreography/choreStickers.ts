@@ -46,7 +46,7 @@ export const CHORE_STICKERS: ChoreSticker[] = [
   { folder: "jam_ctrlf_f", slug: "jam-ctrl-f", title: "Jam Ctrl+F", artist: "Rozetta + Lise", left: 59.8, top: 40, width: 21.3 },
   // turfuzz/modul_aura nudged up so their bottoms clear the screen box bottom.
   { folder: "turfuzz", slug: "turfuzz", title: "Turfuzz", artist: "Rozetta", left: 5, top: 55, width: 20 },
-  { folder: "modul_aura", slug: "modul-aura", title: "ModulAura", artist: "Rozetta", left: 35, top: 70, width: 20},
+  { folder: "modul_aura", slug: "modul-aura", title: "ModulAura", artist: "Rozetta", left: 30, top: 65, width: 25},
   { folder: "milas", slug: "milas", title: "Mila's", artist: "Lise", left: 74, top: 55, width: 23 },
   { folder: "brightness", slug: "brightness", title: "Brightness", artist: "Rozetta + Lise", left: -8, top: 5, width: 40 },
 ];
