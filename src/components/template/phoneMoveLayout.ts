@@ -44,8 +44,8 @@ const BUBBLES: InfoBubble<InfoId>[] = [
   // positioned independently. They share id "keepMoving" so the keep_moving
   // sticker (top:70 left:10 w:11) reveals them all; keep them adjacent to it so
   // the pointer can bridge across. Tune positions visually.
-  { id: "keepMoving", slug: "greyclub", folder: "greyclub", name: "greyclub_anim", title: "Greyclub", top: 48, left: 20, width: 12 },
-  { id: "keepMoving", slug: "urbex", folder: "urbex", name: "urbex_anim", title: "Urbex 10.3", top: 62, left: 20, width: 12 },
+  { id: "keepMoving", slug: "greyclub", folder: "greyclub", name: "greyclub_anim", title: "Greyclub", top: 50, left: 16, width: 16 },
+  { id: "keepMoving", slug: "urbex", folder: "urbex", name: "urbex_anim", title: "Urbex 10.3", top: 65, left: 16, width: 16 },
 ];
 
 export const phoneMoveScene: SceneLayout<InfoId> = {

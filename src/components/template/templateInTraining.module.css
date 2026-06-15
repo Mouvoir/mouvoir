@@ -39,6 +39,17 @@
   display: block;
 }
 
+/* Back link, top-left. `.layer` is pointer-events:none so it never steals
+   hover from the clips; the back link opts back in to stay clickable. */
+.back {
+  top: 4%;
+  left: 2%;
+  width: 7%;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
 .title {
   left: 29%;
   width: 42%;

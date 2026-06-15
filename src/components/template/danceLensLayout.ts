@@ -47,9 +47,9 @@ const BUBBLES: InfoBubble<InfoId>[] = [
   // positioned independently. They share id "keepMoving" so the keep_moving
   // sticker (top:67 left:10 w:16) reveals them all; keep them adjacent to it so
   // the pointer can bridge across. Tune positions visually.
-  { id: "keepMoving", slug: "milas", folder: "milas", name: "milas_anim", title: "Mila's", top: 40, left: 25, width: 14 },
-  { id: "keepMoving", slug: "modul-aura", folder: "modul_aura", name: "modul_aura_anim", title: "ModulAura", top: 54, left: 25, width: 14 },
-  { id: "keepMoving", slug: "quantu-motion", folder: "quantu_motion", name: "quantu_motion_anim", title: "QUANTUMotion", top: 68, left: 25, width: 14 },
+  { id: "keepMoving", slug: "milas", folder: "milas", name: "milas_anim", title: "Mila's", top: 40, left: 10, width: 16 },
+  { id: "keepMoving", slug: "modul-aura", folder: "modul_aura", name: "modul_aura_anim", title: "ModulAura", top: 60, left: 20, width: 16 },
+  { id: "keepMoving", slug: "quantu-motion", folder: "quantu_motion", name: "quantu_motion_anim", title: "QUANTUMotion", top: 60, left: 0, width: 16 },
 ];
 
 export const danceLensScene: SceneLayout<InfoId> = {

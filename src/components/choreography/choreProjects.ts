@@ -17,6 +17,11 @@ export interface ChoreLayerData {
   /** Width, % of the .screen box width */
   width: number;
   /**
+   * Clockwise rotation in degrees, applied around the layer's center.
+   * Optional; omit (or 0) for an upright layer.
+   */
+  rotate?: number;
+  /**
    * When present, the layer is wrapped in a Next.js <Link href={href}>.
    * The media element inside always carries pointer-events:none so only
    * the Link wrapper is interactive.
@@ -28,6 +33,12 @@ export interface ChoreLayerData {
    * Required when href is set; omit for decorative layers.
    */
   label?: string;
+  /**
+   * When true, the layer's video renders with custom controls (scrubber +
+   * play/pause + native fullscreen). Reserved for the main result clip of a
+   * project; only valid on `kind: "video"` layers without an `href`.
+   */
+  controls?: boolean;
 }
 
 const BACK_LAYER: ChoreLayerData = {
@@ -77,39 +88,43 @@ function keepMovingLayer(slug: string): ChoreLayerData {
 const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
   greyclub: [
     { kind: "video", asset: "greyclub/greyclub", left: 72, top: 0, width: 24 },
-    { kind: "video", asset: "phone_move/phone_move_video", left: 2, top: 10, width: 65 },
+    { kind: "video", asset: "phone_move/phone_move_video", left: 2, top: 10, width: 65, controls: true },
     { kind: "image", asset: "phone_move/phone_move_jingle/phone_move_jingle_3.png", left: 45, top: 14, width: 25},
     { kind: "image", asset: "phone_move/phone_move_jingle/phone_move_jingle_2.png", left: -3, top: 10, width: 33 },
     { kind: "video", asset: "greyclub/greyclub_infos01", left: 67, top: 20, width: 22 },
     { kind: "video", asset: "greyclub/greyclub_infos02", left: 77, top: 32, width: 24 },
+    { kind: "video", asset: "mathilde/mathilde",  left: 88, top: 18, width: 8,rotate: -10 },
   ],
   urbex: [
-    { kind: "video", asset: "urbex/urbex", left: 1, top: 10, width: 65 },
+    { kind: "video", asset: "urbex/urbex", left: 1, top: 10, width: 65, controls: true },
     { kind: "video", asset: "urbex/urbex_titre", left: 72, top: 0, width: 24 },
     { kind: "video", asset: "urbex/urbex_infos02", left: 70, top: 36, width: 24 },
     { kind: "video", asset: "urbex/urbex_infos01", left: 65, top: 19, width: 20 },
     { kind: "image", asset: "urbex/urbex_jingle_020.png", left: -9, top: 6, width: 40 },
     { kind: "image", asset: "urbex/urbex_jingle_030.png", left: 42, top: 53, width: 30 },
     { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 68, top: 68, width: 16, href: "https://www.allierozetta.com/all/vjart/urbex-10-3/", label: "Follow the beats" },
+    { kind: "video", asset: "rozetta/rozetta",  left: 90, top: 16, width: 8,rotate: -10 },
   ],
   "quantu-motion": [
-    { kind: "video", asset: "quantu_motion/quantu_motion", left: 2, top: 10, width: 65 },
+    { kind: "video", asset: "quantu_motion/quantu_motion", left: 2, top: 10, width: 65, controls: true },
     { kind: "video", asset: "quantu_motion/quantu_motion_titre", left: 72, top: 0, width: 24 },
     { kind: "video", asset: "quantu_motion/quantu_motion_infos01", left: 65, top: 20, width: 22 },
     { kind: "video", asset: "quantu_motion/quantu_motion_infos02", left: 73, top: 35, width: 20 },
     { kind: "image", asset: "quantu_motion/quantu_motion_jingle020.png", left: -10, top: 18, width: 30 },
     { kind: "image", asset: "quantu_motion/quantu_motion_jingle0300.png", left: 40, top: 0, width: 30 },
-    { kind: "image", asset: "quantu_motion/quantu_motion_jingle010.png", left: 40, top: 40, width: 30 },
+    { kind: "image", asset: "quantu_motion/quantu_motion_jingle010.png", left: 41, top: 50, width: 30 },
     { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 66, top: 70, width: 13, href: "https://www.allierozetta.com/all/vjart/quantumotion/", label: "Follow the beats" },
+    { kind: "video", asset: "rozetta/rozetta",  left: 90, top: 16, width: 8,rotate: -10 },
   ],
   brightness: [
-    { kind: "video", asset: "jam_ctrlf_f/jam_ctrlf_f_fairy_hands", left: 2, top: 10, width: 65 },
+    { kind: "video", asset: "jam_ctrlf_f/jam_ctrlf_f_fairy_hands", left: 2, top: 10, width: 65, controls: true },
     { kind: "video", asset: "brightness/brightness", left: 72, top: 0, width: 24 },
     { kind: "video", asset: "brightness/brightness_infos01", left: 65, top: 20, width: 22 },
     { kind: "video", asset: "brightness/brightness_infos02", left: 73, top: 32, width: 22 },
     { kind: "image", asset: "jam_ctrlf_f/jam_ctrlf_f_020.png", left: 2, top: 5, width: 20 },
     { kind: "image", asset: "jam_ctrlf_f/jam_ctrlf_f_010.png", left: 35, top: 5, width: 22 },
     { kind: "image", asset: "jam_ctrlf_f/jam_ctrlf_f_030.png", left: 54, top: 52, width: 20 },
+    { kind: "video", asset: "rozetta_lise/rozetta_lise", left: 88, top: 18, width: 8,rotate: -10 },
   ],
   light: [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },
@@ -124,14 +139,12 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
   turfuzz: [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },
     { kind: "video", asset: "two_pers_dansent_thermal_bleu/two_pers_dansent_thermal_bleu", left: 0, top: 18, width: 35 },
-    { kind: "video", asset: "turfuzz/turfuzz_anim", left: 28, top: 38, width: 40 },
-    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 10, top: 72, width: 16, href: "https://www.allierozetta.com/all/filmphoto/turfuzz-ft-pumpum-paradise/", label: "Follow the beats" },
-  ],
+    { kind: "video", asset: "turfuzz/turfuzz_anim", left: 28, top: 30, width: 40 },
+   ],
   "modul-aura": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },
     { kind: "video", asset: "two_pers_dansent_thermal_bleu/two_pers_dansent_thermal_bleu", left: 0, top: 18, width: 35 },
     { kind: "video", asset: "modul_aura/modul_aura_anim", left: 30, top: 35, width: 40 },
-    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 10, top: 72, width: 16, href: "https://www.allierozetta.com/all/vjart/modulaura/", label: "Follow the beats" },
   ],
   "jam-ctrl-f": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },

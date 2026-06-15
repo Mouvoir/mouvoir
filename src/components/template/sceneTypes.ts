@@ -17,6 +17,11 @@ export interface Placed {
   /** Entrance reveal delay (seconds). Omit to auto-stagger by render order
    *  (see sceneReveal.ts / SCENE_STAGGER). */
   delay?: number;
+  /** Semantic reveal group (0-based): title → tool kit → whisper → result
+   *  video → related links. Elements sharing a step fade in together, in step
+   *  order regardless of DOM position. Overridden by an explicit `delay`; omit
+   *  to fall back to render-order auto-stagger. See sceneReveal.ts. */
+  step?: number;
 }
 
 // A neon/thermal video sticker (AssetVideo). `href` turns it into a link

@@ -1,0 +1,134 @@
+/* A looping clip with custom controls: a scrubber + play/pause that fade in on
+   hover, and a native-fullscreen toggle. Shared by the template hero and the
+   choreography result videos; the accent colour comes from the inline `--accent`
+   custom property (falls back to the site pink). The bare <video> sizing matches
+   the surrounding layers (width 100% / height auto); the fullscreen rules
+   letterbox the clip — their class-heavy selector outweighs the host pages'
+   `.scene .hero video` / `.layerMedia`, so contain sizing wins. */
+
+.root {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  pointer-events: auto;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Controls bar — hidden until the clip is hovered or a control is focused. */
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.root:hover .controls,
+.root:focus-within .controls {
+  opacity: 1;
+}
+
+.iconBtn {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.iconBtn:hover,
+.iconBtn:focus-visible {
+  background: var(--accent, #e94aa7);
+  transform: scale(1.08);
+}
+
+/* Scrubber — the filled portion is driven by the inline `--fill` percentage. */
+.scrubber {
+  flex: 1;
+  height: 4px;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    to right,
+    var(--accent, #e94aa7) var(--fill, 0%),
+    rgba(255, 255, 255, 0.3) var(--fill, 0%)
+  );
+  cursor: pointer;
+}
+
+.scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent, #e94aa7);
+  cursor: pointer;
+}
+
+.scrubber::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent, #e94aa7);
+  cursor: pointer;
+}
+
+/* Fullscreen: centre and letterbox the clip on a black backdrop. The two
+   prefixes must live in separate rules — a browser drops the whole selector
+   list if it can't parse one of them. */
+.root:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+}
+
+.root:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+}
+
+.root:fullscreen .video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.root:-webkit-full-screen .video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AssetVideo } from "@/components/shared/AssetVideo";
+import { ControlledVideo } from "@/components/shared/ControlledVideo";
 import { revealVars } from "./sceneReveal";
 import type { Placed, SceneLayout, StickerEl } from "./sceneTypes";
 import styles from "./templateScene.module.css";
@@ -74,17 +75,17 @@ export function TemplateScene({ layout }: { layout: SceneLayout }) {
   // must stay rendered before the sticker buttons to keep their animation phase.
   return (
     <div className={styles.scene}>
-      {/* Hero result footage, lowest so neon titles read on top of it. It reveals
-          last: its stagger index continues past every sticker and tool so the
-          black stage fills with stickers before the result clip fades in. */}
+      {/* Hero result footage, lowest in the stack so neon titles read on top of
+          it. Its entrance timing is driven by the layout's `step` (the result
+          video reveals with "step by step"); falls back to last when untagged. */}
       <div
         className={`${styles.hero} scene-reveal`}
         style={{
           ...place(hero),
-          ...revealVars(stickers.length + tools.length, hero.delay),
+          ...revealVars(stickers.length + tools.length, hero.delay, hero.step),
         }}
       >
-        <AssetVideo folder={hero.folder} name={hero.name} />
+        <ControlledVideo srcBase={`${hero.folder}/${hero.name}`} label={hero.label} />
       </div>
 
       {/* Speech bubbles: every bubble whose id is active mounts (link bubbles
@@ -120,15 +121,15 @@ export function TemplateScene({ layout }: { layout: SceneLayout }) {
           ))}
       </AnimatePresence>
 
-      {/* Tool-kit objects (transparent PNGs) — hover targets. They share the
-          stickers' staggered entrance; their reveal index continues after the
-          stickers so they no longer pop in first (tune per-tool via `delay`). */}
+      {/* Tool-kit objects (transparent PNGs) — hover targets. Their entrance is
+          driven by the layout's `step` (the tool kit reveals as one group); the
+          index fallback continues after the stickers when a tool is untagged. */}
       {tools.map((tool, index) => (
         <button
           key={tool.src}
           type="button"
           className={`${styles.tool} scene-reveal`}
-          style={{ ...place(tool), ...revealVars(stickers.length + index, tool.delay) }}
+          style={{ ...place(tool), ...revealVars(stickers.length + index, tool.delay, tool.step) }}
           aria-label={tool.alt}
           {...triggerProps(tool.info)}
         >
@@ -160,7 +161,7 @@ function Sticker({
   triggerProps: (info: string) => Record<string, () => void>;
 }) {
   const media = <AssetVideo folder={sticker.folder} name={sticker.name} />;
-  const style = { ...place(sticker), ...revealVars(index, sticker.delay) };
+  const style = { ...place(sticker), ...revealVars(index, sticker.delay, sticker.step) };
 
   if (sticker.href) {
     const isExternal = sticker.href.startsWith("http");

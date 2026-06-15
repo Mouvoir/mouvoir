@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { ControlledVideo } from "@/components/shared/ControlledVideo";
 import styles from "./choreLayer.module.css";
 import type { ChoreLayerData } from "./choreProjects";
+
+// Blue scrubber accent for the choreography result clips, matching the section's
+// blue theme (back_bleu, still_in_training_bleu, …).
+const CHORE_ACCENT = "var(--color-cyan-blue)";
 
 interface ChoreLayerProps {
   layer: ChoreLayerData;
@@ -11,10 +16,19 @@ export function ChoreLayer({ layer }: ChoreLayerProps) {
     left: `${layer.left}%`,
     top: `${layer.top}%`,
     width: `${layer.width}%`,
+    ...(layer.rotate ? { transform: `rotate(${layer.rotate}deg)` } : {}),
   };
 
+  const isExternal = layer.href?.startsWith("http");
+
   const media =
-    layer.kind === "video" ? (
+    layer.kind === "video" && layer.controls ? (
+      <ControlledVideo
+        srcBase={layer.asset}
+        label={layer.label}
+        accent={CHORE_ACCENT}
+      />
+    ) : layer.kind === "video" ? (
       <video
         autoPlay
         muted
@@ -44,6 +58,7 @@ export function ChoreLayer({ layer }: ChoreLayerProps) {
           href={layer.href}
           aria-label={layer.label}
           className={styles.layerLink}
+          {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
         >
           {media}
         </Link>

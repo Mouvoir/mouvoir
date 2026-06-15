@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./templateInTraining.module.css";
 
 // Shared placeholder view for templates that don't have a finished detail page
@@ -8,6 +9,7 @@ import styles from "./templateInTraining.module.css";
 const TITLE = "still_in_training_thermal";
 const DANCER_LEFT = "dancer_thermal_left";
 const DANCER_RIGHT = "dancer_thermal_right";
+const BACK = "back_orange";
 
 interface LayerProps {
   /** Base path relative to public/, without extension. Appends .mov/.webm/.png. */
@@ -59,6 +61,27 @@ export function TemplateInTraining({ folder, title }: TemplateInTrainingProps) {
   return (
     <div className={styles.collage}>
       <section className={styles.screen}>
+        {/* Back to the template landing — the orange variant, matching the
+            scene layouts that ship a finished detail page. */}
+        <Link
+          href="/"
+          className={`${styles.layer} ${styles.back}`}
+          aria-label="Retour aux templates"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={`/${BACK}/${BACK}.png`}
+            className={styles.screenVideo}
+          >
+            {/* HEVC-with-alpha mov first for Safari, VP9 webm for the rest. */}
+            <source src={`/${BACK}/${BACK}.mov`} type="video/quicktime" />
+            <source src={`/${BACK}/${BACK}.webm`} type="video/webm" />
+          </video>
+        </Link>
         <Layer
           base={`${TITLE}/${TITLE}`}
           position={styles.title}

@@ -51,9 +51,9 @@ const BUBBLES: InfoBubble<InfoId>[] = [
   // positioned independently. They share id "keepMoving" so the keep_moving
   // sticker (top:60 left:0 w:15) reveals them all; keep them adjacent to it so
   // the pointer can bridge across. Tune positions visually.
-  { id: "keepMoving", slug: "brightness", folder: "brightness", name: "brightness_anim", title: "Brightness", top: 32, left: 14, width: 14 },
-  { id: "keepMoving", slug: "light", folder: "light", name: "light_anim", title: "Light", top: 46, left: 14, width: 14 },
-  { id: "keepMoving", slug: "yoyo", folder: "yoyo", name: "yoyo_anim", title: "Yoyo", top: 60, left: 14, width: 14 },
+  { id: "keepMoving", slug: "light", folder: "light", name: "light_anim", title: "Light", top: 50, left: 8, width: 16 },
+  { id: "keepMoving", slug: "yoyo", folder: "yoyo", name: "yoyo_anim", title: "Yoyo", top: 65, left: 8, width: 16 },
+  { id: "keepMoving", slug: "brightness", folder: "brightness", name: "brightness_anim", title: "Brightness", top: 44, left: -4, width: 20 },
 ];
 
 export const lightingYouScene: SceneLayout<InfoId> = {
