@@ -76,7 +76,7 @@ const PROJECT_LINKS: Record<string, ProjectLinks> = {
 function keepMovingLayer(slug: string): ChoreLayerData {
   return {
     kind: "video",
-    asset: "keep_moving/keep_moving",
+    asset: "keep_moving_thermal/keep_moving_thermal",
     left: 83,
     top: 60,
     width: 14,
@@ -140,11 +140,13 @@ const CHORE_PROJECTS: Record<string, ChoreLayerData[]> = {
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },
     { kind: "video", asset: "two_pers_dansent_thermal_bleu/two_pers_dansent_thermal_bleu", left: 0, top: 18, width: 35 },
     { kind: "video", asset: "turfuzz/turfuzz_anim", left: 28, top: 30, width: 40 },
-   ],
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 82, top: 45, width: 16, href: "https://www.allierozetta.com/all/filmphoto/turfuzz-ft-pumpum-paradise/", label: "Follow the beats" },
+  ],
   "modul-aura": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },
     { kind: "video", asset: "two_pers_dansent_thermal_bleu/two_pers_dansent_thermal_bleu", left: 0, top: 18, width: 35 },
     { kind: "video", asset: "modul_aura/modul_aura_anim", left: 30, top: 35, width: 40 },
+    { kind: "video", asset: "follow_the_beats_bleu/follow_the_beats_bleu", left: 82, top: 45, width: 16, href: "https://www.allierozetta.com/all/vjart/modulaura/", label: "Follow the beats" },
   ],
   "jam-ctrl-f": [
     { kind: "video", asset: "still_in_training_bleu/still_in_training_bleu", left: 30, top: 0, width: 35 },

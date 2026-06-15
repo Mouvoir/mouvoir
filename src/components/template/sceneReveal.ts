@@ -7,12 +7,12 @@ import type { CSSProperties } from "react";
 
 /** Default gap (seconds) between consecutive stickers' entrance reveals when no
  *  explicit `delay` is set on the layout element. */
-export const SCENE_STAGGER =0.2;
+export const SCENE_STAGGER =0.5;
 
 /** Gap (seconds) between consecutive semantic reveal steps (see `step` in
  *  sceneTypes.ts): title → tool kit → whisper → result video → related links.
  *  Slightly under the 0.55s fade so the groups read as one flowing sequence. */
-export const REVEAL_STEP_GAP = 0.45;
+export const REVEAL_STEP_GAP = 0.5;
 
 /** Inline CSS vars driving a single element's staggered entrance. Precedence:
  *  an explicit `delay` wins; otherwise a semantic `step` places the element in
